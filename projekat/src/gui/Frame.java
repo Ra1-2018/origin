@@ -1,13 +1,18 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 //import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.DateFormat;
 
 //import javax.swing.JButton;
 import javax.swing.JFrame;
-//import javax.swing.JPanel;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 //import javax.swing.JRadioButton;
 
 public class Frame extends JFrame {
@@ -34,6 +39,27 @@ public class Frame extends JFrame {
 		
 		Toolbar toolbar = new Toolbar();
 		add(toolbar, BorderLayout.NORTH);
+		
+		
+		
+		JPanel statusBar = new JPanel();
+		add(statusBar, BorderLayout.SOUTH);
+
+		BoxLayout box = new BoxLayout(statusBar, BoxLayout.X_AXIS);
+		statusBar.setLayout(box);	
+		statusBar.setBackground(Color.WHITE);
+		statusBar.setPreferredSize(new Dimension(100, 30));
+		
+		
+		JLabel statusLabel = new JLabel("Status bar");
+		statusBar.add(Box.createHorizontalStrut(15)); 
+		statusBar.add(statusLabel);
+		statusBar.add(Box.createHorizontalGlue());
+		
+		JLabel vreme = new JLabel("Vreme");
+		statusBar.add(vreme);
+		statusBar.add(Box.createHorizontalStrut(15)); 
+		
 
 	}
 }
