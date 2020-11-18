@@ -1,6 +1,5 @@
 package gui;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,36 +18,27 @@ public class MenuBar extends JMenuBar {
 		JMenu file = new JMenu("File");
 		JMenu edit = new JMenu("Edit");
 		JMenu help = new JMenu("Help");
-				
-		Icon icon = new ImageIcon("new.png");
-		JMenuItem m_new = new JMenuItem("New", icon);
-			
-		icon = new ImageIcon("close.png");
-		JMenuItem m_close = new JMenuItem("Close", icon);
+
+		JMenuItem m_new = new JMenuItem("New", new ImageIcon("images/new.png"));		
+		JMenuItem m_close = new JMenuItem("Close", new ImageIcon("images/close.png"));
 		
 		file.add(m_new);
 		file.addSeparator();
 		file.add(m_close);
 		
-		icon = new ImageIcon("edit.png");
-		JMenuItem m_edit = new JMenuItem("Edit");
+		JMenuItem m_edit = new JMenuItem("Edit", new ImageIcon("images/edit.png"));
+		JMenuItem m_delete = new JMenuItem("Delete", new ImageIcon("images/delete.png"));
 		
-		icon = new ImageIcon("delete.png");
-		JMenuItem m_delete = new JMenuItem("Delete");
+		edit.add(m_edit);
+		edit.addSeparator();
+		edit.add(m_delete);
 		
-		file.add(m_edit);
-		file.addSeparator();
-		file.add(m_delete);
+		JMenuItem m_help= new JMenuItem("Help", new ImageIcon("images/help.png"));
+		JMenuItem m_about = new JMenuItem("About", new ImageIcon("images/about.png"));
 		
-		icon = new ImageIcon("help.png");
-		JMenuItem m_help= new JMenuItem("Help");
-		
-		icon = new ImageIcon("about.png");
-		JMenuItem m_about = new JMenuItem("About");
-		
-		file.add(m_help);
-		file.addSeparator();
-		file.add(m_about);
+		help.add(m_help);
+		help.addSeparator();
+		help.add(m_about);
 		
 		add(file);
 		add(edit);
