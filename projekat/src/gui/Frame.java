@@ -19,6 +19,9 @@ public class Frame extends JFrame {
 
 	public Frame() {
 		
+		MenuBar menu = new MenuBar();
+		this.setJMenuBar(menu);
+		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		int screenHeight = screenSize.height;
@@ -31,5 +34,6 @@ public class Frame extends JFrame {
 		
 		Toolbar toolbar = new Toolbar();
 		add(toolbar, BorderLayout.NORTH);
+
 	}
 }
