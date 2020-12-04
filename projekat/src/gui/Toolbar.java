@@ -46,8 +46,8 @@ public class Toolbar extends JToolBar{
 		
 		add(Box.createHorizontalGlue());
 		
-		JTextField textfield = new JTextField();
-		textfield.setMaximumSize(new Dimension(5000,5000));
+		JTextField textfield = new JTextField(20);
+		textfield.setMaximumSize(new Dimension(100, 30));
 		add(textfield);
 		
 		addSeparator();
