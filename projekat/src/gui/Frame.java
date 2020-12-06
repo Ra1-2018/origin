@@ -2,13 +2,17 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-//import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
+
+
 
 public class Frame extends JFrame {
 	
@@ -32,6 +36,40 @@ public class Frame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
+		Toolbar toolbar = new Toolbar();
+		add(toolbar, BorderLayout.NORTH);
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.GRAY);
 		this.add(panel);
@@ -39,8 +77,6 @@ public class Frame extends JFrame {
 		todolabel.setForeground(Color.WHITE);
 		panel.add(todolabel);
 		
-		Toolbar toolbar = new Toolbar();
-		add(toolbar, BorderLayout.NORTH);
 
 	}
 }
