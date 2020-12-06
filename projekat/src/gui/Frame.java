@@ -2,10 +2,12 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-//import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.text.DateFormat;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 //import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -51,13 +53,21 @@ public class Frame extends JFrame {
 		statusBar.setPreferredSize(new Dimension(100, 30));
 		
 		
-		JLabel statusLabel = new JLabel("Status bar");
+		JLabel statusLabel = new JLabel("Studentska služba");
 		statusBar.add(Box.createHorizontalStrut(15)); 
 		statusBar.add(statusLabel);
 		statusBar.add(Box.createHorizontalGlue());
 		
-		JLabel vreme = new JLabel("Vreme");
-		statusBar.add(vreme);
+		
+		JLabel trenutni_datum = new JLabel();
+		JLabel time = new JLabel();
+		
+		CurrentTime sat = new CurrentTime(time, trenutni_datum);
+		sat.start();
+		
+		statusBar.add(time);
+		statusBar.add(Box.createHorizontalStrut(5)); 
+		statusBar.add(trenutni_datum);
 		statusBar.add(Box.createHorizontalStrut(15)); 
 		
 
