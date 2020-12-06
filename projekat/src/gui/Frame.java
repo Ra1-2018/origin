@@ -66,7 +66,4 @@ public class Frame extends JFrame {
 		statusBar.add(Box.createHorizontalStrut(5)); 
 		statusBar.add(trenutni_datum);
 		statusBar.add(Box.createHorizontalStrut(15)); 
-		
 
-	}
-}
