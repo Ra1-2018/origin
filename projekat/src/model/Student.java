@@ -18,8 +18,8 @@ public class Student {
 	private long trenutnaGodinaStudija;
 	private Status status;
 	private long prosecnaOcena;
-	private List<Integer> polozeniIspiti;
-	private List<String> nepolozeniIspiti;
+	private List<Ocena> polozeniIspiti;
+	private List<Ocena> nepolozeniIspiti;
 	
 
 	public Student() {}
@@ -38,8 +38,8 @@ public class Student {
 		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
-		polozeniIspiti = new ArrayList<Integer>();
-		nepolozeniIspiti = new ArrayList<String>();
+		polozeniIspiti = new ArrayList<Ocena>();
+		nepolozeniIspiti = new ArrayList<Ocena>();
 	}
 
 
@@ -153,22 +153,22 @@ public class Student {
 	}
 
 
-	public List<Integer> getPolozeniIspiti() {
+	public List<Ocena> getPolozeniIspiti() {
 		return polozeniIspiti;
 	}
 
 
-	public void setPolozeniIspiti(List<Integer> polozeniIspiti) {
+	public void setPolozeniIspiti(List<Ocena> polozeniIspiti) {
 		this.polozeniIspiti = polozeniIspiti;
 	}
 
 
-	public List<String> getNepolozeniIspiti() {
+	public List<Ocena> getNepolozeniIspiti() {
 		return nepolozeniIspiti;
 	}
 
 
-	public void setNepolozeniIspiti(List<String> nepolozeniIspiti) {
+	public void setNepolozeniIspiti(List<Ocena> nepolozeniIspiti) {
 		this.nepolozeniIspiti = nepolozeniIspiti;
 	}
 
