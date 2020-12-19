@@ -3,7 +3,7 @@ package model;
 public class Ocena {
 
 	private Student student;
-//	private Predmet predmet;
+	private Predmet predmet;
 	private long vrednost;
 	private long datum;
 
@@ -41,12 +41,12 @@ public class Ocena {
 		this.datum = datum;
 	}
 	
-//	public Predmet getPredmet() {
-//		return predmet;
-//	}
+	public Predmet getPredmet() {
+		return predmet;
+	}
 	
-//	public void setPredmet(Predmet predmet) {
-//		this.predmet = predmet;
-//	}
+	public void setPredmet(Predmet predmet) {
+		this.predmet = predmet;
+	}
 	
 }
