@@ -7,68 +7,114 @@ import java.awt.Toolkit;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+//import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
-
-
-
 
 public class Frame extends JFrame {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4743270606172960944L;
+	private static final long serialVersionUID = -3821033433179171038L;
 
-	public Frame() {
+	private Toolbar toolbar;
+	private MenuBar menu;
+	private JPanel statusBar;
+	private JLabel statusLabel;
+	private JLabel trenutni_datum;
+	private JLabel time;
+	private CurrentTime sat;
+	private JTabbedPane tabbedPane;
+	
+	
+	private static Frame instance = null;
+
+	
+	
+	private Frame() {
 		
-		MenuBar menu = new MenuBar();
-		this.setJMenuBar(menu);
+		this.createMenuBar();
+		this.createToolbar();
+		this.createTabbedPane();
+		this.initPosition();
+		this.createStatusBar();
+	}
 		
+	public static Frame getInstance() {
+		if (instance == null) {
+			instance = new Frame();
+		}
+		return instance;
+	}
+	
+	private void createMenuBar() {
+		this.menu = new MenuBar();
+		this.setJMenuBar(this.menu);
+	}
+	
+	private void createToolbar() {
+		this.toolbar = new Toolbar();
+		this.add(this.toolbar, BorderLayout.NORTH);
+	}
+	
+	private void createTabbedPane() {
+		this.tabbedPane = new JTabbedPane();
+		this.add(this.tabbedPane, BorderLayout.CENTER);
+		addMyTabToTabbedPane("Studenti");
+		addMyTabToTabbedPane("Profesori");
+		addMyTabToTabbedPane("Predmeti");
+	}
+	
+	private void initPosition() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
 		
-		setSize(screenWidth * 3 / 4, screenHeight * 3 / 4);
-		setTitle("Studentska služba");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
+		this.setSize(screenWidth * 3 / 4, screenHeight * 3 / 4);
+		this.setTitle("Studentska služba");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
 	
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.GRAY);
-		this.add(panel);
-		JLabel todolabel = new JLabel("TODO: prikaz entiteta sistema", JLabel.CENTER);
-		todolabel.setForeground(Color.WHITE);
-		panel.add(todolabel);
+	
+	private void createStatusBar() {
+		this.statusBar = new JPanel();
+		this.add(this.statusBar, BorderLayout.SOUTH);
 		
-		Toolbar toolbar = new Toolbar();
-		add(toolbar, BorderLayout.NORTH);
+		BoxLayout box = new BoxLayout(this.statusBar, BoxLayout.X_AXIS);
+		this.statusBar.setLayout(box);
+		this.statusBar.setBackground(Color.WHITE);
+		this.statusBar.setPreferredSize(new Dimension(100, 30));
 		
-		JPanel statusBar = new JPanel();
-		add(statusBar, BorderLayout.SOUTH);
-		
-		BoxLayout box = new BoxLayout(statusBar, BoxLayout.X_AXIS);
-		statusBar.setLayout(box);
-		statusBar.setBackground(Color.WHITE);
-		statusBar.setPreferredSize(new Dimension(100, 30));
-		
-		JLabel statusLabel = new JLabel("Studentska služba");
-		statusBar.add(Box.createHorizontalStrut(15));
-		statusBar.add(statusLabel);
-		statusBar.add(Box.createHorizontalGlue());
+		this.statusLabel = new JLabel("Studentska služba");
+		this.statusBar.add(Box.createHorizontalStrut(15));
+		this.statusBar.add(this.statusLabel);
+		this.statusBar.add(Box.createHorizontalGlue());
 
 		
-		JLabel trenutni_datum = new JLabel();
-		JLabel time = new JLabel();
+		this.trenutni_datum = new JLabel();
+		this.time = new JLabel();
 		
-		CurrentTime sat = new CurrentTime(time, trenutni_datum);
-		sat.start();
+		this.sat = new CurrentTime(this.time, this.trenutni_datum);
+		this.sat.start();
 		
-		statusBar.add(time);
-		statusBar.add(Box.createHorizontalStrut(5)); 
-		statusBar.add(trenutni_datum);
-		statusBar.add(Box.createHorizontalStrut(15)); 
+		this.statusBar.add(this.time);
+		this.statusBar.add(Box.createHorizontalStrut(5)); 
+		this.statusBar.add(this.trenutni_datum);
+		this.statusBar.add(Box.createHorizontalStrut(15));
+	}
+	
+	private void addMyTabToTabbedPane(String tableName) {
+
+		//ImageIcon icon = createImageIcon("images/img.png", true, 16, 16);
+
+		TableTab mt = new TableTab(tableName);
+		// add tab to tabbed pane
+		tabbedPane.addTab(tableName, mt);
 	}
 }
