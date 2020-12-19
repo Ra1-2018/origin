@@ -11,7 +11,7 @@ public class Profesor {
 	private String kontaktTelefon;
 	private String emailAdresa;
 	private String adresaKancelarije;
-	private long brojLicneKarte;
+	private String brojLicneKarte;
 	private String titula;
 	private String zvanje;
 	private List<Predmet> predmeti;
@@ -19,7 +19,7 @@ public class Profesor {
 	public Profesor() {}
 	
 	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
-			String kontaktTelefon, String emailAdresa, String adresaKancelarije, long brojLicneKarte,
+			String kontaktTelefon, String emailAdresa, String adresaKancelarije, String brojLicneKarte,
 			String titula, String zvanje) {
 		super();
 		this.ime = ime;
@@ -91,11 +91,11 @@ public class Profesor {
 		this.adresaKancelarije = adresaKancelarije;
 	}
 
-	public long getBrojLicneKarte() {
+	public String getBrojLicneKarte() {
 		return brojLicneKarte;
 	}
 
-	public void setBrojLicneKarte(long brojLicneKarte) {
+	public void setBrojLicneKarte(String brojLicneKarte) {
 		this.brojLicneKarte = brojLicneKarte;
 	}
 
