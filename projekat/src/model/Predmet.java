@@ -1,5 +1,8 @@
 package model;
 
+import java.util.List;
+import java.util.ArrayList;
+
 enum Semestar {LETNJI, ZIMSKI}
 
 public class Predmet {
@@ -9,8 +12,8 @@ public class Predmet {
 	private long godinaStudija;
 	private Profesor profesor;
 	private long espb;
-	//private List<Student> studentiPolozili;
-	//private List<Student> studentiPali;
+	private List<Student> studentiPolozili;
+	private List<Student> studentiPali;
 	
 	public Predmet() {}
 	
@@ -22,6 +25,8 @@ public class Predmet {
 		this.godinaStudija = godinaStudija;
 		this.profesor = profesor;
 		this.espb = espb;
+		studentiPolozili = new ArrayList<Student>();
+		studentiPali = new ArrayList<Student>();
 	}
 
 	public long getId() {
@@ -72,4 +77,19 @@ public class Predmet {
 		this.espb = espb;
 	}
 
+	public List<Student> getStudentiPolozili() {
+		return studentiPolozili;
+	}
+
+	public void setStudentiPolozili(List<Student> studentiPolozili) {
+		this.studentiPolozili = studentiPolozili;
+	}
+
+	public List<Student> getStudentiPali() {
+		return studentiPali;
+	}
+
+	public void setStudentiPali(List<Student> studentiPali) {
+		this.studentiPali = studentiPali;
+	}
 }
