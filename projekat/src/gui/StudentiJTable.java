@@ -26,7 +26,7 @@ public class StudentiJTable extends JTable {
 			Component c = super.prepareRenderer(renderer, row, column);
 	
 			if (isRowSelected(row)) {
-				c.setBackground(Color.LIGHT_GRAY);
+				c.setBackground(Color.ORANGE);
 			} else {
 				c.setBackground(Color.WHITE);
 			}
