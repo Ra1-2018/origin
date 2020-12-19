@@ -17,7 +17,7 @@ public class Student {
 	private long godinaUpisa;
 	private long trenutnaGodinaStudija;
 	private Status status;
-	private long prosecnaOcena;
+	private double prosecnaOcena;
 	private List<Ocena> polozeniIspiti;
 	private List<Ocena> nepolozeniIspiti;
 	
@@ -25,7 +25,7 @@ public class Student {
 	public Student() {}
 	
 	
-	public Student(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String emailAdresa, String brojIndeksa, long godinaUpisa, long trenutnaGodinaStudija, Status status, long prosecnaOcena) {
+	public Student(String brojIndeksa, String ime, String prezime, long trenutnaGodinaStudija, Status status, double prosecnaOcena, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String emailAdresa, long godinaUpisa) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
@@ -143,12 +143,12 @@ public class Student {
 	}
 
 
-	public long getProsecnaOcena() {
+	public double getProsecnaOcena() {
 		return prosecnaOcena;
 	}
 
 
-	public void setProsecnaOcena(long prosecnaOcena) {
+	public void setProsecnaOcena(double prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
