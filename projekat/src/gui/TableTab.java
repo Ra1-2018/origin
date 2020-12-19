@@ -1,7 +1,11 @@
 package gui;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 
 public class TableTab extends JPanel {
 	/**
@@ -11,8 +15,14 @@ public class TableTab extends JPanel {
 	private String tableName;
 
 	public TableTab(String text) {
-		this.tableName = text;
-		add(new JLabel("Table" + this.tableName + " content!"));
+	
+		if(text == "Studenti") {
+	    StudentiJTable tabelaStudenata = new StudentiJTable();
+
+		JScrollPane scrollPane = new JScrollPane(tabelaStudenata);
+		add(scrollPane, BorderLayout.CENTER);
+		}
+			
 	}
 
 	public void saveTableContent() {

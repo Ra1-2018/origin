@@ -14,10 +14,10 @@ public class Student {
 	private String kontaktTelefon;
 	private String emailAdresa;
 	private String brojIndeksa;
-	private long godinaUpisa;
-	private long trenutnaGodinaStudija;
+	private String godinaUpisa;
+	private String trenutnaGodinaStudija;
 	private Status status;
-	private long prosecnaOcena;
+	private double prosecnaOcena;
 	private List<Ocena> polozeniIspiti;
 	private List<Ocena> nepolozeniIspiti;
 	
@@ -25,7 +25,7 @@ public class Student {
 	public Student() {}
 	
 	
-	public Student(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String emailAdresa, String brojIndeksa, long godinaUpisa, long trenutnaGodinaStudija, Status status, long prosecnaOcena) {
+	public Student(String brojIndeksa, String ime, String prezime, String trenutnaGodinaStudija, Status status, double prosecnaOcena, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String emailAdresa, String godinaUpisa) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
@@ -113,22 +113,22 @@ public class Student {
 	}
 
 
-	public long getGodinaUpisa() {
+	public String getGodinaUpisa() {
 		return godinaUpisa;
 	}
 
 
-	public void setGodinaUpisa(long godinaUpisa) {
+	public void setGodinaUpisa(String godinaUpisa) {
 		this.godinaUpisa = godinaUpisa;
 	}
 
 
-	public long getTrenutnaGodinaStudija() {
+	public String getTrenutnaGodinaStudija() {
 		return trenutnaGodinaStudija;
 	}
 
 
-	public void setTrenutnaGodinaStudija(long trenutnaGodinaStudija) {
+	public void setTrenutnaGodinaStudija(String trenutnaGodinaStudija) {
 		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 	}
 
@@ -143,12 +143,12 @@ public class Student {
 	}
 
 
-	public long getProsecnaOcena() {
+	public double getProsecnaOcena() {
 		return prosecnaOcena;
 	}
 
 
-	public void setProsecnaOcena(long prosecnaOcena) {
+	public void setProsecnaOcena(double prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
@@ -171,8 +171,5 @@ public class Student {
 	public void setNepolozeniIspiti(List<Ocena> nepolozeniIspiti) {
 		this.nepolozeniIspiti = nepolozeniIspiti;
 	}
-
-	
-	
 
 }
