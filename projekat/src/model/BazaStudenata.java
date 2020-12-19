@@ -17,6 +17,10 @@ public class BazaStudenata {
 	private List<Student> studenti;
 	private List<String> kolone;
 
+	
+	Status status1 = Status.B;
+	Status status2 = Status.S;
+	
 	private BazaStudenata() {
 		initStudente();
 
@@ -32,14 +36,10 @@ public class BazaStudenata {
 	
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
-		Status status1 = Status.B;
-		Status status2 = Status.S;
-		studenti.add(new Student("RA1-2018", "Nikola", "Ivanovic", 3, status1 , 9.76, "17. 12. 1999.", "Resavska 5", "0101010101", "nikolaiv@gmail.com", 2018));
-		studenti.add(new Student("RA2-2018", "Bogdana", "Zivkovic", 3, status1 , 9.35, "20. 7. 1999.", "Iva Andrica 23", "0202020202", "bogdanaz@gmail.com", 2018));
-		studenti.add(new Student("PSI55-2017", "Savo", "Oroz", 4, status2 , 7.55, "28. 5. 1998.", "Balzakova 17", "03030303", "jasamsavocarina@gmail.com", 2017));
+		studenti.add(new Student("RA1-2018", "Nikola", "Ivanovic", "3", status1 , 9.76, "17. 12. 1999.", "Resavska 5", "0101010101", "nikolaiv@gmail.com", "2018"));
+		studenti.add(new Student("RA2-2018", "Bogdana", "Zivkovic", "3", status1 , 9.35, "20. 7. 1999.", "Iva Andrica 23", "0202020202", "bogdanaz@gmail.com", "2018"));
+		studenti.add(new Student("PSI55-2017", "Savo", "Oroz", "56", status2 , 7.55, "28. 5. 1944.", "Balzakova 17", "03030303", "jasamsavocarina@gmail.com", "1964"));
 	}
-	
-	
 	
 	public List<Student> getStudent() {
 		return studenti;
@@ -70,12 +70,15 @@ public class BazaStudenata {
 			return student.getIme();
 		case 2:
 			return student.getPrezime();
-	//	case 3:
-	//		return student.getTrenutnaGodinaStudija();
-	//	case 4:
-	//		return student.getStatus();
-	//	case 5: 
-	//		return student.getProsecnaOcena();
+		case 3:
+			return student.getTrenutnaGodinaStudija();
+		case 4:
+			if(student.getStatus()==status1) 
+				return "B";
+			else if (student.getStatus()==status2)
+				return "S";
+		case 5: 
+			return "" + student.getProsecnaOcena();
 		default:
 			return null;
 		}
