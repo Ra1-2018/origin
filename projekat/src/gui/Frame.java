@@ -7,10 +7,10 @@ import java.awt.Toolkit;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+//import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-
+import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 
 public class Frame extends JFrame {
@@ -27,27 +27,20 @@ public class Frame extends JFrame {
 	private JLabel trenutni_datum;
 	private JLabel time;
 	private CurrentTime sat;
+	private JTabbedPane tabbedPane;
+	
 	
 	private static Frame instance = null;
 
 	
 	
 	private Frame() {
+		
+		this.createMenuBar();
+		this.createToolbar();
+		this.createTabbedPane();
 		this.initPosition();
-		this.createStatusbar();
-		
-		this.menu = new MenuBar();
-		this.setJMenuBar(this.menu);
-		
-		this.toolbar = new Toolbar();
-		this.add(this.toolbar, BorderLayout.NORTH);
-	
-		//JPanel panel = new JPanel();
-		//panel.setBackground(Color.GRAY);
-		//this.add(panel);
-		//JLabel todolabel = new JLabel("TODO: prikaz entiteta sistema", JLabel.CENTER);
-		//todolabel.setForeground(Color.WHITE);
-		//panel.add(todolabel);
+		this.createStatusBar();
 	}
 		
 	public static Frame getInstance() {
@@ -55,6 +48,24 @@ public class Frame extends JFrame {
 			instance = new Frame();
 		}
 		return instance;
+	}
+	
+	private void createMenuBar() {
+		this.menu = new MenuBar();
+		this.setJMenuBar(this.menu);
+	}
+	
+	private void createToolbar() {
+		this.toolbar = new Toolbar();
+		this.add(this.toolbar, BorderLayout.NORTH);
+	}
+	
+	private void createTabbedPane() {
+		this.tabbedPane = new JTabbedPane();
+		this.add(this.tabbedPane, BorderLayout.CENTER);
+		addMyTabToTabbedPane("Studenti");
+		addMyTabToTabbedPane("Profesori");
+		addMyTabToTabbedPane("Predmeti");
 	}
 	
 	private void initPosition() {
@@ -71,18 +82,18 @@ public class Frame extends JFrame {
 	}
 	
 	
-	private void createStatusbar() {
+	private void createStatusBar() {
 		this.statusBar = new JPanel();
 		this.add(this.statusBar, BorderLayout.SOUTH);
 		
-		BoxLayout box = new BoxLayout(statusBar, BoxLayout.X_AXIS);
+		BoxLayout box = new BoxLayout(this.statusBar, BoxLayout.X_AXIS);
 		this.statusBar.setLayout(box);
 		this.statusBar.setBackground(Color.WHITE);
 		this.statusBar.setPreferredSize(new Dimension(100, 30));
 		
 		this.statusLabel = new JLabel("Studentska služba");
 		this.statusBar.add(Box.createHorizontalStrut(15));
-		this.statusBar.add(statusLabel);
+		this.statusBar.add(this.statusLabel);
 		this.statusBar.add(Box.createHorizontalGlue());
 
 		
@@ -96,5 +107,14 @@ public class Frame extends JFrame {
 		this.statusBar.add(Box.createHorizontalStrut(5)); 
 		this.statusBar.add(this.trenutni_datum);
 		this.statusBar.add(Box.createHorizontalStrut(15));
+	}
+	
+	private void addMyTabToTabbedPane(String tableName) {
+
+		//ImageIcon icon = createImageIcon("images/img.png", true, 16, 16);
+
+		TableTab mt = new TableTab(tableName);
+		// add tab to tabbed pane
+		tabbedPane.addTab(tableName, mt);
 	}
 }
