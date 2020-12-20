@@ -6,11 +6,15 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -48,25 +52,25 @@ public class DialogDodajProfesora extends JDialog {
 		JPanel titulaPanel = new JPanel(layout1);
 		JPanel zvanjePanel = new JPanel(layout1);
 		
-		JLabel imeLabel = new JLabel("Ime");
+		JLabel imeLabel = new JLabel("Ime*:");
 		imeLabel.setPreferredSize(dimension1);
-		JLabel prezimeLabel = new JLabel("Prezime");
+		JLabel prezimeLabel = new JLabel("Prezime*:");
 		prezimeLabel.setPreferredSize(dimension1);
-		JLabel datumLabel = new JLabel("Datum rodjenja");
+		JLabel datumLabel = new JLabel("Datum rodjenja*:");
 		datumLabel.setPreferredSize(dimension1);
-		JLabel adresaStanLabel = new JLabel("Adresa stanovanja");
+		JLabel adresaStanLabel = new JLabel("Adresa stanovanja*:");
 		adresaStanLabel.setPreferredSize(dimension1);
-		JLabel telefonLabel = new JLabel("Broj telefona");
+		JLabel telefonLabel = new JLabel("Broj telefona*:");
 		telefonLabel.setPreferredSize(dimension1);
-		JLabel emailLabel = new JLabel("e-mail adresa");
+		JLabel emailLabel = new JLabel("E-mail adresa*:");
 		emailLabel.setPreferredSize(dimension1);
-		JLabel adresaKancLabel = new JLabel("Adresa kancelarije");
+		JLabel adresaKancLabel = new JLabel("Adresa kancelarije*:");
 		adresaKancLabel.setPreferredSize(dimension1);
-		JLabel brLicneKarteLabel = new JLabel("Broj licne karte");
+		JLabel brLicneKarteLabel = new JLabel("Broj licne karte*:");
 		brLicneKarteLabel.setPreferredSize(dimension1);
-		JLabel titulaLabel = new JLabel("Titula");
+		JLabel titulaLabel = new JLabel("Titula*:");
 		titulaLabel.setPreferredSize(dimension1);
-		JLabel zvanjeLabel = new JLabel("Zvanje");
+		JLabel zvanjeLabel = new JLabel("Zvanje*:");
 		zvanjeLabel.setPreferredSize(dimension1);
 		
 		JTextField imeTF = new JTextField();
@@ -156,9 +160,90 @@ public class DialogDodajProfesora extends JDialog {
 				String brojLicneKarte = brLicneKarteTF.getText();
 				String titula = titulaTF.getText();
 				String zvanje = zvanjeTF.getText();
+				
+				if (!ime.matches("[a-zA-Z]+")) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu: prihvataju se samo slova",
+							"Greska pri unosu imena", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if (!prezime.matches("[a-zA-Z]+")) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu: prihvataju se samo slova",
+							"Greska pri unosu prezimena", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if (!datumRodjenja.matches("\\d{1,2}-\\d{1,2}-\\d{4}")) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu: dd-mm-yyyy",
+							"Greska pri unosu datuma", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if (!adresaStanovanja.matches("[[a-zA-Z]+\s]+\\d+\\,[[a-zA-Z]+\s]+")) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu: [ulica][broj],[grad]",
+							"Greska pri unosu adrese stanovanja", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if (!kontaktTelefon.matches("\\d+")) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu: prihvataju se samo cifre",
+							"Greska pri unosu kontakt telefona", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if(!emailMatches(emailAdresa)) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu",
+							"Greska pri unosu e-mail adrese", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if (!brojLicneKarte.matches("\\d{9}")) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu: 9 cifara",
+							"Greska pri unosu broja licne karte", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if (!titula.matches("[a-zA-Z]+")) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu: prihvataju se samo slova",
+							"Greska pri unosu titule", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				if (!zvanje.matches("[a-zA-Z]+")) {
+					JOptionPane.showMessageDialog(null,
+							"Unos ne odgovara ocekivanom formatu: prihvataju se samo slova",
+							"Greska pri unosu titule", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
 				ProfesoriController.getInstance().dodajProfesora(profesor);
 			}
 		});
+		
+		btnOdustani.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+			}});
 	}
+	public boolean emailMatches(String email) {
+	String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+	 
+	Pattern pattern = Pattern.compile(regex);
+	 
+
+	    Matcher matcher = pattern.matcher(email);
+	    return matcher.matches();
+	}
+
 }

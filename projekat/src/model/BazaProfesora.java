@@ -30,8 +30,6 @@ public class BazaProfesora {
 	private void initProfesore() {
 		this.profesori = new ArrayList<Profesor>();
 		profesori.add(new Profesor("Mika", "Mikic","1.1.1971,","Bul. Oslobodjenja 58", "065128291", "mika.mikic@gmail.com", "Balzakova 13", "123456789", "mikina titula", "mikino zvanje"));
-		//igraci.add(new Igrac(generateId(), "Zika", "Zikic", "FMP"));
-		//igraci.add(new Igrac(generateId(), "Pera", "Peric", "OKK Sabac"));
 	}
 
 	public List<Profesor> getProfesori() {

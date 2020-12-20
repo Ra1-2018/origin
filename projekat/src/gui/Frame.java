@@ -7,7 +7,6 @@ import java.awt.Toolkit;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-//import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -117,12 +116,8 @@ public class Frame extends JFrame {
 	}
 	
 	private void addProfesoriTabToTabbedPane(String tableName) {
-
-		//ImageIcon icon = createImageIcon("images/img.png", true, 16, 16);
-
 		this.profTab = new ProfesoriTableTab(tableName);
 
-		// add tab to tabbed pane
 		tabbedPane.addTab(tableName, this.profTab);
 	}
 	
