@@ -1,5 +1,6 @@
 package controller;
 
+import gui.Frame;
 import model.BazaStudenata;
 import model.Student;
 
@@ -15,8 +16,11 @@ public class StudentiController {
 		return instance;
 	}
 	
+	private StudentiController() {}
+	
 	public void dodajStudenta(Student student) {
 		BazaStudenata.getInstance().dodajStudenta(student);
+		Frame.getInstance().getStudTab().azurirajPrikaz("DODAT", -1 );
 	}
 
 }
