@@ -46,6 +46,8 @@ public class MenuBar extends JMenuBar {
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
 					System.out.println("Pritisnuto toolbar dugme za dodavanje novog profesora.");
+					DialogDodajProfesora dialog = new DialogDodajProfesora();
+					dialog.setVisible(true);
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
 
