@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -11,6 +13,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controler.ProfesoriController;
+import model.Profesor;
 
 public class DialogDodajProfesora extends JDialog {
 	/**
@@ -135,5 +140,25 @@ public class DialogDodajProfesora extends JDialog {
 		buttonPanel.add(Box.createHorizontalGlue());
 		
 		add(buttonPanel, BorderLayout.SOUTH);
+		
+		btnPotvrdi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String ime = imeTF.getText();
+				String prezime = prezimeTF.getText();
+				String datumRodjenja = datumTF.getText();
+				String adresaStanovanja = adresaStanTF.getText();
+				String kontaktTelefon = telefonTF.getText();
+				String emailAdresa = emailTF.getText();
+				String adresaKancelarije = adresaKancTF.getText();
+				String brojLicneKarte = brLicneKarteTF.getText();
+				String titula = titulaTF.getText();
+				String zvanje = zvanjeTF.getText();
+				Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
+				ProfesoriController.getInstance().dodajProfesora(profesor);
+			}
+		});
 	}
 }

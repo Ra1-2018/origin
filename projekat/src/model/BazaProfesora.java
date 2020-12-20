@@ -69,4 +69,8 @@ public class BazaProfesora {
 			return null;
 		}
 	}
+	
+	public void dodajProfesora(Profesor profesor) {
+		this.profesori.add(profesor);
+	}
 }

@@ -28,7 +28,7 @@ public class Frame extends JFrame {
 	private JLabel time;
 	private CurrentTime sat;
 	private JTabbedPane tabbedPane;
-	
+	private ProfesoriTableTab profTab;
 	
 	private static Frame instance = null;
 
@@ -63,9 +63,9 @@ public class Frame extends JFrame {
 	private void createTabbedPane() {
 		this.tabbedPane = new JTabbedPane();
 		this.add(this.tabbedPane, BorderLayout.CENTER);
-		addMyTabToTabbedPane("Studenti");
-		addMyTabToTabbedPane("Profesori");
-		addMyTabToTabbedPane("Predmeti");
+		//addStudentiTabToTabbedPane("Studenti");
+		addProfesoriTabToTabbedPane("Profesori");
+		//addPredmetiTabToTabbedPane("Predmeti");
 	}
 	
 	private void initPosition() {
@@ -109,13 +109,14 @@ public class Frame extends JFrame {
 		this.statusBar.add(Box.createHorizontalStrut(15));
 	}
 	
-	private void addMyTabToTabbedPane(String tableName) {
+	private void addProfesoriTabToTabbedPane(String tableName) {
 
 		//ImageIcon icon = createImageIcon("images/img.png", true, 16, 16);
 
-		TableTab mt = new TableTab(tableName);
+		this.profTab = new ProfesoriTableTab(tableName);
+
 		// add tab to tabbed pane
-		tabbedPane.addTab(tableName, mt);
+		tabbedPane.addTab(tableName, this.profTab);
 	}
 
 	public JTabbedPane getTabbedPane() {
@@ -124,6 +125,13 @@ public class Frame extends JFrame {
 
 	public void setTabbedPane(JTabbedPane tabbedPane) {
 		this.tabbedPane = tabbedPane;
-	}	
-	
+	}
+
+	public ProfesoriTableTab getProfTab() {
+		return profTab;
+	}
+
+	public void setProfTab(ProfesoriTableTab profTab) {
+		this.profTab = profTab;
+	}
 }
