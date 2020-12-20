@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controler.ProfesoriController;
+import controller.ProfesoriController;
 import model.Profesor;
 
 public class DialogDodajProfesora extends JDialog {
