@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -13,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.StudentiController;
+import model.Student;
+import model.Student.Status;
 public class DialogDodajStudenta extends JDialog {
 
 	/**
@@ -154,7 +159,35 @@ public class DialogDodajStudenta extends JDialog {
 	buttonPanel.add(Box.createGlue());
 	
 	add(buttonPanel, BorderLayout.SOUTH);
+	setLocationRelativeTo(Frame.getInstance());
 	
+	potvrda.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent event) {
+			String ime = imeText.getText();
+			String prezime = prezimeText.getText();
+			String datumRodjenja = imeText.getText();
+			String adresa = imeText.getText();
+			String brIndeksa = brIndeksaText.getText();
+			String brojTelefona = imeText.getText();
+			String email = imeText.getText();
+			String prosecnaOcena = prosecnaOcenaText.getText();
+			String godinaUpisa = imeText.getText();
+			String godinaStudija=  godineStudijaComboBox.getSelectedItem().toString();
+		    String nacinFinansiranja = budzet_samofinansiranjeComboBox.getSelectedItem().toString();
+		    
+		    double ocena = Double.parseDouble(prosecnaOcena);
+		    	    
+		    Status finansiranje;
+		    
+			if(nacinFinansiranja=="Budzet")
+				finansiranje = Status.B;
+			else
+				finansiranje = Status.S;
+		       
+		    Student student = new Student(brIndeksa, ime, prezime, godinaStudija, finansiranje, ocena, datumRodjenja, adresa, brojTelefona, email, godinaUpisa);
+			StudentiController.getInstance().dodajStudenta(student);
+		
+		}
+		});
 	}
-
 }
