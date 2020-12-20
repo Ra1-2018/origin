@@ -25,18 +25,18 @@ public class DialogDodajStudenta extends JDialog {
 	super();
 	
 	
-	setSize(500, 500);
+	setSize(750, 750);
 	this.setModal(true);
 	setLocationRelativeTo(Frame.getInstance());
 	setTitle("Dodavanje novog studenta");
+	
+	
 	JPanel dialogPanel = new JPanel();
-	
-	
 	BoxLayout dialogLayout = new BoxLayout(dialogPanel, BoxLayout.Y_AXIS);
 	dialogPanel.setLayout(dialogLayout);
 	
-	FlowLayout layout = new FlowLayout(FlowLayout.LEFT);
-	Dimension dimension = new Dimension(150, 20);
+	FlowLayout layout = new FlowLayout(FlowLayout.CENTER);
+	Dimension dimension = new Dimension(200, 30);
 	
 	JPanel imePanel = new JPanel(layout);
 	JPanel prezimePanel = new JPanel(layout);
@@ -47,11 +47,9 @@ public class DialogDodajStudenta extends JDialog {
 	JPanel brIndeksaPanel = new JPanel(layout);
 	JPanel godinaUpisaPanel = new JPanel(layout);
 	JPanel godinaStudijaPanel = new JPanel(layout);
-	JPanel statusBudzetPanel = new JPanel(layout);
-	JPanel statusSamofinansiranjePanel = new JPanel(layout);
+	JPanel nacinFinansiranjaPanel = new JPanel(layout);
 	JPanel prosecnaOcenaPanel = new JPanel(layout);
-	
-	
+		
 	JLabel imeLabel = new JLabel("Ime*: ");
 	JLabel prezimeLabel = new JLabel("Prezime*: ");
 	JLabel datumRodjenjaLabel = new JLabel("Datum rodjenja*: ");
@@ -61,10 +59,8 @@ public class DialogDodajStudenta extends JDialog {
 	JLabel brIndeksaLabel = new JLabel("Broj indeksa*: ");
 	JLabel godinaUpisaLabel = new JLabel("Godina upisa*: ");
 	JLabel godinaStudijaLabel = new JLabel("Trenutna godina studija*: ");
-	JLabel budzetLabel = new JLabel("Budzet: ");
-	JLabel samofinansiranjeLabel = new JLabel("Samofinansiranje: ");
 	JLabel prosecnaOcenaLabel = new JLabel("Prosecna ocena*: ");
-	
+	JLabel nacinFinansiranjaLabel = new JLabel("Nacin finansiranja*:");
 	
 	imeLabel.setPreferredSize(dimension);
 	prezimeLabel.setPreferredSize(dimension);
@@ -75,10 +71,8 @@ public class DialogDodajStudenta extends JDialog {
 	brIndeksaLabel.setPreferredSize(dimension);
 	godinaUpisaLabel.setPreferredSize(dimension);
 	godinaStudijaLabel.setPreferredSize(dimension);
-	budzetLabel.setPreferredSize(dimension);
-	samofinansiranjeLabel.setPreferredSize(dimension);
 	prosecnaOcenaLabel.setPreferredSize(dimension);
-	
+	nacinFinansiranjaLabel.setPreferredSize(dimension);
 	
 	JTextField imeText = new JTextField();
 	JTextField prezimeText = new JTextField();
@@ -90,7 +84,9 @@ public class DialogDodajStudenta extends JDialog {
 	JTextField godinaUpisaText = new JTextField();
 	JTextField prosecnaOcenaText = new JTextField();
 	String[] godineStudija = { "1 (prva)", "2 (druga)", "3 (treca)", "4 (cetvrta)" };
-	JComboBox<String> godineStudijaComboBox = new JComboBox<String>(godineStudija);
+	JComboBox<String> godineStudijaComboBox = new JComboBox<String>(godineStudija);	
+	String[] budzet_samofinansiranje = { "Budzet", "Samofinansiranje" };
+	JComboBox<String> budzet_samofinansiranjeComboBox = new JComboBox<String>(budzet_samofinansiranje);
 	
 	imeText.setPreferredSize(dimension);
 	prezimeText.setPreferredSize(dimension);
@@ -102,54 +98,44 @@ public class DialogDodajStudenta extends JDialog {
 	godinaUpisaText.setPreferredSize(dimension);
 	prosecnaOcenaText.setPreferredSize(dimension);
 	godineStudijaComboBox.setPreferredSize(dimension);
+	budzet_samofinansiranjeComboBox.setPreferredSize(dimension);
 			
 	
 	imePanel.add(imeLabel);
 	imePanel.add(imeText);
-	
 	prezimePanel.add(prezimeLabel);
 	prezimePanel.add(prezimeText);
-	
 	datumRodjenjaPanel.add(datumRodjenjaLabel);
 	datumRodjenjaPanel.add(datumRodjenjaText);
-	
 	adresaPanel.add(adresaLabel);
 	adresaPanel.add(adresaText);
-	
 	kontaktPanel.add(kontaktLabel);
 	kontaktPanel.add(kontaktText);
-	
 	emailPanel.add(emailLabel);
-	emailPanel.add(emailText);
-	
+	emailPanel.add(emailText);	
 	brIndeksaPanel.add(brIndeksaLabel);
-	brIndeksaPanel.add(brIndeksaText);
-	
+	brIndeksaPanel.add(brIndeksaText);	
 	godinaUpisaPanel.add(godinaUpisaLabel);
 	godinaUpisaPanel.add(godinaUpisaText);
-	
+	prosecnaOcenaPanel.add(prosecnaOcenaLabel);
+	prosecnaOcenaPanel.add(prosecnaOcenaText);	
 	godinaStudijaPanel.add(godinaStudijaLabel);
 	godinaStudijaPanel.add(godineStudijaComboBox);
-	
-	prosecnaOcenaPanel.add(prosecnaOcenaLabel);
-	prosecnaOcenaPanel.add(prosecnaOcenaText);
-	
-	statusBudzetPanel.add(budzetLabel);
-	statusSamofinansiranjePanel.add(samofinansiranjeLabel);
-	
+	nacinFinansiranjaPanel.add(nacinFinansiranjaLabel);
+	nacinFinansiranjaPanel.add(budzet_samofinansiranjeComboBox);
 	
 	dialogPanel.add(imePanel);
 	dialogPanel.add(prezimePanel);
 	dialogPanel.add(datumRodjenjaPanel);
 	dialogPanel.add(adresaPanel);
 	dialogPanel.add(kontaktPanel);
+	dialogPanel.add(emailPanel);
 	dialogPanel.add(brIndeksaPanel);
 	dialogPanel.add(prosecnaOcenaPanel);
-	dialogPanel.add(godinaStudijaPanel);
 	dialogPanel.add(godinaUpisaPanel);
-	dialogPanel.add(emailPanel);
-	dialogPanel.add(statusBudzetPanel);
-	dialogPanel.add(statusSamofinansiranjePanel);
+	dialogPanel.add(godinaStudijaPanel);
+	dialogPanel.add(nacinFinansiranjaPanel);
+	dialogPanel.add(Box.createVerticalStrut(25));
 	
 	add(dialogPanel, BorderLayout.CENTER);
 	
@@ -159,11 +145,11 @@ public class DialogDodajStudenta extends JDialog {
 	
 	JButton potvrda = new JButton("Potvrdi");
 	JButton odustanak = new JButton("Odustani");
-	potvrda.setPreferredSize(new Dimension(90, 20));
-	odustanak.setPreferredSize(new Dimension(95, 20));
+	potvrda.setPreferredSize(new Dimension(100, 30));
+	odustanak.setPreferredSize(new Dimension(100, 30));
 	buttonPanel.add(Box.createGlue());
 	buttonPanel.add(potvrda);
-	buttonPanel.add(Box.createHorizontalStrut(15));
+	buttonPanel.add(Box.createHorizontalStrut(50));
 	buttonPanel.add(odustanak);
 	buttonPanel.add(Box.createGlue());
 	
