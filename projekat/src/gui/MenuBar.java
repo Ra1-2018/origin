@@ -38,14 +38,12 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
-					System.out.println("Pritisnuto toolbar dugme za dodavanje novog studenta.");
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {				
 					DialogDodajStudenta dialog = new DialogDodajStudenta();
 					dialog.setVisible(true);
 				
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
-					System.out.println("Pritisnuto toolbar dugme za dodavanje novog profesora.");
 					DialogDodajProfesora dialog = new DialogDodajProfesora();
 					dialog.setVisible(true);
 				}
