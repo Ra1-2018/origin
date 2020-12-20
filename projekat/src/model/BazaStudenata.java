@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.ArrayList;
+import model.Student.Status;
 
 public class BazaStudenata {
 	
@@ -82,5 +83,9 @@ public class BazaStudenata {
 		default:
 			return null;
 		}
+	}
+	
+	public void dodajStudenta(Student student) {
+		this.studenti.add(student);
 	}
 }

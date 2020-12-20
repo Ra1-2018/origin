@@ -29,6 +29,7 @@ public class Frame extends JFrame {
 	private CurrentTime sat;
 	private JTabbedPane tabbedPane;
 	private ProfesoriTableTab profTab;
+	private StudentiTableTab studTab;
 	
 	private static Frame instance = null;
 
@@ -63,7 +64,7 @@ public class Frame extends JFrame {
 	private void createTabbedPane() {
 		this.tabbedPane = new JTabbedPane();
 		this.add(this.tabbedPane, BorderLayout.CENTER);
-		//addStudentiTabToTabbedPane("Studenti");
+		addStudentiTabToTabbedPane("Studenti");
 		addProfesoriTabToTabbedPane("Profesori");
 		//addPredmetiTabToTabbedPane("Predmeti");
 	}
@@ -108,6 +109,12 @@ public class Frame extends JFrame {
 		this.statusBar.add(this.trenutni_datum);
 		this.statusBar.add(Box.createHorizontalStrut(15));
 	}
+	private void addStudentiTabToTabbedPane(String tableName) {
+		this.studTab = new StudentiTableTab(tableName);
+		
+		tabbedPane.addTab(tableName, this.studTab);
+		
+	}
 	
 	private void addProfesoriTabToTabbedPane(String tableName) {
 
@@ -118,6 +125,7 @@ public class Frame extends JFrame {
 		// add tab to tabbed pane
 		tabbedPane.addTab(tableName, this.profTab);
 	}
+	
 
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
@@ -127,6 +135,14 @@ public class Frame extends JFrame {
 		this.tabbedPane = tabbedPane;
 	}
 
+	public StudentiTableTab getStudTab() {
+		return studTab;
+	}
+	
+	public void setStudTab(StudentiTableTab studTab) {
+		this.studTab = studTab;
+	}
+	
 	public ProfesoriTableTab getProfTab() {
 		return profTab;
 	}
@@ -134,4 +150,5 @@ public class Frame extends JFrame {
 	public void setProfTab(ProfesoriTableTab profTab) {
 		this.profTab = profTab;
 	}
+	
 }
