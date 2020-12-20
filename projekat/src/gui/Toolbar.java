@@ -5,16 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
-//import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
-//import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-
-//import java.awt.event.ActionEvent;
-//import java.awt.event.KeyEvent;
 
 public class Toolbar extends JToolBar{
 
@@ -34,15 +29,15 @@ public class Toolbar extends JToolBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
-					System.out.println("Pritisnuto toolbar dugme za dodavanje novog studenta.");
+					DialogDodajStudenta dds = new DialogDodajStudenta();
+					dds.setVisible(true);
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
 					DialogDodajProfesora ddp = new DialogDodajProfesora();
 					ddp.setVisible(true);
-					System.out.println("Pritisnuto toolbar dugme za dodavanje novog profesora.");
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
-
+					//TODO Poziv dijaloga za predmete
 				}
 			}
 
