@@ -37,6 +37,8 @@ public class Toolbar extends JToolBar{
 					System.out.println("Pritisnuto toolbar dugme za dodavanje novog studenta.");
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					DialogDodajProfesora ddp = new DialogDodajProfesora();
+					ddp.setVisible(true);
 					System.out.println("Pritisnuto toolbar dugme za dodavanje novog profesora.");
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
