@@ -117,4 +117,13 @@ public class Frame extends JFrame {
 		// add tab to tabbed pane
 		tabbedPane.addTab(tableName, mt);
 	}
+
+	public JTabbedPane getTabbedPane() {
+		return tabbedPane;
+	}
+
+	public void setTabbedPane(JTabbedPane tabbedPane) {
+		this.tabbedPane = tabbedPane;
+	}	
+	
 }

@@ -1,6 +1,9 @@
 package gui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.Box;
 //import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -26,6 +29,22 @@ public class Toolbar extends JToolBar{
 		addSeparator();
 		
 		JButton btnNew = new JButton();
+		btnNew.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					System.out.println("Pritisnuto toolbar dugme za dodavanje novog studenta.");
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					System.out.println("Pritisnuto toolbar dugme za dodavanje novog profesora.");
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+
+				}
+			}
+
+		});
 		btnNew.setToolTipText("New");
 		btnNew.setIcon(new ImageIcon("images/new.png"));	
 		add(btnNew);
