@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -31,6 +32,28 @@ public class MenuBar extends JMenuBar {
 		JMenuItem m_new = new JMenuItem(" New", new ImageIcon("images/new.png"));
 		m_new.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
 		
+		
+		m_new.addActionListener(new ActionListener()
+		 {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					System.out.println("Pritisnuto toolbar dugme za dodavanje novog studenta.");
+					DialogDodajStudenta dialog = new DialogDodajStudenta();
+					dialog.setVisible(true);
+				
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					System.out.println("Pritisnuto toolbar dugme za dodavanje novog profesora.");
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+
+				}
+			}
+
+		});
+	
 		JMenuItem m_close = new JMenuItem(" Close", new ImageIcon("images/close.png"));
 		m_close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
 		
