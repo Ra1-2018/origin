@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -88,7 +89,7 @@ public class DialogDodajStudenta extends JDialog {
 	JTextField brIndeksaText = new JTextField();
 	JTextField godinaUpisaText = new JTextField();
 	JTextField prosecnaOcenaText = new JTextField();
-	String[] godineStudija = { "1 (prva)", "2 (druga)", "3 (treca)", "4 (cetvrta)" };
+	String[] godineStudija = { "I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)" };
 	JComboBox<String> godineStudijaComboBox = new JComboBox<String>(godineStudija);	
 	String[] budzet_samofinansiranje = { "Budzet", "Samofinansiranje" };
 	JComboBox<String> budzet_samofinansiranjeComboBox = new JComboBox<String>(budzet_samofinansiranje);
@@ -165,13 +166,13 @@ public class DialogDodajStudenta extends JDialog {
 		public void actionPerformed(ActionEvent event) {
 			String ime = imeText.getText();
 			String prezime = prezimeText.getText();
-			String datumRodjenja = imeText.getText();
-			String adresa = imeText.getText();
+			String datumRodjenja = datumRodjenjaText.getText();
+			String adresa = adresaText.getText();
 			String brIndeksa = brIndeksaText.getText();
-			String brojTelefona = imeText.getText();
-			String email = imeText.getText();
+			String brojTelefona = kontaktText.getText();
+			String email = emailText.getText();
 			String prosecnaOcena = prosecnaOcenaText.getText();
-			String godinaUpisa = imeText.getText();
+			String godinaUpisa = godinaUpisaText.getText();
 			String godinaStudija=  godineStudijaComboBox.getSelectedItem().toString();
 		    String nacinFinansiranja = budzet_samofinansiranjeComboBox.getSelectedItem().toString();
 		    
@@ -183,11 +184,44 @@ public class DialogDodajStudenta extends JDialog {
 				finansiranje = Status.B;
 			else
 				finansiranje = Status.S;
-		       
+			
+			
+			if(!ime.matches("\\s*[a-zA-Z]+\\s*")) {
+				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu imena", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			if(!prezime.matches("\\s*[a-zA-Z]+\\s*")) {
+				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu prezimena", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			if(!datumRodjenja.matches("\\d{1,2}-\\d{1,2}-\\d{4}")) {
+				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu datuma rodjenja ", JOptionPane.ERROR_MESSAGE);
+				return;
+				
+			}
+			
+			if(!adresa.matches("[[a-zA-Z]+\s]+\\d+\\,[[a-zA-Z]+\s]+")) {
+				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu adrese stanovanja ", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
 		    Student student = new Student(brIndeksa, ime, prezime, godinaStudija, finansiranje, ocena, datumRodjenja, adresa, brojTelefona, email, godinaUpisa);
 			StudentiController.getInstance().dodajStudenta(student);
 		
 		}
 		});
+	
+	odustanak.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			dispose();
+
+		}
+
+	});
+	
 	}
 }
