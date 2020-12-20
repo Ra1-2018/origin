@@ -3,7 +3,6 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 
-enum Status {B, S}
 
 public class Student {
 	
@@ -20,7 +19,7 @@ public class Student {
 	private double prosecnaOcena;
 	private List<Ocena> polozeniIspiti;
 	private List<Ocena> nepolozeniIspiti;
-	
+	public enum Status {B, S}
 
 	public Student() {}
 	
