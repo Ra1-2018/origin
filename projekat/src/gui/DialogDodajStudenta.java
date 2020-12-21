@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -168,23 +170,15 @@ public class DialogDodajStudenta extends JDialog {
 			String prezime = prezimeText.getText();
 			String datumRodjenja = datumRodjenjaText.getText();
 			String adresa = adresaText.getText();
+			
 			String brIndeksa = brIndeksaText.getText();
 			String brojTelefona = kontaktText.getText();
 			String email = emailText.getText();
+			
 			String prosecnaOcena = prosecnaOcenaText.getText();
 			String godinaUpisa = godinaUpisaText.getText();
 			String godinaStudija=  godineStudijaComboBox.getSelectedItem().toString();
 		    String nacinFinansiranja = budzet_samofinansiranjeComboBox.getSelectedItem().toString();
-		    
-		    double ocena = Double.parseDouble(prosecnaOcena);
-		    	    
-		    Status finansiranje;
-		    
-			if(nacinFinansiranja=="Budzet")
-				finansiranje = Status.B;
-			else
-				finansiranje = Status.S;
-			
 			
 			if(!ime.matches("\\s*[a-zA-Z]+\\s*")) {
 				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu imena", JOptionPane.ERROR_MESSAGE);
@@ -207,10 +201,49 @@ public class DialogDodajStudenta extends JDialog {
 				return;
 			}
 			
+			if (!brIndeksa.matches("[A-Z]{1,3}[0-9]{1,3}-[2][0-9]{3}")) {
+				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu broja indeksa", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			if(!brojTelefona.matches("\\d{10}")) {
+				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu broja telefona", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			if(!prosecnaOcena.matches("[6-9][.][0-9]{2}")) {
+				
+				if(!prosecnaOcena.matches("10.00")) {
+					JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu prosecne ocene", JOptionPane.ERROR_MESSAGE);
+					return;		
+				}
+			}
+			
+			if(!godinaUpisa.matches("[2]\\d{3}")) {
+				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu godine upisa", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			
+			if(!emailMatches(email)) {
+				JOptionPane.showMessageDialog(null,"Unos ne odgovara ocekivanom formatu", "Greska pri unosu e-mail adrese", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			
+			double ocena = Double.parseDouble(prosecnaOcena);
+    	    
+		    Status finansiranje;
+		    
+			if(nacinFinansiranja=="Budzet")
+				finansiranje = Status.B;
+			else
+				finansiranje = Status.S;
+			
 		    Student student = new Student(brIndeksa, ime, prezime, godinaStudija, finansiranje, ocena, datumRodjenja, adresa, brojTelefona, email, godinaUpisa);
 			StudentiController.getInstance().dodajStudenta(student);
-		
-		}
+						
+			}
 		});
 	
 	odustanak.addActionListener(new ActionListener() {
@@ -219,9 +252,15 @@ public class DialogDodajStudenta extends JDialog {
 		public void actionPerformed(ActionEvent event) {
 			dispose();
 
-		}
+		}});
 
-	});
-	
 	}
+	
+	public boolean emailMatches(String email) {
+		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";	 
+		Pattern pattern = Pattern.compile(regex);
+		    Matcher matcher = pattern.matcher(email);
+		    return matcher.matches();
+		}
+	
 }
