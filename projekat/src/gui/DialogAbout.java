@@ -25,8 +25,12 @@ public class DialogAbout extends JDialog{
 		
 		
 		String text = 
-				"OPIS";
-		
+				
+				"\n Verzija aplikacije: Studentska služba v1.0 "
+				+"\n\n\n Student 1 - Bogdana Živkoviæ"
+				+ "\nRoðena u Novom Sadu 20. 7. 1999. . \n Trenutno pohaða 3. godinu osnovnih akademskih studija na Fakultetu tehnièkih nauka na smeru Raèunarstvo i automatika.\n Pohaðala prirodno-matematièki smer Gimnazije 'Jovan Jovanoviæ Zmaj'."
+				+ "\n Student 2 - Nikola Ivanoviæ"
+				+ "\nRoðen u Novom Sadu 17. 12. 1999. . \n Trenutno pohaða 3. godinu osnovnih akademskih studija na Fakultetu tehnièkih nauka na smeru Raèunarstvo i automatika.\n Pohaðao prirodno-matematièki smer Gimnazije 'Jovan Jovanoviæ Zmaj'.";
 		opis.setText(text);
 		add(opis);
 		setVisible(true);
