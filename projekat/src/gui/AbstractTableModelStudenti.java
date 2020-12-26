@@ -17,7 +17,7 @@ public class AbstractTableModelStudenti extends AbstractTableModel {
 	
 		@Override
 		public int getRowCount() {
-			return BazaStudenata.getInstance().getStudent().size();
+			return BazaStudenata.getInstance().getStudenti().size();
 		}
 	
 		@Override
