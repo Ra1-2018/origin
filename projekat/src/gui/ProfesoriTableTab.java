@@ -34,7 +34,7 @@ public class ProfesoriTableTab extends JPanel {
 	
 	public void azurirajPrikaz(String akcija, int vrednost) {
 		AbstractTableModelProfesori model = (AbstractTableModelProfesori) tabelaProfesora.getModel();
-		// azuriranje modela tabele, kao i njenog prikaza
+		
 		model.fireTableDataChanged();
 		validate();
 	}
