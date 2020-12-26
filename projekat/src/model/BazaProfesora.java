@@ -1,7 +1,12 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
 
 public class BazaProfesora {
 	private static BazaProfesora instance = null;
@@ -28,8 +33,10 @@ public class BazaProfesora {
 	}
 
 	private void initProfesore() {
-		this.profesori = new ArrayList<Profesor>();
-		profesori.add(new Profesor("Mika", "Mikic","1.1.1971,","Bul. Oslobodjenja 58", "065128291", "mika.mikic@gmail.com", "Balzakova 13", "123456789", "mikina titula", "mikino zvanje"));
+		this.profesori = new ArrayList<Profesor>();	
+			profesori.add(new Profesor("Mika", "Mikic",new GregorianCalendar(1971, Calendar.JANUARY, 1).getTime() ,"Bul. Oslobodjenja 58", "065128291", "mika.mikic@gmail.com", "Balzakova 13", "123456789", Titula.DR, Zvanje.REDOVNI_PROFESOR));
+			profesori.add(new Profesor("Pera", "Peric", new GregorianCalendar(1971, Calendar.FEBRUARY, 2).getTime(),"Bul. Oslobodjenja 59", "065128292", "pera.peric@gmail.com", "Balzakova 14", "123456788", Titula.MR, Zvanje.DOCENT));
+			profesori.add(new Profesor("Djordje", "Djordjic", new GregorianCalendar(1971, Calendar.MARCH, 3).getTime(),"Bul. Oslobodjenja 60", "065128293", "djordje.djordjic@gmail.com", "Balzakova 15", "123456787", Titula.PROF_DR, Zvanje.ASISTENT));
 	}
 
 	public List<Profesor> getProfesori() {
@@ -60,9 +67,13 @@ public class BazaProfesora {
 		case 1:
 			return profesor.getPrezime();
 		case 2:
-			return profesor.getTitula();
+			String[] titule = { "BSc", "MSc", "mr", "dr", "prof.dr" };
+			int idxTitule = profesor.getTitula().ordinal();
+			return titule[idxTitule];
 		case 3:
-			return profesor.getZvanje();
+			String[] zvanja = { "saradnik u nastavi", "asistent", "asistent sa doktoratom", "docent", "vanredni profesor", "redovni profesor", "profesor emeritus" };
+			int idxZvanja = profesor.getZvanje().ordinal();
+			return zvanja[idxZvanja];
 		default:
 			return null;
 		}

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import gui.Frame;
 import model.BazaProfesora;
 import model.Profesor;
@@ -15,6 +17,10 @@ private static ProfesoriController instance = null;
 	}
 	
 	private ProfesoriController() {}
+	
+	public List<Profesor> getProfesori() {
+		return BazaProfesora.getInstance().getProfesori();
+	}
 	
 	public void dodajProfesora(Profesor profesor) {
 		BazaProfesora.getInstance().dodajProfesora(profesor);
