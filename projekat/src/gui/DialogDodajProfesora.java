@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -31,7 +30,17 @@ public class DialogDodajProfesora extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = -3690682637438183192L;
-
+	
+	private boolean ispravno[] = {false, false, false, false, false, false, false, false};
+	private String ime;
+	private String prezime;
+	private String datumRodjenjaString;
+	private String adresaStanovanja;
+	private String kontaktTelefon;
+	private String emailAdresa;
+	private String adresaKancelarije;
+	private String brojLicneKarte;
+	
 	DialogDodajProfesora() {
 		super();
 		setTitle("Dodavanje profesora");
@@ -153,7 +162,198 @@ public class DialogDodajProfesora extends JDialog {
 		buttonPanel.add(Box.createHorizontalGlue());
 		
 		add(buttonPanel, BorderLayout.SOUTH);
+		//--------------------------------------------------------------------------------------//
+		btnPotvrdi.setEnabled(false);
 		
+		imeTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ime = imeTF.getText();
+				if (!ime.matches("[a-zA-Z\s]+"))
+					ispravno[0] = false;			
+				else 
+					ispravno[0] = true;
+				boolean sviIspravni = true;
+				for(boolean i : ispravno)
+					if(i == false)
+						sviIspravni = false;
+				
+				if(sviIspravni == true)
+					btnPotvrdi.setEnabled(true);
+				else
+					btnPotvrdi.setEnabled(false);
+			}
+		});
+		
+		prezimeTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				prezime = prezimeTF.getText();
+				if (!prezime.matches("[a-zA-Z\s]+"))
+					ispravno[1] = false;			
+				else 
+					ispravno[1] = true;
+				boolean sviIspravni = true;
+				for(boolean i : ispravno)
+					if(i == false)
+						sviIspravni = false;
+				
+				if(sviIspravni == true)
+					btnPotvrdi.setEnabled(true);
+				else
+					btnPotvrdi.setEnabled(false);
+			}
+		});
+		
+		datumTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				datumRodjenjaString = datumTF.getText();
+				if (!datumRodjenjaString.matches("\\d{1,2}-\\d{1,2}-\\d{4}"))
+					ispravno[2] = false;			
+				else 
+					ispravno[2] = true;
+				boolean sviIspravni = true;
+				for(boolean i : ispravno)
+					if(i == false)
+						sviIspravni = false;
+				
+				if(sviIspravni == true)
+					btnPotvrdi.setEnabled(true);
+				else
+					btnPotvrdi.setEnabled(false);
+			}
+		});
+		
+		adresaStanTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				adresaStanovanja  = adresaStanTF.getText();
+				if (!adresaStanovanja.matches("[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+"))
+					ispravno[3] = false;			
+				else 
+					ispravno[3] = true;
+				boolean sviIspravni = true;
+				for(boolean i : ispravno)
+					if(i == false)
+						sviIspravni = false;
+				
+				if(sviIspravni == true)
+					btnPotvrdi.setEnabled(true);
+				else
+					btnPotvrdi.setEnabled(false);
+			}
+		});
+		
+		
+		telefonTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				kontaktTelefon = telefonTF.getText();
+				if (!kontaktTelefon.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$"))
+					ispravno[4] = false;			
+				else 
+					ispravno[4] = true;
+				boolean sviIspravni = true;
+				for(boolean i : ispravno)
+					if(i == false)
+						sviIspravni = false;
+				
+				if(sviIspravni == true)
+					btnPotvrdi.setEnabled(true);
+				else
+					btnPotvrdi.setEnabled(false);
+			}
+		});
+		
+		emailTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				emailAdresa = emailTF.getText();
+				if (!emailMatches(emailAdresa))
+					ispravno[5] = false;			
+				else 
+					ispravno[5] = true;
+				boolean sviIspravni = true;
+				for(boolean i : ispravno)
+					if(i == false)
+						sviIspravni = false;
+				
+				if(sviIspravni == true)
+					btnPotvrdi.setEnabled(true);
+				else
+					btnPotvrdi.setEnabled(false);
+			}
+		});
+		
+		adresaKancTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				adresaKancelarije = adresaKancTF.getText();
+				if (!adresaKancelarije.matches("[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+"))
+					ispravno[6] = false;			
+				else 
+					ispravno[6] = true;
+				boolean sviIspravni = true;
+				for(boolean i : ispravno)
+					if(i == false)
+						sviIspravni = false;
+				
+				if(sviIspravni == true)
+					btnPotvrdi.setEnabled(true);
+				else
+					btnPotvrdi.setEnabled(false);
+			}
+		});
+		
+		brLicneKarteTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				brojLicneKarte = brLicneKarteTF.getText();
+				if (!brojLicneKarte.matches("\\d{9}"))
+					ispravno[7] = false;			
+				else 
+					ispravno[7] = true;
+				boolean sviIspravni = true;
+				for(boolean i : ispravno)
+					if(i == false)
+						sviIspravni = false;
+				
+				if(sviIspravni == true)
+					btnPotvrdi.setEnabled(true);
+				else
+					btnPotvrdi.setEnabled(false);
+			}
+		});
+		
+		btnPotvrdi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				Titula titula = Titula.values()[titulaComboBox.getSelectedIndex()];
+				Zvanje zvanje = Zvanje.values()[zvanjeComboBox.getSelectedIndex()];
+				try {
+					Date datumRodjenja = new SimpleDateFormat("dd-MM-yyy").parse(datumRodjenjaString);
+					System.out.println(datumRodjenja);
+					Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
+					ProfesoriController.getInstance().dodajProfesora(profesor);
+					}
+					catch(java.text.ParseException pe) {
+						pe.printStackTrace();
+					}
+			}
+		});
+		/*
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -238,7 +438,7 @@ public class DialogDodajProfesora extends JDialog {
 					}
 			}
 		});
-		
+*/		
 		btnOdustani.addActionListener(new ActionListener() {
 
 			@Override
