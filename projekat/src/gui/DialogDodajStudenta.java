@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -180,18 +182,18 @@ public class DialogDodajStudenta extends JDialog {
 			String godinaStudija=  godineStudijaComboBox.getSelectedItem().toString();
 		    String nacinFinansiranja = budzet_samofinansiranjeComboBox.getSelectedItem().toString();
 			
-			if(!ime.matches("\\s*[a-zA-Z]+\\s*")) {
+			if(!ime.matches("[a-zA-Z\s]+")) {
 				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu imena", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
-			if(!prezime.matches("\\s*[a-zA-Z]+\\s*")) {
+			if(!prezime.matches("[a-zA-Z\s]+")) {
 				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu prezimena", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
 			if(!datumRodjenja.matches("\\d{1,2}-\\d{1,2}-\\d{4}")) {
-				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu datuma rodjenja ", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu: dd-mm-yyyy", "Greska pri unosu datuma rodjenja ", JOptionPane.ERROR_MESSAGE);
 				return;
 				
 			}
@@ -206,7 +208,7 @@ public class DialogDodajStudenta extends JDialog {
 				return;
 			}
 			
-			if(!brojTelefona.matches("\\d{10}")) {
+			if(!brojTelefona.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")) {
 				JOptionPane.showMessageDialog(null, "Unos ne odgovara ocekivanom formatu", "Greska pri unosu broja telefona", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -229,8 +231,16 @@ public class DialogDodajStudenta extends JDialog {
 				JOptionPane.showMessageDialog(null,"Unos ne odgovara ocekivanom formatu", "Greska pri unosu e-mail adrese", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+
+			for (Student s : StudentiController.getInstance().getListaSvihStudenata()) {
+				if (s.getBrojIndeksa().equals(brIndeksa)) {
+					JOptionPane.showMessageDialog(null, "Student sa datim broj indeksa vec postoji u sistemu", "Greska pri unosu broja indeksa", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
 			
 			
+				try {
 			double ocena = Double.parseDouble(prosecnaOcena);
     	    
 		    Status finansiranje;
@@ -240,9 +250,14 @@ public class DialogDodajStudenta extends JDialog {
 			else
 				finansiranje = Status.S;
 			
-		    Student student = new Student(brIndeksa, ime, prezime, godinaStudija, finansiranje, ocena, datumRodjenja, adresa, brojTelefona, email, godinaUpisa);
+			Date datumRodjenjaDate = new SimpleDateFormat("dd-MM-yyyy").parse(datumRodjenja);
+			System.out.println(datumRodjenjaDate);
+		    Student student = new Student(brIndeksa, ime, prezime, godinaStudija, finansiranje, ocena, datumRodjenjaDate, adresa, brojTelefona, email, godinaUpisa);
 			StudentiController.getInstance().dodajStudenta(student);
-						
+				}
+				catch(java.text.ParseException pe) {
+					pe.printStackTrace();
+				}
 			}
 		});
 	
