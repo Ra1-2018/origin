@@ -94,14 +94,17 @@ public class DialogDodajProfesora extends JDialog {
 		prezimeTF.setPreferredSize(dimension1);
 		JTextField datumTF = new JTextField();
 		datumTF.setPreferredSize(dimension1);
+		datumTF.setToolTipText("Format: dd-mm-yyyy");
 		JTextField adresaStanTF = new JTextField();
 		adresaStanTF.setPreferredSize(dimension1);
+		adresaStanTF.setToolTipText("Format: ulica broj, grad");
 		JTextField telefonTF = new JTextField();
 		telefonTF.setPreferredSize(dimension1);
 		JTextField emailTF = new JTextField();
 		emailTF.setPreferredSize(dimension1);
 		JTextField adresaKancTF = new JTextField();
 		adresaKancTF.setPreferredSize(dimension1);
+		adresaKancTF.setToolTipText("Format: ulica broj, grad");
 		JTextField brLicneKarteTF = new JTextField();
 		brLicneKarteTF.setPreferredSize(dimension1);
 		
@@ -401,8 +404,7 @@ public class DialogDodajProfesora extends JDialog {
 				}
 				
 				try {
-					Date datumRodjenja = new SimpleDateFormat("dd-MM-yyy").parse(datumRodjenjaString);
-					System.out.println(datumRodjenja);
+					Date datumRodjenja = new SimpleDateFormat("dd-MM-yyyy").parse(datumRodjenjaString);
 					Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
 					ProfesoriController.getInstance().dodajProfesora(profesor);
 					}
