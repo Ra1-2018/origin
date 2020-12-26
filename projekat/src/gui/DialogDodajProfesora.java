@@ -32,7 +32,7 @@ public class DialogDodajProfesora extends JDialog {
 	 */
 	private static final long serialVersionUID = -3690682637438183192L;
 	
-	private boolean ispravno[] = {false, true, true, true, true, true, true, true};
+	private boolean ispravno[] = {false, false, false, false, false, false, false, false};
 	private String ime;
 	private String prezime;
 	private String datumRodjenjaString;
