@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,8 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import controller.ProfesoriController;
 import model.Profesor;
@@ -31,7 +32,7 @@ public class DialogDodajProfesora extends JDialog {
 	 */
 	private static final long serialVersionUID = -3690682637438183192L;
 	
-	private boolean ispravno[] = {false, false, false, false, false, false, false, false};
+	private boolean ispravno[] = {false, true, true, true, true, true, true, true};
 	private String ime;
 	private String prezime;
 	private String datumRodjenjaString;
@@ -162,175 +163,222 @@ public class DialogDodajProfesora extends JDialog {
 		buttonPanel.add(Box.createHorizontalGlue());
 		
 		add(buttonPanel, BorderLayout.SOUTH);
-		//--------------------------------------------------------------------------------------//
+		
 		btnPotvrdi.setEnabled(false);
 		
-		imeTF.addActionListener(new ActionListener() {
+		imeTF.getDocument().addDocumentListener(new DocumentListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				ime = imeTF.getText();
-				if (!ime.matches("[a-zA-Z\s]+"))
-					ispravno[0] = false;			
-				else 
-					ispravno[0] = true;
-				boolean sviIspravni = true;
-				for(boolean i : ispravno)
-					if(i == false)
-						sviIspravni = false;
-				
-				if(sviIspravni == true)
-					btnPotvrdi.setEnabled(true);
-				else
-					btnPotvrdi.setEnabled(false);
+				String imeRegex = "[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(ime, imeRegex, 0));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				ime = imeTF.getText();
+				String imeRegex = "[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(ime, imeRegex, 0));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				ime = imeTF.getText();
+				String imeRegex = "[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(ime, imeRegex, 0));
 			}
 		});
 		
-		prezimeTF.addActionListener(new ActionListener() {
+		prezimeTF.getDocument().addDocumentListener(new DocumentListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				prezime = prezimeTF.getText();
-				if (!prezime.matches("[a-zA-Z\s]+"))
-					ispravno[1] = false;			
-				else 
-					ispravno[1] = true;
-				boolean sviIspravni = true;
-				for(boolean i : ispravno)
-					if(i == false)
-						sviIspravni = false;
-				
-				if(sviIspravni == true)
-					btnPotvrdi.setEnabled(true);
-				else
-					btnPotvrdi.setEnabled(false);
+				String prezimeRegex = "[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(prezime, prezimeRegex, 1));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				prezime = prezimeTF.getText();
+				String prezimeRegex = "[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(prezime, prezimeRegex, 1));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				prezime = prezimeTF.getText();
+				String prezimeRegex = "[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(prezime, prezimeRegex, 1));
 			}
 		});
 		
-		datumTF.addActionListener(new ActionListener() {
+		datumTF.getDocument().addDocumentListener(new DocumentListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				datumRodjenjaString = datumTF.getText();
-				if (!datumRodjenjaString.matches("\\d{1,2}-\\d{1,2}-\\d{4}"))
-					ispravno[2] = false;			
-				else 
-					ispravno[2] = true;
-				boolean sviIspravni = true;
-				for(boolean i : ispravno)
-					if(i == false)
-						sviIspravni = false;
-				
-				if(sviIspravni == true)
-					btnPotvrdi.setEnabled(true);
-				else
-					btnPotvrdi.setEnabled(false);
+				String datumRodjenjaRegex = "\\d{1,2}-\\d{1,2}-\\d{4}";
+				btnPotvrdi.setEnabled(proveraUnosa(datumRodjenjaString, datumRodjenjaRegex, 2));
 			}
-		});
-		
-		adresaStanTF.addActionListener(new ActionListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				adresaStanovanja  = adresaStanTF.getText();
-				if (!adresaStanovanja.matches("[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+"))
-					ispravno[3] = false;			
-				else 
-					ispravno[3] = true;
-				boolean sviIspravni = true;
-				for(boolean i : ispravno)
-					if(i == false)
-						sviIspravni = false;
-				
-				if(sviIspravni == true)
-					btnPotvrdi.setEnabled(true);
-				else
-					btnPotvrdi.setEnabled(false);
+				datumRodjenjaString = datumTF.getText();
+				String datumRodjenjaRegex = "\\d{1,2}-\\d{1,2}-\\d{4}";
+				btnPotvrdi.setEnabled(proveraUnosa(datumRodjenjaString, datumRodjenjaRegex, 2));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				datumRodjenjaString = datumTF.getText();
+				String datumRodjenjaRegex = "\\d{1,2}-\\d{1,2}-\\d{4}";
+				btnPotvrdi.setEnabled(proveraUnosa(datumRodjenjaString, datumRodjenjaRegex, 2));
 			}
 		});
 		
-		
-		telefonTF.addActionListener(new ActionListener() {
+		adresaStanTF.getDocument().addDocumentListener(new DocumentListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void insertUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				adresaStanovanja = adresaStanTF.getText();
+				String adresaStanRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(adresaStanovanja, adresaStanRegex, 3));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				adresaStanovanja = adresaStanTF.getText();
+				String adresaStanRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(adresaStanovanja, adresaStanRegex, 3));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				adresaStanovanja = adresaStanTF.getText();
+				String adresaStanRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(adresaStanovanja, adresaStanRegex, 3));
+			}
+		});
+		
+		telefonTF.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				kontaktTelefon = telefonTF.getText();
-				if (!kontaktTelefon.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$"))
-					ispravno[4] = false;			
-				else 
-					ispravno[4] = true;
-				boolean sviIspravni = true;
-				for(boolean i : ispravno)
-					if(i == false)
-						sviIspravni = false;
-				
-				if(sviIspravni == true)
-					btnPotvrdi.setEnabled(true);
-				else
-					btnPotvrdi.setEnabled(false);
+				String telefonRegex = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$";
+				btnPotvrdi.setEnabled(proveraUnosa(kontaktTelefon, telefonRegex, 4));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				kontaktTelefon = telefonTF.getText();
+				String telefonRegex = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$";
+				btnPotvrdi.setEnabled(proveraUnosa(kontaktTelefon, telefonRegex, 4));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				kontaktTelefon = telefonTF.getText();
+				String telefonRegex = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$";
+				btnPotvrdi.setEnabled(proveraUnosa(kontaktTelefon, telefonRegex, 4));
 			}
 		});
 		
-		emailTF.addActionListener(new ActionListener() {
+		emailTF.getDocument().addDocumentListener(new DocumentListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				emailAdresa = emailTF.getText();
-				if (!emailMatches(emailAdresa))
-					ispravno[5] = false;			
-				else 
-					ispravno[5] = true;
-				boolean sviIspravni = true;
-				for(boolean i : ispravno)
-					if(i == false)
-						sviIspravni = false;
-				
-				if(sviIspravni == true)
-					btnPotvrdi.setEnabled(true);
-				else
-					btnPotvrdi.setEnabled(false);
+				String emailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+				btnPotvrdi.setEnabled(proveraUnosa(emailAdresa, emailRegex, 5));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				emailAdresa = emailTF.getText();
+				String emailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+				btnPotvrdi.setEnabled(proveraUnosa(emailAdresa, emailRegex, 5));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				emailAdresa = emailTF.getText();
+				String emailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+				btnPotvrdi.setEnabled(proveraUnosa(emailAdresa, emailRegex, 5));
 			}
 		});
 		
-		adresaKancTF.addActionListener(new ActionListener() {
+		adresaKancTF.getDocument().addDocumentListener(new DocumentListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				adresaKancelarije = adresaKancTF.getText();
-				if (!adresaKancelarije.matches("[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+"))
-					ispravno[6] = false;			
-				else 
-					ispravno[6] = true;
-				boolean sviIspravni = true;
-				for(boolean i : ispravno)
-					if(i == false)
-						sviIspravni = false;
-				
-				if(sviIspravni == true)
-					btnPotvrdi.setEnabled(true);
-				else
-					btnPotvrdi.setEnabled(false);
+				String adresaKancRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(adresaKancelarije, adresaKancRegex, 6));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				adresaKancelarije = adresaKancTF.getText();
+				String adresaKancRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(adresaKancelarije, adresaKancRegex, 6));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				adresaKancelarije = adresaKancTF.getText();
+				String adresaKancRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				btnPotvrdi.setEnabled(proveraUnosa(adresaKancelarije, adresaKancRegex, 6));
 			}
 		});
 		
-		brLicneKarteTF.addActionListener(new ActionListener() {
+		brLicneKarteTF.getDocument().addDocumentListener(new DocumentListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				brojLicneKarte = brLicneKarteTF.getText();
-				if (!brojLicneKarte.matches("\\d{9}"))
-					ispravno[7] = false;			
-				else 
-					ispravno[7] = true;
-				boolean sviIspravni = true;
-				for(boolean i : ispravno)
-					if(i == false)
-						sviIspravni = false;
-				
-				if(sviIspravni == true)
-					btnPotvrdi.setEnabled(true);
-				else
-					btnPotvrdi.setEnabled(false);
+				String brLicneKarteRegex = "\\d{9}";
+				btnPotvrdi.setEnabled(proveraUnosa(brojLicneKarte, brLicneKarteRegex, 7));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				brojLicneKarte = brLicneKarteTF.getText();
+				String brLicneKarteRegex = "\\d{9}";
+				btnPotvrdi.setEnabled(proveraUnosa(brojLicneKarte, brLicneKarteRegex, 7));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				brojLicneKarte = brLicneKarteTF.getText();
+				String brLicneKarteRegex = "\\d{9}";
+				btnPotvrdi.setEnabled(proveraUnosa(brojLicneKarte, brLicneKarteRegex, 7));
 			}
 		});
 		
@@ -342,91 +390,16 @@ public class DialogDodajProfesora extends JDialog {
 				
 				Titula titula = Titula.values()[titulaComboBox.getSelectedIndex()];
 				Zvanje zvanje = Zvanje.values()[zvanjeComboBox.getSelectedIndex()];
-				try {
-					Date datumRodjenja = new SimpleDateFormat("dd-MM-yyy").parse(datumRodjenjaString);
-					System.out.println(datumRodjenja);
-					Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
-					ProfesoriController.getInstance().dodajProfesora(profesor);
-					}
-					catch(java.text.ParseException pe) {
-						pe.printStackTrace();
-					}
-			}
-		});
-		/*
-		btnPotvrdi.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String ime = imeTF.getText();
-				String prezime = prezimeTF.getText();
-				String datumRodjenjaString = datumTF.getText();
-				String adresaStanovanja = adresaStanTF.getText();
-				String kontaktTelefon = telefonTF.getText();
-				String emailAdresa = emailTF.getText();
-				String adresaKancelarije = adresaKancTF.getText();
-				String brojLicneKarte = brLicneKarteTF.getText();
-				Titula titula = Titula.values()[titulaComboBox.getSelectedIndex()];
-				Zvanje zvanje = Zvanje.values()[zvanjeComboBox.getSelectedIndex()];
 				
-				if (!ime.matches("[a-zA-Z\s]+")) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu",
-							"Greska pri unosu imena", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				if (!prezime.matches("[a-zA-Z\s]+")) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu",
-							"Greska pri unosu prezimena", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				if (!datumRodjenjaString.matches("\\d{1,2}-\\d{1,2}-\\d{4}")) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: dd-mm-yyyy",
-							"Greska pri unosu datuma", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				if (!adresaStanovanja.matches("[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+")) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: [ulica] [broj],[grad]",
-							"Greska pri unosu adrese stanovanja", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				if (!kontaktTelefon.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu",
-							"Greska pri unosu kontakt telefona", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				if(!emailMatches(emailAdresa)) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu",
-							"Greska pri unosu e-mail adrese", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				if (!brojLicneKarte.matches("\\d{9}")) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: 9 cifara",
-							"Greska pri unosu broja licne karte", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				
-				for(Profesor p : ProfesoriController.getInstance().getProfesori()) {
+				for(Profesor p: ProfesoriController.getInstance().getProfesori()) {
 					if(p.getBrojLicneKarte().equals(brojLicneKarte)) {
 						JOptionPane.showMessageDialog(null,
 								"Profesor sa datim brojem licne karte vec postoji u sistemu",
-								"Greska pri unosu broja licne karte", JOptionPane.ERROR_MESSAGE);
+								"Greska pri unosu profesora", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				}
+				
 				try {
 					Date datumRodjenja = new SimpleDateFormat("dd-MM-yyy").parse(datumRodjenjaString);
 					System.out.println(datumRodjenja);
@@ -438,7 +411,7 @@ public class DialogDodajProfesora extends JDialog {
 					}
 			}
 		});
-*/		
+		
 		btnOdustani.addActionListener(new ActionListener() {
 
 			@Override
@@ -447,14 +420,21 @@ public class DialogDodajProfesora extends JDialog {
 				dispose();
 			}});
 	}
-	public boolean emailMatches(String email) {
-	String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-	 
-	Pattern pattern = Pattern.compile(regex);
-	 
 
-	    Matcher matcher = pattern.matcher(email);
-	    return matcher.matches();
+	public boolean proveraUnosa(String fieldText, String fieldRegex, int index) {
+		if (!fieldText.matches(fieldRegex))
+			ispravno[index] = false;			
+		else 
+			ispravno[index] = true;
+		boolean sviIspravni = true;
+		for(boolean i : ispravno)
+			if(i == false)
+				sviIspravni = false;
+		
+		if(sviIspravni == true)
+			return true;
+		else
+			return false;
 	}
 
 }
