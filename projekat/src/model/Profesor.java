@@ -2,25 +2,30 @@ package model;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Profesor {
+	
+	public enum Zvanje {SARADNIK_U_NASTAVI, ASISTENT, ASISTENT_SA_DOKTORATOM, DOCENT, VANREDNI_PROFESOR, REDOVNI_PROFESOR, PROFESOR_EMERITUS}
+	public enum Titula {BSC, MSC, MR, DR, PROF_DR}
+	
 	private String ime;
 	private String prezime;
-	private String datumRodjenja;
+	private Date datumRodjenja;
 	private String adresaStanovanja;
 	private String kontaktTelefon;
 	private String emailAdresa;
 	private String adresaKancelarije;
 	private String brojLicneKarte;
-	private String titula;
-	private String zvanje;
+	private Titula titula;
+	private Zvanje zvanje;
 	private List<Predmet> predmeti;
 	
 	public Profesor() {}
 	
-	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
+	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja,
 			String kontaktTelefon, String emailAdresa, String adresaKancelarije, String brojLicneKarte,
-			String titula, String zvanje) {
+			Titula titula, Zvanje zvanje) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -51,11 +56,11 @@ public class Profesor {
 		this.prezime = prezime;
 	}
 
-	public String getDatumRodjenja() {
+	public Date getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(Date datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 
@@ -99,19 +104,19 @@ public class Profesor {
 		this.brojLicneKarte = brojLicneKarte;
 	}
 
-	public String getTitula() {
+	public Titula getTitula() {
 		return titula;
 	}
 
-	public void setTitula(String titula) {
+	public void setTitula(Titula titula) {
 		this.titula = titula;
 	}
 
-	public String getZvanje() {
+	public Zvanje getZvanje() {
 		return zvanje;
 	}
 
-	public void setZvanje(String zvanje) {
+	public void setZvanje(Zvanje zvanje) {
 		this.zvanje = zvanje;
 	}
 

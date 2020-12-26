@@ -5,13 +5,15 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +22,9 @@ import javax.swing.JTextField;
 
 import controller.ProfesoriController;
 import model.Profesor;
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
+
 
 public class DialogDodajProfesora extends JDialog {
 	/**
@@ -89,10 +94,14 @@ public class DialogDodajProfesora extends JDialog {
 		adresaKancTF.setPreferredSize(dimension1);
 		JTextField brLicneKarteTF = new JTextField();
 		brLicneKarteTF.setPreferredSize(dimension1);
-		JTextField titulaTF = new JTextField();
-		titulaTF.setPreferredSize(dimension1);
-		JTextField zvanjeTF = new JTextField();
-		zvanjeTF.setPreferredSize(dimension1);
+		
+		String[] titule = { "BSc", "MSc", "mr", "dr", "prof.dr" };
+		JComboBox<String> titulaComboBox = new JComboBox<String>(titule);
+		titulaComboBox.setPreferredSize(dimension1);
+		String[] zvanja = { "saradnik u nastavi", "asistent", "asistent sa doktoratom", "docent", "vanredni profesor", "redovni profesor", "profesor emeritus" };
+		JComboBox<String> zvanjeComboBox = new JComboBox<String>(zvanja);
+		zvanjeComboBox.setPreferredSize(dimension1);
+		
 		
 		imePanel.add(imeLabel);
 		imePanel.add(imeTF);
@@ -111,9 +120,9 @@ public class DialogDodajProfesora extends JDialog {
 		brLicneKartePanel.add(brLicneKarteLabel);
 		brLicneKartePanel.add(brLicneKarteTF);
 		titulaPanel.add(titulaLabel);
-		titulaPanel.add(titulaTF);
+		titulaPanel.add(titulaComboBox);
 		zvanjePanel.add(zvanjeLabel);
-		zvanjePanel.add(zvanjeTF);
+		zvanjePanel.add(zvanjeComboBox);
 		
 		dialogPanel.add(imePanel);
 		dialogPanel.add(prezimePanel);
@@ -152,46 +161,46 @@ public class DialogDodajProfesora extends JDialog {
 				// TODO Auto-generated method stub
 				String ime = imeTF.getText();
 				String prezime = prezimeTF.getText();
-				String datumRodjenja = datumTF.getText();
+				String datumRodjenjaString = datumTF.getText();
 				String adresaStanovanja = adresaStanTF.getText();
 				String kontaktTelefon = telefonTF.getText();
 				String emailAdresa = emailTF.getText();
 				String adresaKancelarije = adresaKancTF.getText();
 				String brojLicneKarte = brLicneKarteTF.getText();
-				String titula = titulaTF.getText();
-				String zvanje = zvanjeTF.getText();
+				Titula titula = Titula.values()[titulaComboBox.getSelectedIndex()];
+				Zvanje zvanje = Zvanje.values()[zvanjeComboBox.getSelectedIndex()];
 				
-				if (!ime.matches("[a-zA-Z]+")) {
+				if (!ime.matches("[a-zA-Z\s]+")) {
 					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: prihvataju se samo slova",
+							"Unos ne odgovara ocekivanom formatu",
 							"Greska pri unosu imena", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
-				if (!prezime.matches("[a-zA-Z]+")) {
+				if (!prezime.matches("[a-zA-Z\s]+")) {
 					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: prihvataju se samo slova",
+							"Unos ne odgovara ocekivanom formatu",
 							"Greska pri unosu prezimena", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
-				if (!datumRodjenja.matches("\\d{1,2}-\\d{1,2}-\\d{4}")) {
+				if (!datumRodjenjaString.matches("\\d{1,2}-\\d{1,2}-\\d{4}")) {
 					JOptionPane.showMessageDialog(null,
 							"Unos ne odgovara ocekivanom formatu: dd-mm-yyyy",
 							"Greska pri unosu datuma", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
-				if (!adresaStanovanja.matches("[[a-zA-Z]+\s]+\\d+\\,[[a-zA-Z]+\s]+")) {
+				if (!adresaStanovanja.matches("[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+")) {
 					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: [ulica][broj],[grad]",
+							"Unos ne odgovara ocekivanom formatu: [ulica] [broj],[grad]",
 							"Greska pri unosu adrese stanovanja", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
-				if (!kontaktTelefon.matches("\\d+")) {
+				if (!kontaktTelefon.matches("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$")) {
 					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: prihvataju se samo cifre",
+							"Unos ne odgovara ocekivanom formatu",
 							"Greska pri unosu kontakt telefona", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
@@ -210,21 +219,23 @@ public class DialogDodajProfesora extends JDialog {
 					return;
 				}
 				
-				if (!titula.matches("[a-zA-Z]+")) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: prihvataju se samo slova",
-							"Greska pri unosu titule", JOptionPane.ERROR_MESSAGE);
-					return;
+				for(Profesor p : ProfesoriController.getInstance().getProfesori()) {
+					if(p.getBrojLicneKarte().equals(brojLicneKarte)) {
+						JOptionPane.showMessageDialog(null,
+								"Profesor sa datim brojem licne karte vec postoji u sistemu",
+								"Greska pri unosu broja licne karte", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 				}
-				
-				if (!zvanje.matches("[a-zA-Z]+")) {
-					JOptionPane.showMessageDialog(null,
-							"Unos ne odgovara ocekivanom formatu: prihvataju se samo slova",
-							"Greska pri unosu titule", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
-				ProfesoriController.getInstance().dodajProfesora(profesor);
+				try {
+					Date datumRodjenja = new SimpleDateFormat("dd-MM-yyy").parse(datumRodjenjaString);
+					System.out.println(datumRodjenja);
+					Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
+					ProfesoriController.getInstance().dodajProfesora(profesor);
+					}
+					catch(java.text.ParseException pe) {
+						pe.printStackTrace();
+					}
 			}
 		});
 		
