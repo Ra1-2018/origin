@@ -397,27 +397,27 @@ public class DialogDodajStudenta extends JDialog {
 		public void changedUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			prosecnaOcena = prosecnaOcenaText.getText();
-			String regex_prosecnaOcena = "[6-9][.][0-9]{2}";
+			String regex_prosecnaOcena = "[6-9][.][0-9]{2}|10\\.00";
 			potvrda.setEnabled(proveraUnosa(prosecnaOcena, regex_prosecnaOcena, 7));
-			potvrda.setEnabled(proveraUnosa(prosecnaOcena, "10.00", 7));
+			
 		}
 
 		@Override
 		public void insertUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			prosecnaOcena = prosecnaOcenaText.getText();
-			String regex_prosecnaOcena = "[6-9][.][0-9]{2}";
+			String regex_prosecnaOcena = "[6-9][.][0-9]{2}|10\\.00";
 			potvrda.setEnabled(proveraUnosa(prosecnaOcena, regex_prosecnaOcena, 7));
-			potvrda.setEnabled(proveraUnosa(prosecnaOcena, "10.00", 7));
+			
 		}
 
 		@Override
 		public void removeUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			prosecnaOcena = prosecnaOcenaText.getText();
-			String regex_prosecnaOcena = "[6-9][.][0-9]{2}";
+			String regex_prosecnaOcena = "[6-9][.][0-9]{2}|10\\.00";
 			potvrda.setEnabled(proveraUnosa(prosecnaOcena, regex_prosecnaOcena, 7));
-			potvrda.setEnabled(proveraUnosa(prosecnaOcena, "10.00", 7));
+		
 		}
 		
 	});
@@ -479,7 +479,6 @@ public class DialogDodajStudenta extends JDialog {
 			
 				try {	
 			Date datumRodjenjaDate = new SimpleDateFormat("dd-MM-yyyy").parse(datumRodjenja);
-			System.out.println(datumRodjenjaDate);
 		    Student student = new Student(brIndeksa, ime, prezime, godinaStudija, finansiranje, ocena, datumRodjenjaDate, adresa, brojTelefona, email, godinaUpisa);
 			StudentiController.getInstance().dodajStudenta(student);
 				}
