@@ -85,7 +85,7 @@ public class MenuBar extends JMenuBar {
 		
 		JMenuItem m_edit = new JMenuItem(" Edit", new ImageIcon("images/edit.png"));
 		m_edit.setMnemonic(KeyEvent.VK_E);
-		m_edit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.ALT_MASK));
+		m_edit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK+ActionEvent.ALT_MASK));
 		
 		JMenuItem m_delete = new JMenuItem(" Delete", new ImageIcon("images/delete.png"));
 		m_delete.setMnemonic(KeyEvent.VK_D);
@@ -97,7 +97,7 @@ public class MenuBar extends JMenuBar {
 		
 		JMenuItem m_help= new JMenuItem(" Help", new ImageIcon("images/help.png"));
 		m_help.setMnemonic(KeyEvent.VK_H);
-		m_help.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
+		m_help.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK+ActionEvent.ALT_MASK));
 		m_help.addActionListener(new ActionListener()
 				{
 						@Override
