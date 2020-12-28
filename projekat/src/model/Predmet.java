@@ -3,13 +3,15 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 
-enum Semestar {LETNJI, ZIMSKI}
-
 public class Predmet {
-	private long id;
+	
+	public enum Semestar {LETNJI, ZIMSKI}
+	public enum Godina {PRVA, DRUGA, TRECA, CETVRTA}
+	
+	private String id;
 	private String naziv;
 	private Semestar semestar;
-	private long godinaStudija;
+	private Godina godinaStudija;
 	private Profesor profesor;
 	private long espb;
 	private List<Student> studentiPolozili;
@@ -17,7 +19,7 @@ public class Predmet {
 	
 	public Predmet() {}
 	
-	public Predmet(long id, String naziv, Semestar semestar, long godinaStudija, Profesor profesor, long espb) {
+	public Predmet(String id, String naziv, Semestar semestar, Godina godinaStudija,Profesor profesor, long espb) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -29,11 +31,11 @@ public class Predmet {
 		studentiPali = new ArrayList<Student>();
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -53,11 +55,11 @@ public class Predmet {
 		this.semestar = semestar;
 	}
 
-	public long getGodinaStudija() {
+	public Godina getGodinaStudija() {
 		return godinaStudija;
 	}
 
-	public void setGodinaStudija(long godinaStudija) {
+	public void setGodinaStudija(Godina godinaStudija) {
 		this.godinaStudija = godinaStudija;
 	}
 
@@ -93,3 +95,4 @@ public class Predmet {
 		this.studentiPali = studentiPali;
 	}
 }
+
