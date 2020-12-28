@@ -33,6 +33,7 @@ public class Frame extends JFrame {
 	private JTabbedPane tabbedPane;
 	private ProfesoriTableTab profTab;
 	private StudentiTableTab studTab;
+	private PredmetiTableTab predTab;
 	
 	private static Frame instance = null;
 
@@ -69,7 +70,7 @@ public class Frame extends JFrame {
 		this.add(this.tabbedPane, BorderLayout.CENTER);
 		addStudentiTabToTabbedPane("Studenti");
 		addProfesoriTabToTabbedPane("Profesori");
-		//addPredmetiTabToTabbedPane("Predmeti");
+		addPredmetiTabToTabbedPane("Predmeti");
 	}
 	
 	private void initPosition() {
@@ -176,6 +177,11 @@ public class Frame extends JFrame {
 		tabbedPane.addTab(tableName, this.profTab);
 	}
 	
+	private void addPredmetiTabToTabbedPane(String tableName) {
+		this.predTab = new PredmetiTableTab(tableName);
+		
+		tabbedPane.addTab(tableName, this.predTab);
+	}
 
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
@@ -200,5 +206,12 @@ public class Frame extends JFrame {
 	public void setProfTab(ProfesoriTableTab profTab) {
 		this.profTab = profTab;
 	}
-	
+
+	public PredmetiTableTab getPredTab() {
+		return predTab;
+	}
+
+	public void setPredTab(PredmetiTableTab predTab) {
+		this.predTab = predTab;
+	}
 }
