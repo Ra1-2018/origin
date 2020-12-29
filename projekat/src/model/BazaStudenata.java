@@ -98,4 +98,20 @@ public class BazaStudenata {
 	public void dodajStudenta(Student student) {
 		this.studenti.add(student);
 	}
+	
+	public void izmeniStudenta(int i, Student s) {
+		Student stari = studenti.get(i);
+		stari.setIme(s.getIme());
+		stari.setPrezime(s.getPrezime());
+		stari.setDatumRodjenja(s.getDatumRodjenja());
+		stari.setAdresaStanovanja(s.getAdresaStanovanja());
+		stari.setBrojIndeksa(s.getBrojIndeksa());
+		stari.setEmailAdresa(s.getEmailAdresa());
+		stari.setGodinaUpisa(s.getGodinaUpisa());
+		stari.setTrenutnaGodinaStudija(s.getTrenutnaGodinaStudija());
+		stari.setKontaktTelefon(s.getKontaktTelefon());
+		stari.setProsecnaOcena(s.getProsecnaOcena());
+		stari.setStatus(s.getStatus());
+		
+	}
 }

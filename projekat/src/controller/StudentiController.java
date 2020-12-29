@@ -24,6 +24,11 @@ public class StudentiController {
 		BazaStudenata.getInstance().dodajStudenta(student);
 		Frame.getInstance().getStudTab().azurirajPrikaz("DODAT", -1 );
 	}
+	
+	public void izmeniStudenta(int i, Student s) {
+		BazaStudenata.getInstance().izmeniStudenta(i, s);
+		Frame.getInstance().getStudTab().azurirajPrikaz(null, -1);
+	}
 
 	public List<Student> getListaSvihStudenata() {
 		return BazaStudenata.getInstance().getStudenti();
