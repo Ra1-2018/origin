@@ -89,6 +89,24 @@ public class MenuBar extends JMenuBar {
 		m_edit.setMnemonic(KeyEvent.VK_E);
 		m_edit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK+ActionEvent.ALT_MASK));
 		
+		m_edit.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {	
+					if(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow()>-1) {
+					DialogIzmeniStudenta dialog = new DialogIzmeniStudenta(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow());
+					dialog.setVisible(true);
+					}
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+		
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+
+				}
+			}		
+		});
+		
 		JMenuItem m_delete = new JMenuItem(" Delete", new ImageIcon("images/delete.png"));
 		m_delete.setMnemonic(KeyEvent.VK_D);
 		m_delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
