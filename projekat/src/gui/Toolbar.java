@@ -49,6 +49,25 @@ public class Toolbar extends JToolBar{
 		addSeparator();
 		
 		JButton btnEdit = new JButton();
+		btnEdit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					//TODO Poziv dijaloga za izmenu studenta
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					if(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow() > -1) {
+						DialogIzmeniProfesora dip = new DialogIzmeniProfesora(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow());
+						dip.setVisible(true);
+					}
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+					//TODO Poziv dijaloga za izmenu predmeta
+				}
+			}
+		});
 		btnEdit.setToolTipText("Edit");
 		btnEdit.setIcon(new ImageIcon("images/edit.png"));
 		add(btnEdit);
