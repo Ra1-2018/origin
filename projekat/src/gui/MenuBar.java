@@ -53,6 +53,8 @@ public class MenuBar extends JMenuBar {
 					dialog.setVisible(true);
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+					DialogDodajPredmet dialog = new DialogDodajPredmet();
+					dialog.setVisible(true);
 
 				}
 			}
