@@ -37,7 +37,8 @@ public class Toolbar extends JToolBar{
 					ddp.setVisible(true);
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
-					//TODO Poziv dijaloga za predmete
+					DialogDodajPredmet ddpr = new DialogDodajPredmet();
+					ddpr.setVisible(true);
 				}
 			}
 
@@ -55,7 +56,10 @@ public class Toolbar extends JToolBar{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
-					//TODO Poziv dijaloga za izmenu studenta
+					if(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow() > -1) {
+						DialogIzmeniStudenta dis = new DialogIzmeniStudenta(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow());
+						dis.setVisible(true);
+					}
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
 					if(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow() > -1) {
