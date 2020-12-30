@@ -39,4 +39,13 @@ public class StudentiTableTab extends JPanel{
 		validate();
 	}
 
+	public JTable getTabelaStudenata() {
+		return tabelaStudenata;
+	}
+
+	public void setTabelaStudenata(JTable tabelaStudenata) {
+		this.tabelaStudenata = tabelaStudenata;
+	}
+	
+
 }
