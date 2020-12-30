@@ -33,5 +33,10 @@ public class StudentiController {
 	public List<Student> getListaSvihStudenata() {
 		return BazaStudenata.getInstance().getStudenti();
 	}
+	
+	public void obrisiStudenta(int index) {
+		BazaStudenata.getInstance().obrisiStudenta(index);
+		Frame.getInstance().getStudTab().azurirajPrikaz("UKLONJEN", index);
+	}
 
 }

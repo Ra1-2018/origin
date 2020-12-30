@@ -114,4 +114,8 @@ public class BazaStudenata {
 		stari.setStatus(s.getStatus());
 		
 	}
+	
+	public void obrisiStudenta(int index) {
+		this.studenti.remove(index);
+	}
 }
