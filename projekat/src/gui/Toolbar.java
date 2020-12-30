@@ -75,6 +75,25 @@ public class Toolbar extends JToolBar{
 		addSeparator();
 		
 		JButton btnDelete = new JButton();
+		btnDelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					//TODO Poziv dijaloga za brisanje studenta
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					//TODO Poziv dijaloga za brisanje profesora
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+					if(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow() > -1) {
+						DialogObrisiPredmet dop = new DialogObrisiPredmet(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow());
+						dop.setVisible(true);
+					}
+				}
+			}
+		});
 		btnDelete.setToolTipText("Delete");
 		btnDelete.setIcon(new ImageIcon("images/delete.png"));
 		add(btnDelete);

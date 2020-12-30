@@ -36,4 +36,12 @@ public class PredmetiTableTab extends JPanel{
 		model.fireTableDataChanged();
 		validate();
 	}
+
+	public JTable getTabelaPredmeta() {
+		return tabelaPredmeta;
+	}
+
+	public void setTabelaPredmeta(JTable tabelaPredmeta) {
+		this.tabelaPredmeta = tabelaPredmeta;
+	}
 }

@@ -84,4 +84,8 @@ public class BazaPredmeta {
 	public void dodajPredmet(Predmet predmet) {
 		this.predmeti.add(predmet);
 	}
+	
+	public void obrisiPredmet(int index) {
+		this.predmeti.remove(index);
+	}
 }
