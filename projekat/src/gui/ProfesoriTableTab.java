@@ -14,7 +14,7 @@ public class ProfesoriTableTab extends JPanel {
 	 */
 	private static final long serialVersionUID = -4032485403494609921L;
 	private String tableName;
-	JTable tabelaProfesora;
+	private JTable tabelaProfesora;
 	private JScrollPane scrollPane;
 	
 	public ProfesoriTableTab(String text) {
@@ -37,5 +37,13 @@ public class ProfesoriTableTab extends JPanel {
 		
 		model.fireTableDataChanged();
 		validate();
+	}
+
+	public JTable getTabelaProfesora() {
+		return tabelaProfesora;
+	}
+
+	public void setTabelaProfesora(JTable tabelaProfesora) {
+		this.tabelaProfesora = tabelaProfesora;
 	}
 }

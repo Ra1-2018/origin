@@ -26,4 +26,9 @@ private static ProfesoriController instance = null;
 		BazaProfesora.getInstance().dodajProfesora(profesor);
 		Frame.getInstance().getProfTab().azurirajPrikaz("DODAT", -1);
 	}
+	
+	public void izmeniProfesora(int index, Profesor profesor) {
+		BazaProfesora.getInstance().izmeniProfesora(index, profesor);
+		Frame.getInstance().getProfTab().azurirajPrikaz(null, -1);
+	}
 }

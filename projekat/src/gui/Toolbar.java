@@ -37,7 +37,8 @@ public class Toolbar extends JToolBar{
 					ddp.setVisible(true);
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
-					//TODO Poziv dijaloga za predmete
+					DialogDodajPredmet ddpr = new DialogDodajPredmet();
+					ddpr.setVisible(true);
 				}
 			}
 
@@ -49,6 +50,28 @@ public class Toolbar extends JToolBar{
 		addSeparator();
 		
 		JButton btnEdit = new JButton();
+		btnEdit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					if(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow() > -1) {
+						DialogIzmeniStudenta dis = new DialogIzmeniStudenta(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow());
+						dis.setVisible(true);
+					}
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					if(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow() > -1) {
+						DialogIzmeniProfesora dip = new DialogIzmeniProfesora(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow());
+						dip.setVisible(true);
+					}
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+					//TODO Poziv dijaloga za izmenu predmeta
+				}
+			}
+		});
 		btnEdit.setToolTipText("Edit");
 		btnEdit.setIcon(new ImageIcon("images/edit.png"));
 		add(btnEdit);
@@ -56,6 +79,25 @@ public class Toolbar extends JToolBar{
 		addSeparator();
 		
 		JButton btnDelete = new JButton();
+		btnDelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					//TODO Poziv dijaloga za brisanje studenta
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					//TODO Poziv dijaloga za brisanje profesora
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+					if(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow() > -1) {
+						DialogObrisiPredmet dop = new DialogObrisiPredmet(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow());
+						dop.setVisible(true);
+					}
+				}
+			}
+		});
 		btnDelete.setToolTipText("Delete");
 		btnDelete.setIcon(new ImageIcon("images/delete.png"));
 		add(btnDelete);

@@ -95,8 +95,12 @@ public class Frame extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
-				int code = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da zatvorite aplikaciju?",
-						"Zatvaranje aplikacije?", JOptionPane.YES_NO_OPTION);
+				//int code = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da zatvorite aplikaciju?",
+						//"Zatvaranje aplikacije?", JOptionPane.YES_NO_OPTION);
+				String[] options = new String[2];
+				options[0] = new String("Da");
+				options[1] = new String("Ne");
+				int code = JOptionPane.showOptionDialog(Frame.getInstance().getContentPane(),"Da li ste sigurni da zelite da zatvorite aplikaciju?","Zatvaranje aplikacije?", 0,JOptionPane.INFORMATION_MESSAGE,null,options,null);
 				if (code != JOptionPane.YES_OPTION) {
 					setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				} else {

@@ -27,4 +27,9 @@ public class PredmetiController {
 		BazaPredmeta.getInstance().dodajPredmet(predmet);
 		Frame.getInstance().getPredTab().azurirajPrikaz("DODAT", -1);
 	}
+	
+	public void obrisiPredmet(int index) {
+		BazaPredmeta.getInstance().obrisiPredmet(index);
+		Frame.getInstance().getPredTab().azurirajPrikaz("UKLONJEN", index);
+	}
 }

@@ -34,9 +34,9 @@ public class BazaProfesora {
 
 	private void initProfesore() {
 		this.profesori = new ArrayList<Profesor>();	
-			profesori.add(new Profesor("Mika", "Mikic",new GregorianCalendar(1971, Calendar.JANUARY, 1).getTime() ,"Bul. Oslobodjenja 58", "065128291", "mika.mikic@gmail.com", "Balzakova 13", "123456789", Titula.DR, Zvanje.REDOVNI_PROFESOR));
-			profesori.add(new Profesor("Pera", "Peric", new GregorianCalendar(1971, Calendar.FEBRUARY, 2).getTime(),"Bul. Oslobodjenja 59", "065128292", "pera.peric@gmail.com", "Balzakova 14", "123456788", Titula.MR, Zvanje.DOCENT));
-			profesori.add(new Profesor("Djordje", "Djordjic", new GregorianCalendar(1971, Calendar.MARCH, 3).getTime(),"Bul. Oslobodjenja 60", "065128293", "djordje.djordjic@gmail.com", "Balzakova 15", "123456787", Titula.PROF_DR, Zvanje.ASISTENT));
+			profesori.add(new Profesor("Mika", "Mikic",new GregorianCalendar(1971, Calendar.JANUARY, 1).getTime() ,"Bulevar Oslobodjenja 58, Novi Sad", "065128291", "mika.mikic@gmail.com", "Balzakova 13, Novi Sad", "123456789", Titula.DR, Zvanje.REDOVNI_PROFESOR));
+			profesori.add(new Profesor("Pera", "Peric", new GregorianCalendar(1971, Calendar.FEBRUARY, 2).getTime(),"Bulevar Oslobodjenja 59, Novi Sad", "065128292", "pera.peric@gmail.com", "Balzakova 14, Novi Sad", "123456788", Titula.MR, Zvanje.DOCENT));
+			profesori.add(new Profesor("Djordje", "Djordjic", new GregorianCalendar(1971, Calendar.MARCH, 3).getTime(),"Bulevar Oslobodjenja 60, Novi Sad", "065128293", "djordje.djordjic@gmail.com", "Balzakova 15, Novi Sad", "123456787", Titula.PROF_DR, Zvanje.ASISTENT));
 	}
 
 	public List<Profesor> getProfesori() {
@@ -81,5 +81,19 @@ public class BazaProfesora {
 	
 	public void dodajProfesora(Profesor profesor) {
 		this.profesori.add(profesor);
+	}
+	
+	public void izmeniProfesora(int index, Profesor novi) {
+		Profesor stari = profesori.get(index);
+		stari.setIme(novi.getIme());
+		stari.setPrezime(novi.getPrezime());
+		stari.setDatumRodjenja(novi.getDatumRodjenja());
+		stari.setAdresaStanovanja(novi.getAdresaStanovanja());
+		stari.setKontaktTelefon(novi.getKontaktTelefon());
+		stari.setEmailAdresa(novi.getEmailAdresa());
+		stari.setAdresaKancelarije(novi.getAdresaKancelarije());
+		stari.setBrojLicneKarte(novi.getBrojLicneKarte());
+		stari.setTitula(novi.getTitula());
+		stari.setZvanje(novi.getZvanje());
 	}
 }
