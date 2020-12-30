@@ -53,8 +53,9 @@ public class DialogIzmeniStudenta extends JDialog {
 	
 	JTabbedPane tabbedPane = new JTabbedPane();
 	
-	
 	JPanel panelInformacije = new JPanel();
+	BoxLayout dialogLayout = new BoxLayout(panelInformacije, BoxLayout.Y_AXIS);
+	panelInformacije.setLayout(dialogLayout);
 	tabbedPane.addTab("Informacije", panelInformacije );
 	
 	JPanel panelPolozeni = new JPanel();
@@ -208,10 +209,10 @@ public class DialogIzmeniStudenta extends JDialog {
 	buttonPanel.add(odustanak);
 	buttonPanel.add(Box.createGlue());
 	
-	add(buttonPanel, BorderLayout.SOUTH);
+	panelInformacije.add(buttonPanel);
 	setLocationRelativeTo(Frame.getInstance());
 	
-	potvrda.setEnabled(false);
+	potvrda.setEnabled(true);
 	
 	
 	imeText.getDocument().addDocumentListener(new DocumentListener() {
