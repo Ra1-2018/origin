@@ -184,7 +184,7 @@ public class DialogIzmeniProfesora extends JDialog {
 		buttonPanel.add(btnOdustani);
 		buttonPanel.add(Box.createHorizontalGlue());
 		
-		add(buttonPanel, BorderLayout.SOUTH);
+		panelInfo.add(buttonPanel, BorderLayout.SOUTH);
 		//--------------------------------------------
 		tabbedPane.addTab("Info", panelInfo);
 		
