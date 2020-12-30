@@ -212,7 +212,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	panelInformacije.add(buttonPanel);
 	setLocationRelativeTo(Frame.getInstance());
 	
-	potvrda.setEnabled(false);
+	potvrda.setEnabled(true);
 	
 	
 	imeText.getDocument().addDocumentListener(new DocumentListener() {
