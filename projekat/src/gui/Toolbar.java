@@ -129,16 +129,12 @@ public class Toolbar extends JToolBar{
 					//TODO
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
-					
-					/*String[] reci = textfield.getText().split(" ");
-					for(int i=0; i< reci.length; i++) {
-						ProfesoriJTable.newFilter(reci[i], i);
-					}*/
-					String test = textfield.getText();
-					ProfesoriJTable.newFilter(test);
+					String input = textfield.getText();
+					ProfesoriJTable.newFilter(input);
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
-					//TODO
+					String input = textfield.getText();
+					PredmetiJTable.newFilter(input);
 				}
 			}
 		});

@@ -46,13 +46,7 @@ public class ProfesoriJTable extends JTable {
 	}
 	
 	public static void newFilter(String input) {
-		/*RowFilter<AbstractTableModelProfesori, Object> rf = null;
-		try {
-	        rf = RowFilter.regexFilter(filterText, column);
-	    } catch (java.util.regex.PatternSyntaxException e) {
-	        return;
-	    }
-	    sorter.setRowFilter(rf);*/
+		
 		String[] reci = input.split(" ");
 		if(reci.length>2) {
 			JOptionPane.showMessageDialog(null,
