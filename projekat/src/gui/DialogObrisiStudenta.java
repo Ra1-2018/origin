@@ -2,10 +2,11 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-//import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -29,15 +30,13 @@ public class DialogObrisiStudenta extends JDialog {
 		setLocationRelativeTo(this.getParent());
 		setModal(true);
 		
-		JPanel dialog = new JPanel();
-		BoxLayout box = new BoxLayout(dialog, BoxLayout.Y_AXIS);
-		dialog.setLayout(box);
-		dialog.add(Box.createVerticalStrut(25));
-		
+		JPanel messageBox = new JPanel();
 		JLabel labela = new JLabel("Da li ste sigurni da zelite da obrisete studenta?");
-		labela.setPreferredSize(new Dimension(380, 20));
 		
-		dialog.add(labela);
+		messageBox.setLayout(new GridBagLayout());	
+		messageBox.add(labela);
+		messageBox.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		add(messageBox, BorderLayout.CENTER);
 		
 		JPanel dugmad = new JPanel();
 		BoxLayout box1 = new BoxLayout(dugmad, BoxLayout.X_AXIS);
@@ -61,7 +60,7 @@ public class DialogObrisiStudenta extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				StudentiController.getInstance();
+				StudentiController.getInstance().obrisiStudenta(selectedIndex);
 				dispose();
 			}
 		});
