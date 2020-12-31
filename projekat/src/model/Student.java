@@ -19,8 +19,10 @@ public class Student {
 	private Status status;
 	private double prosecnaOcena;
 	private List<Ocena> polozeniIspiti;
-	private List<Ocena> nepolozeniIspiti;
+	private List<Predmet> nepolozeniIspiti;
 	public enum Status {B, S}
+	
+	private List<String> koloneNepolozeni;
 
 	public Student() {}
 	
@@ -39,10 +41,23 @@ public class Student {
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 		polozeniIspiti = new ArrayList<Ocena>();
-		nepolozeniIspiti = new ArrayList<Ocena>();
+
+		initNepolozeneIspite();
+		this.koloneNepolozeni = new ArrayList<String>();
+		//---------------------------------------------
+		this.koloneNepolozeni.add("Sifra");
+		this.koloneNepolozeni.add("Naziv");
+		this.koloneNepolozeni.add("Semestar");
+		this.koloneNepolozeni.add("Godina");
+		this.koloneNepolozeni.add("ESPB");
 	}
 
 
+	public void initNepolozeneIspite() {
+		nepolozeniIspiti = new ArrayList<Predmet>();
+		nepolozeniIspiti = BazaPredmeta.getInstance().getPredmeti();
+	}
+	
 	public String getPrezime() {
 		return prezime;
 	}
@@ -163,13 +178,48 @@ public class Student {
 	}
 
 
-	public List<Ocena> getNepolozeniIspiti() {
+	public List<Predmet> getNepolozeniIspiti() {
 		return nepolozeniIspiti;
 	}
 
 
-	public void setNepolozeniIspiti(List<Ocena> nepolozeniIspiti) {
+	public void setNepolozeniIspiti(List<Predmet> nepolozeniIspiti) {
 		this.nepolozeniIspiti = nepolozeniIspiti;
 	}
 
+	//------------------------------------------------------------------------
+	public int getColumnCountNepolozeni() {
+		return 5;
+	}
+	
+	public String getColumnNameNepolozeni(int index) {
+		return this.koloneNepolozeni.get(index);
+	}
+	
+	public Predmet getRowNepolozeni(int rowIndex) {
+		return this.nepolozeniIspiti.get(rowIndex);
+	}
+	
+	public String getValueAtNepolozeni(int row, int column) {
+		Predmet predmet = this.nepolozeniIspiti.get(row);
+		switch(column) {
+		case 0:
+			return predmet.getId();
+		case 1:
+			return predmet.getNaziv();
+		case 2:
+			String[] semestri = {"Letnji", "Zimski"};
+			int idxSemestra = predmet.getSemestar().ordinal();
+			return semestri[idxSemestra];
+		case 3:
+			String[] godine = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
+			int idxGodine = predmet.getGodinaStudija().ordinal();
+			return godine[idxGodine];
+		case 4:
+			return predmet.getEspb() + "";
+		default:
+			return null;
+		}
+	}
+	//--------------------------------------------------------------------
 }

@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -58,10 +59,13 @@ public class DialogIzmeniStudenta extends JDialog {
 	panelInformacije.setLayout(dialogLayout);
 	tabbedPane.addTab("Informacije", panelInformacije );
 	
+	
 	JPanel panelPolozeni = new JPanel();
 	tabbedPane.addTab("Položeni", panelPolozeni);
 	
 	JPanel panelNepolozeni = new JPanel();
+	BoxLayout nepolozeniLayout = new BoxLayout(panelNepolozeni, BoxLayout.Y_AXIS);
+	panelNepolozeni.setLayout(nepolozeniLayout);
 	tabbedPane.addTab("Nepoloženi", panelNepolozeni);
 	
 	add(tabbedPane, BorderLayout.CENTER);
@@ -524,7 +528,31 @@ public class DialogIzmeniStudenta extends JDialog {
 			dispose();
 
 		}});
-
+	
+	JPanel btnNpPan = new JPanel();
+	BoxLayout btnNpLayout = new BoxLayout(btnNpPan, BoxLayout.X_AXIS);
+	btnNpPan.setLayout(btnNpLayout);
+	
+	JButton btnDodaj = new JButton("Dodaj");
+	btnDodaj.setPreferredSize(new Dimension(100, 30));
+	JButton btnObrisi = new JButton("Obrisi");
+	btnObrisi.setPreferredSize(new Dimension(100, 30));
+	JButton btnPolaganje = new JButton("Polaganje");
+	btnPolaganje.setPreferredSize(new Dimension(100, 30));
+	
+	btnNpPan.add(btnDodaj);
+	btnNpPan.add(Box.createHorizontalStrut(25));
+	btnNpPan.add(btnObrisi);
+	btnNpPan.add(Box.createHorizontalStrut(25));
+	btnNpPan.add(btnPolaganje);
+	buttonPanel.add(Box.createHorizontalGlue());
+	panelNepolozeni.add(btnNpPan);
+	
+	NepolozeniPredmetiJTable nepolozeniPredmeti = new NepolozeniPredmetiJTable(stareInformacije);
+	JScrollPane nepolozeniScrollPane = new JScrollPane(nepolozeniPredmeti);
+	nepolozeniScrollPane.setPreferredSize(new Dimension(300, 300));
+	panelNepolozeni.add(nepolozeniScrollPane);
+	
 	}
 	
 	public boolean proveraUnosa(String text, String regex, int index) {
