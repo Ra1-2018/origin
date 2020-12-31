@@ -31,4 +31,10 @@ private static ProfesoriController instance = null;
 		BazaProfesora.getInstance().izmeniProfesora(index, profesor);
 		Frame.getInstance().getProfTab().azurirajPrikaz(null, -1);
 	}
+	
+	public void obrisiProfesora(int index) {
+		BazaProfesora.getInstance().obrisiProfesora(index);
+		Frame.getInstance().getProfTab().azurirajPrikaz("UKLONJEN", index);
+	}
+
 }

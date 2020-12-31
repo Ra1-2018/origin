@@ -6,6 +6,7 @@ import gui.Frame;
 import model.BazaPredmeta;
 import model.Predmet;
 
+
 public class PredmetiController {
 
 	private static PredmetiController instance = null;
@@ -21,6 +22,11 @@ public class PredmetiController {
 	
 	public List<Predmet> getPredmeti() {
 		return BazaPredmeta.getInstance().getPredmeti();
+	}
+	
+	public void izmeniPredmet(int i, Predmet p) {
+		BazaPredmeta.getInstance().izmeniPredmet(i, p);
+		Frame.getInstance().getPredTab().azurirajPrikaz(null, -1);
 	}
 	
 	public void dodajPredmet(Predmet predmet) {

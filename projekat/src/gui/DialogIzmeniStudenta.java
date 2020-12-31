@@ -61,6 +61,8 @@ public class DialogIzmeniStudenta extends JDialog {
 	
 	
 	JPanel panelPolozeni = new JPanel();
+	BoxLayout polozeniLayout = new BoxLayout(panelPolozeni, BoxLayout.Y_AXIS);
+	panelPolozeni.setLayout(polozeniLayout);
 	tabbedPane.addTab("Položeni", panelPolozeni);
 	
 	JPanel panelNepolozeni = new JPanel();
@@ -529,6 +531,9 @@ public class DialogIzmeniStudenta extends JDialog {
 
 		}});
 	
+	
+	
+	
 	JPanel btnNpPan = new JPanel();
 	BoxLayout btnNpLayout = new BoxLayout(btnNpPan, BoxLayout.X_AXIS);
 	btnNpPan.setLayout(btnNpLayout);
@@ -552,6 +557,25 @@ public class DialogIzmeniStudenta extends JDialog {
 	JScrollPane nepolozeniScrollPane = new JScrollPane(nepolozeniPredmeti);
 	nepolozeniScrollPane.setPreferredSize(new Dimension(300, 300));
 	panelNepolozeni.add(nepolozeniScrollPane);
+	
+	
+	JPanel btnPolozeniPanel = new JPanel();
+	BoxLayout btnPolozeniLayout = new BoxLayout(btnPolozeniPanel, BoxLayout.X_AXIS);
+	btnPolozeniPanel.setLayout(btnPolozeniLayout);
+	
+	JButton btnPonistiOcenu = new JButton("Ponisti ocenu");
+	btnPonistiOcenu.setPreferredSize(new Dimension(150, 30));
+	
+	btnPolozeniPanel.add(btnPonistiOcenu);
+	btnPolozeniPanel.add(Box.createHorizontalStrut(25));
+	btnPolozeniPanel.add(Box.createHorizontalGlue());
+	panelPolozeni.add(btnPolozeniPanel);
+	
+	PolozeniIspitiJTable polozeniPredmeti = new PolozeniIspitiJTable(stareInformacije);
+	JScrollPane polozeniScrollPane = new JScrollPane(polozeniPredmeti);
+	polozeniScrollPane.setPreferredSize(new Dimension(300, 300));
+	panelPolozeni.add(polozeniScrollPane);
+	
 	
 	}
 	

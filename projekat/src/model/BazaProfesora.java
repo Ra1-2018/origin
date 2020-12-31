@@ -96,4 +96,7 @@ public class BazaProfesora {
 		stari.setTitula(novi.getTitula());
 		stari.setZvanje(novi.getZvanje());
 	}
+	public void obrisiProfesora(int index) {
+		this.profesori.remove(index);
+	}
 }

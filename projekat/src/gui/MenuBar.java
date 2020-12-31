@@ -101,10 +101,16 @@ public class MenuBar extends JMenuBar {
 					}
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
-		
+					if(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow()>-1) {
+						DialogIzmeniProfesora dialog = new DialogIzmeniProfesora(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow());
+						dialog.setVisible(true);
+						}
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
-
+					if(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow()>-1) {
+						DialogIzmeniPredmet dialog = new DialogIzmeniPredmet(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow());
+						dialog.setVisible(true);
+						}
 				}
 			}		
 		});
@@ -112,6 +118,30 @@ public class MenuBar extends JMenuBar {
 		JMenuItem m_delete = new JMenuItem(" Delete", new ImageIcon("images/delete.png"));
 		m_delete.setMnemonic(KeyEvent.VK_D);
 		m_delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
+		
+		m_delete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					if(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow()>-1) {
+					DialogObrisiStudenta dialog = new DialogObrisiStudenta(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow());
+					dialog.setVisible(true);
+					}
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					//TODO Poziv dijaloga za brisanje profesora
+					if(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow()>-1) {
+						DialogObrisiProfesora dialog = new DialogObrisiProfesora(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow());
+						dialog.setVisible(true);
+					}
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+					//
+					}
+				}
+			});
 		
 		edit.add(m_edit);
 		edit.addSeparator();

@@ -1,20 +1,23 @@
 package model;
 
+import java.util.Date;
+
 public class Ocena {
 
 	private Student student;
 	private Predmet predmet;
 	private long vrednost;
-	private long datum;
+	private Date datum;
 
 
 	public Ocena() {}
 	
-	public Ocena(Student student, long vrednost, long datum) {
+	public Ocena(Student student, Predmet predmet, long vrednost, Date datum) {
 		super();
 		this.student = student;
 		this.vrednost = vrednost;
 		this.datum = datum;
+		this.predmet = predmet;
 	}
 
 	public Student getStudent() {
@@ -33,11 +36,11 @@ public class Ocena {
 		this.vrednost = vrednost;
 	}
 
-	public long getDatum() {
+	public Date getDatum() {
 		return datum;
 	}
 
-	public void setDatum(long datum) {
+	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
 	

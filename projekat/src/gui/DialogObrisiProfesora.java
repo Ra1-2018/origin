@@ -14,24 +14,25 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controller.StudentiController;
-
-public class DialogObrisiStudenta extends JDialog {
+import controller.ProfesoriController;
+public class DialogObrisiProfesora extends JDialog {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1903496684347185001L;
+	private static final long serialVersionUID = -4857601507049550082L;
 
-	public DialogObrisiStudenta(int selectedIndex) {
+	public DialogObrisiProfesora(int selectedIndex) {
+		
+		
 		super();
-		setTitle("Brisanje studenta");
+		setTitle("Brisanje profesora");
 		setSize(450, 200);
 		setLocationRelativeTo(this.getParent());
 		setModal(true);
 		
 		JPanel messageBox = new JPanel();
-		JLabel labela = new JLabel("Da li ste sigurni da zelite da obrisete studenta?");
+		JLabel labela = new JLabel("Da li ste sigurni da zelite da obrisete profesora?");
 		
 		messageBox.setLayout(new GridBagLayout());	
 		messageBox.add(labela);
@@ -60,7 +61,7 @@ public class DialogObrisiStudenta extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				StudentiController.getInstance().obrisiStudenta(selectedIndex);
+				ProfesoriController.getInstance().obrisiProfesora(selectedIndex);
 				dispose();
 			}
 		});
@@ -74,6 +75,6 @@ public class DialogObrisiStudenta extends JDialog {
 			}
 		});
 	
-	
+		
 	}
 }
