@@ -2,7 +2,9 @@ package model;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class Student {
@@ -23,6 +25,7 @@ public class Student {
 	public enum Status {B, S}
 	
 	private List<String> koloneNepolozeni;
+	private List<String> kolonePolozeni;
 
 	public Student() {}
 	
@@ -50,6 +53,14 @@ public class Student {
 		this.koloneNepolozeni.add("Semestar");
 		this.koloneNepolozeni.add("Godina");
 		this.koloneNepolozeni.add("ESPB");
+		
+		initPolozeneIspite();
+		this.kolonePolozeni = new ArrayList<String>();
+		this.kolonePolozeni.add("Sifra predmeta");
+		this.kolonePolozeni.add("Naziv predmeta");
+		this.kolonePolozeni.add("ESPB");
+		this.kolonePolozeni.add("Ocena");
+		this.kolonePolozeni.add("Datum");
 	}
 
 
@@ -58,6 +69,13 @@ public class Student {
 		nepolozeniIspiti = BazaPredmeta.getInstance().getPredmeti();
 	}
 	
+	public void initPolozeneIspite() {
+		polozeniIspiti = new ArrayList<Ocena>();
+		//Ocena ocena = new Ocena(BazaStudenata.getInstance().getStudenti().get(1), BazaPredmeta.getInstance().getPredmeti().get(1), 6, new GregorianCalendar(2020, Calendar.DECEMBER, 10).getTime());
+		//Ocena ocena1 = new Ocena(BazaStudenata.getInstance().getStudenti().get(1), BazaPredmeta.getInstance().getPredmeti().get(2), 8, new GregorianCalendar(2020, Calendar.NOVEMBER, 11).getTime());
+		//polozeniIspiti.add(ocena);
+		//polozeniIspiti.add(ocena1);
+	}
 	public String getPrezime() {
 		return prezime;
 	}
@@ -222,4 +240,32 @@ public class Student {
 		}
 	}
 	//--------------------------------------------------------------------
+	
+	//metode iz apstraktne klase realizovane
+	public int getColumnCountPolozeni() {
+		return 5;
+	}
+	
+	public String getColumnNamePolozeni(int index) {
+		return this.kolonePolozeni.get(index);
+	}
+	
+	public String getValueAtPolozeni(int row, int column) {
+		Ocena ocena = this.polozeniIspiti.get(row);
+		switch(column) {
+		case 0:
+			return ocena.getPredmet().getId();
+		case 1:
+			return ocena.getPredmet().getNaziv();
+		case 2:
+			return "" + ocena.getPredmet().getEspb();
+		case 3:
+			return "" + ocena.getVrednost();
+		case 4:
+			return "" + ocena.getDatum();
+		default:
+			return null;
+		}
+	}
+	
 }
