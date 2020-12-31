@@ -4,6 +4,7 @@ import java.util.List;
 
 import gui.Frame;
 import model.BazaProfesora;
+import model.BazaStudenata;
 import model.Profesor;
 
 public class ProfesoriController {
@@ -31,4 +32,10 @@ private static ProfesoriController instance = null;
 		BazaProfesora.getInstance().izmeniProfesora(index, profesor);
 		Frame.getInstance().getProfTab().azurirajPrikaz(null, -1);
 	}
+	
+	public void obrisiProfesora(int index) {
+		BazaProfesora.getInstance().obrisiProfesora(index);
+		Frame.getInstance().getProfTab().azurirajPrikaz("UKLONJEN", index);
+	}
+
 }
