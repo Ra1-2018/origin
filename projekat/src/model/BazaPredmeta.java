@@ -85,7 +85,18 @@ public class BazaPredmeta {
 		this.predmeti.add(predmet);
 	}
 	
+	public void izmeniPredmet(int i, Predmet p) {
+		Predmet predmet = predmeti.get(i);
+		predmet.setId(p.getId());
+		predmet.setNaziv(p.getNaziv());
+		predmet.setSemestar(p.getSemestar());
+		predmet.setEspb(p.getEspb());
+		predmet.setGodinaStudija(p.getGodinaStudija());
+		predmet.setProfesor(p.getProfesor());	
+	}
+	
 	public void obrisiPredmet(int index) {
 		this.predmeti.remove(index);
 	}
+
 }
