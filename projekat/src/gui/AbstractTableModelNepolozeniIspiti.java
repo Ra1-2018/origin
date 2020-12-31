@@ -39,4 +39,5 @@ public class AbstractTableModelNepolozeniIspiti extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return student.getColumnNameNepolozeni(column);
 	}
+	
 }
