@@ -17,7 +17,7 @@ public class Toolbar extends JToolBar{
 	 * 
 	 */
 	private static final long serialVersionUID = -5707394191276063225L;
-
+	
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
 		
@@ -111,6 +111,28 @@ public class Toolbar extends JToolBar{
 		addSeparator();
 		
 		JButton btnSearch = new JButton();
+		btnSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					//TODO
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					
+					/*String[] reci = textfield.getText().split(" ");
+					for(int i=0; i< reci.length; i++) {
+						ProfesoriJTable.newFilter(reci[i], i);
+					}*/
+					String test = textfield.getText();
+					ProfesoriJTable.newFilter(test);
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+					//TODO
+				}
+			}
+		});
 		btnSearch.setToolTipText("Search");
 		btnSearch.setIcon(new ImageIcon("images/search.png"));
 		add(btnSearch);
