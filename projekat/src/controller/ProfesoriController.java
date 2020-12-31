@@ -4,7 +4,6 @@ import java.util.List;
 
 import gui.Frame;
 import model.BazaProfesora;
-import model.BazaStudenata;
 import model.Profesor;
 
 public class ProfesoriController {
