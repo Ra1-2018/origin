@@ -49,6 +49,10 @@ public class Profesor {
 		this.kolonePredmeti.add("Semestar");
 	}
 	
+	public void initPredmete() {
+		this.predmeti.add(BazaPredmeta.getInstance().getPredmeti().get(0));
+	}
+	
 	public String getIme() {
 		return ime;
 	}

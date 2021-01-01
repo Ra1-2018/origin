@@ -463,13 +463,15 @@ public class DialogIzmeniProfesora extends JDialog {
 		JButton btnUkloniPredmet = new JButton("Ukloni predmet");
 		btnUkloniPredmet.setPreferredSize(new Dimension(150, 30));
 		
-		btnPredmetiPanel.add(Box.createHorizontalStrut(50));
+		btnPredmetiPanel.add(Box.createHorizontalStrut(25));
 		btnPredmetiPanel.add(btnDodajPredmet);
 		btnPredmetiPanel.add(Box.createHorizontalStrut(50));
 		btnPredmetiPanel.add(btnUkloniPredmet);
 		btnPredmetiPanel.add(Box.createHorizontalGlue());
 		
 		panelPredmeti.add(btnPredmetiPanel, BorderLayout.NORTH);
+		
+		profesor.initPredmete();
 		
 		PredmetiPoProfesoruJTable predmetiProfesora = new PredmetiPoProfesoruJTable(profesor);
 		JScrollPane predmetiScrollPane = new JScrollPane(predmetiProfesora);
