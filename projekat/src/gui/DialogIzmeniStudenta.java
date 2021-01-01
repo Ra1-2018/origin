@@ -577,6 +577,19 @@ public class DialogIzmeniStudenta extends JDialog {
 	panelPolozeni.add(polozeniScrollPane);
 	
 	
+	btnPolaganje.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if(nepolozeniPredmeti.getSelectedRow() > -1) {
+				DialogUpisiOcenu duo = new DialogUpisiOcenu(nepolozeniPredmeti, polozeniPredmeti, stareInformacije);
+				duo.setVisible(true);
+			}
+		}
+		
+	});
+	
 	}
 	
 	public boolean proveraUnosa(String text, String regex, int index) {

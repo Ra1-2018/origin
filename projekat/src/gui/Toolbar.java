@@ -17,7 +17,7 @@ public class Toolbar extends JToolBar{
 	 * 
 	 */
 	private static final long serialVersionUID = -5707394191276063225L;
-
+	
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
 		
@@ -68,7 +68,10 @@ public class Toolbar extends JToolBar{
 					}
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
-					//TODO Poziv dijaloga za izmenu predmeta
+					if(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow() > -1) {
+						DialogIzmeniPredmet dipr = new DialogIzmeniPredmet(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow());
+						dipr.setVisible(true);
+					}
 				}
 			}
 		});
@@ -85,10 +88,16 @@ public class Toolbar extends JToolBar{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
-					//TODO Poziv dijaloga za brisanje studenta
+					if(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow() > -1) {
+						DialogObrisiStudenta dos = new DialogObrisiStudenta(Frame.getInstance().getStudTab().getTabelaStudenata().getSelectedRow());
+						dos.setVisible(true);
+					}
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
-					//TODO Poziv dijaloga za brisanje profesora
+					if(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow() > -1) {
+						DialogObrisiProfesora dopr = new DialogObrisiProfesora(Frame.getInstance().getProfTab().getTabelaProfesora().getSelectedRow());
+						dopr.setVisible(true);
+					}
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
 					if(Frame.getInstance().getPredTab().getTabelaPredmeta().getSelectedRow() > -1) {
@@ -111,6 +120,24 @@ public class Toolbar extends JToolBar{
 		addSeparator();
 		
 		JButton btnSearch = new JButton();
+		btnSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
+					//TODO
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
+					String input = textfield.getText();
+					ProfesoriJTable.newFilter(input);
+				}
+				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 2) {
+					String input = textfield.getText();
+					PredmetiJTable.newFilter(input);
+				}
+			}
+		});
 		btnSearch.setToolTipText("Search");
 		btnSearch.setIcon(new ImageIcon("images/search.png"));
 		add(btnSearch);
