@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -16,6 +19,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import controller.PredmetiController;
 import model.Ocena;
@@ -30,10 +35,18 @@ public class DialogUpisiOcenu extends JDialog {
 	private static final long serialVersionUID = -4995830860042707038L;
 	
 	private Predmet predmet;
+	private String datumPolaganjaString;
+	private NepolozeniPredmetiJTable nepolozeni;
+	private PolozeniIspitiJTable polozeni;
+	//private Student student;
 
-	public DialogUpisiOcenu(int selectedIndex, Student student) {
+	public DialogUpisiOcenu(NepolozeniPredmetiJTable nepolozeni, PolozeniIspitiJTable polozeni, Student student) {
 		
 		super();
+		this.nepolozeni = nepolozeni;
+		this.polozeni = polozeni;
+		//this.student = student;
+		
 		setSize(500, 500);
 		setModal(true);
 		setLocationRelativeTo(this.getParent());
@@ -60,7 +73,7 @@ public class DialogUpisiOcenu extends JDialog {
 		JLabel datumLabel = new JLabel("Datum*:");
 		datumLabel.setPreferredSize(dimension);
 		
-		predmet = PredmetiController.getInstance().getPredmeti().get(selectedIndex);
+		predmet = PredmetiController.getInstance().getPredmeti().get(nepolozeni.getSelectedRow());
 		
 		JLabel sifraPrikaz = new JLabel(predmet.getId());
 		sifraPrikaz.setPreferredSize(dimension);
@@ -109,17 +122,83 @@ public class DialogUpisiOcenu extends JDialog {
 		
 		add(buttonPanel, BorderLayout.SOUTH);
 		
+		btnPotvrdi.setEnabled(false);
+		
+		datumTF.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				datumPolaganjaString = datumTF.getText();
+				String datumRodjenjaRegex = "\\d{1,2}-\\d{1,2}-\\d{4}";
+				btnPotvrdi.setEnabled(proveraUnosa(datumPolaganjaString, datumRodjenjaRegex));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				datumPolaganjaString = datumTF.getText();
+				String datumRodjenjaRegex = "\\d{1,2}-\\d{1,2}-\\d{4}";
+				btnPotvrdi.setEnabled(proveraUnosa(datumPolaganjaString, datumRodjenjaRegex));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				datumPolaganjaString = datumTF.getText();
+				String datumRodjenjaRegex = "\\d{1,2}-\\d{1,2}-\\d{4}";
+				btnPotvrdi.setEnabled(proveraUnosa(datumPolaganjaString, datumRodjenjaRegex));
+			}
+		});
+		
 		btnPotvrdi.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				long vrednost = Long.parseLong((String)ocenaComboBox.getSelectedItem());
-				Predmet predmet = student.getNepolozeniIspiti().get(selectedIndex);
-				//datum
-				Ocena o = new Ocena(student, predmet, vrednost, null);
+				Predmet predmet = student.getNepolozeniIspiti().get(nepolozeni.getSelectedRow());
+				datumPolaganjaString = datumTF.getText();
+				try {
+					Date datumPolaganja = new SimpleDateFormat("dd-MM-yyy").parse(datumPolaganjaString);
+					Ocena ocena = new Ocena(student, predmet, vrednost, datumPolaganja);
+					student.insertOcena(ocena);
+					student.removePredmet(predmet);
+					azurirajPrikaz();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				dispose();
 			}
 			
 		});
+		
+		btnOdustani.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+			}});
+	}
+	
+	public void azurirajPrikaz() {
+		AbstractTableModelNepolozeniIspiti nepolozeniModel = (AbstractTableModelNepolozeniIspiti) nepolozeni.getModel();
+		
+		nepolozeniModel.fireTableDataChanged();
+		validate();
+		
+		AbstractTableModelPolozeniIspiti polozeniModel = (AbstractTableModelPolozeniIspiti) polozeni.getModel();
+		
+		polozeniModel.fireTableDataChanged();
+		validate();
+	}
+	
+	public boolean proveraUnosa(String fieldText, String fieldRegex) {
+		if (!fieldText.matches(fieldRegex))
+			return false;			
+		else 
+			return true;
 	}
 }
