@@ -558,6 +558,16 @@ public class DialogIzmeniStudenta extends JDialog {
 	nepolozeniScrollPane.setPreferredSize(new Dimension(300, 300));
 	panelNepolozeni.add(nepolozeniScrollPane);
 	
+	btnPolaganje.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			DialogUpisiOcenu duo = new DialogUpisiOcenu(nepolozeniPredmeti.getSelectedRow(), stareInformacije);
+			duo.setVisible(true);
+		}
+		
+	});
 	
 	JPanel btnPolozeniPanel = new JPanel();
 	BoxLayout btnPolozeniLayout = new BoxLayout(btnPolozeniPanel, BoxLayout.X_AXIS);

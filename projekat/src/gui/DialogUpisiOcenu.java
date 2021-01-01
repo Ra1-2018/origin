@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -16,7 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.PredmetiController;
+import model.Ocena;
 import model.Predmet;
+import model.Student;
 
 public class DialogUpisiOcenu extends JDialog {
 
@@ -27,7 +31,7 @@ public class DialogUpisiOcenu extends JDialog {
 	
 	private Predmet predmet;
 
-	public DialogUpisiOcenu(int selectedIndex) {
+	public DialogUpisiOcenu(int selectedIndex, Student student) {
 		
 		super();
 		setSize(500, 500);
@@ -104,5 +108,18 @@ public class DialogUpisiOcenu extends JDialog {
 		buttonPanel.add(Box.createHorizontalGlue());
 		
 		add(buttonPanel, BorderLayout.SOUTH);
+		
+		btnPotvrdi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				long vrednost = Long.parseLong((String)ocenaComboBox.getSelectedItem());
+				Predmet predmet = student.getNepolozeniIspiti().get(selectedIndex);
+				//datum
+				Ocena o = new Ocena(student, predmet, vrednost, null);
+			}
+			
+		});
 	}
 }
