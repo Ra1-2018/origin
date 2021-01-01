@@ -48,11 +48,11 @@ public class Student {
 		initNepolozeneIspite();
 		this.koloneNepolozeni = new ArrayList<String>();
 		//---------------------------------------------
-		this.koloneNepolozeni.add("Sifra");
-		this.koloneNepolozeni.add("Naziv");
-		this.koloneNepolozeni.add("Semestar");
-		this.koloneNepolozeni.add("Godina");
+		this.koloneNepolozeni.add("Sifra predmeta");
+		this.koloneNepolozeni.add("Naziv predmeta");
 		this.koloneNepolozeni.add("ESPB");
+		this.koloneNepolozeni.add("Godina studija");
+		this.koloneNepolozeni.add("Semestar");
 		
 		initPolozeneIspite();
 		this.kolonePolozeni = new ArrayList<String>();
@@ -226,15 +226,15 @@ public class Student {
 		case 1:
 			return predmet.getNaziv();
 		case 2:
-			String[] semestri = {"Letnji", "Zimski"};
-			int idxSemestra = predmet.getSemestar().ordinal();
-			return semestri[idxSemestra];
+			return predmet.getEspb() + "";
 		case 3:
 			String[] godine = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
 			int idxGodine = predmet.getGodinaStudija().ordinal();
 			return godine[idxGodine];
 		case 4:
-			return predmet.getEspb() + "";
+			String[] semestri = {"Letnji", "Zimski"};
+			int idxSemestra = predmet.getSemestar().ordinal();
+			return semestri[idxSemestra];
 		default:
 			return null;
 		}
