@@ -71,9 +71,9 @@ public class Student {
 	
 	public void initPolozeneIspite() {
 		polozeniIspiti = new ArrayList<Ocena>();
-		//Ocena ocena = new Ocena(BazaStudenata.getInstance().getStudenti().get(1), BazaPredmeta.getInstance().getPredmeti().get(1), 6, new GregorianCalendar(2020, Calendar.DECEMBER, 10).getTime());
+		Ocena ocena = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(1), 6, new GregorianCalendar(2020, Calendar.DECEMBER, 10).getTime());
 		//Ocena ocena1 = new Ocena(BazaStudenata.getInstance().getStudenti().get(1), BazaPredmeta.getInstance().getPredmeti().get(2), 8, new GregorianCalendar(2020, Calendar.NOVEMBER, 11).getTime());
-		//polozeniIspiti.add(ocena);
+		polozeniIspiti.add(ocena);
 		//polozeniIspiti.add(ocena1);
 	}
 	public String getPrezime() {
