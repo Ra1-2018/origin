@@ -88,6 +88,7 @@ public class DialogUpisiOcenu extends JDialog {
 		
 		JTextField datumTF = new JTextField();
 		datumTF.setPreferredSize(dimension);
+		datumTF.setToolTipText("dd-MM-yyyy");
 		
 		sifraPanel.add(sifraLabel);
 		sifraPanel.add(sifraPrikaz);
@@ -160,7 +161,7 @@ public class DialogUpisiOcenu extends JDialog {
 				Predmet predmet = student.getNepolozeniIspiti().get(nepolozeni.getSelectedRow());
 				datumPolaganjaString = datumTF.getText();
 				try {
-					Date datumPolaganja = new SimpleDateFormat("dd-MM-yyy").parse(datumPolaganjaString);
+					Date datumPolaganja = new SimpleDateFormat("dd-MM-yyyy").parse(datumPolaganjaString);
 					Ocena ocena = new Ocena(student, predmet, vrednost, datumPolaganja);
 					student.insertOcena(ocena);
 					student.removePredmet(predmet);
