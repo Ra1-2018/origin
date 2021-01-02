@@ -628,7 +628,22 @@ public class DialogIzmeniStudenta extends JDialog {
 		
 	});
 	
+	
+	btnPonistiOcenu.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if(polozeniPredmeti.getSelectedRow() > -1) {
+				DialogObrisiOcenu duo = new DialogObrisiOcenu(polozeniPredmeti, nepolozeniPredmeti, student);
+				duo.setVisible(true);
+			}
+		}
+	});
+	
 	}
+	
+	
 	
 	public boolean proveraUnosa(String text, String regex, int index) {
 		if(!text.matches(regex))
