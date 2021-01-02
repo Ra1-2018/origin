@@ -51,6 +51,13 @@ public class Profesor {
 		this.kolonePredmeti.add("Semestar");
 	}
 	
+	public void initNePredaje() {
+		nePredaje.add(BazaPredmeta.getInstance().getPredmeti().get(0));
+		nePredaje.add(BazaPredmeta.getInstance().getPredmeti().get(1));
+		nePredaje.add(BazaPredmeta.getInstance().getPredmeti().get(2));
+	}
+	
+	/*
 	public void initNePredaje( ) {
 		//nePredaje = new ArrayList<Predmet>();
 		List<Predmet> sviPredmeti = BazaPredmeta.getInstance().getPredmeti();
@@ -59,7 +66,7 @@ public class Profesor {
 				nePredaje.add(predmet);
 		}
 	}
-	
+	*/
 	public String getIme() {
 		return ime;
 	}
