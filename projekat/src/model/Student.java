@@ -44,7 +44,8 @@ public class Student {
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 
-		initNepolozeneIspite();
+		this.nepolozeniIspiti = new ArrayList<Predmet>();
+
 		this.koloneNepolozeni = new ArrayList<String>();
 		//---------------------------------------------
 		this.koloneNepolozeni.add("Sifra predmeta");
@@ -64,8 +65,17 @@ public class Student {
 
 
 	public void initNepolozeneIspite() {
-		nepolozeniIspiti = new ArrayList<Predmet>();
-		nepolozeniIspiti = BazaPredmeta.getInstance().getPredmeti();
+		//nepolozeniIspiti = BazaPredmeta.getInstance().getPredmeti();
+		List<Predmet> sviPredmeti = BazaPredmeta.getInstance().getPredmeti();
+		for(Predmet predmet : sviPredmeti) {
+			boolean postoji = false;
+			for(Ocena ocena : polozeniIspiti) {
+				if(ocena.getPredmet().equals(predmet))
+					postoji = true;
+			}
+			if(!postoji)
+				nepolozeniIspiti.add(predmet);
+		}
 	}
 	
 	public void initPolozeneIspite() {
