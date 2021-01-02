@@ -14,7 +14,6 @@ public class AbstractListModelPredmeti extends AbstractListModel<Object>{
 	
 	AbstractListModelPredmeti(Profesor profesor) {
 		this.profesor = profesor;
-		profesor.initNePredaje();
 	}
 	
 	@Override

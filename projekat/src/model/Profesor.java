@@ -42,6 +42,7 @@ public class Profesor {
 		this.zvanje = zvanje;
 		
 		predmeti = new ArrayList<Predmet>();
+		nePredaje = new ArrayList<Predmet>();
 		
 		this.kolonePredmeti = new ArrayList<String>();
 		this.kolonePredmeti.add("Sifra");
@@ -51,16 +52,12 @@ public class Profesor {
 	}
 	
 	public void initNePredaje( ) {
-		nePredaje = new ArrayList<Predmet>();
+		//nePredaje = new ArrayList<Predmet>();
 		List<Predmet> sviPredmeti = BazaPredmeta.getInstance().getPredmeti();
 		for(Predmet predmet : sviPredmeti) {
 			if(!predmeti.contains(predmet))
 				nePredaje.add(predmet);
 		}
-	}
-	
-	public void initPredmete() {
-		this.predmeti.add(BazaPredmeta.getInstance().getPredmeti().get(0));
 	}
 	
 	public String getIme() {
