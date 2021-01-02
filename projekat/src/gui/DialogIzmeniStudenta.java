@@ -67,7 +67,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	tabbedPane.addTab("Polozeni", panelPolozeni);
 
 	JPanel panelNepolozeni = new JPanel();
-	BoxLayout nepolozeniLayout = new BoxLayout(panelNepolozeni, BoxLayout.Y_AXIS);
+	BorderLayout nepolozeniLayout = new BorderLayout();
 	panelNepolozeni.setLayout(nepolozeniLayout);
 	tabbedPane.addTab("Nepolozeni", panelNepolozeni);
 	
@@ -113,43 +113,43 @@ public class DialogIzmeniStudenta extends JDialog {
 	nacinFinansiranjaLabel.setPreferredSize(dimension);
 	
 	
-	Student stareInformacije = StudentiController.getInstance().getListaSvihStudenata().get(selectedIndex);
-	ime = stareInformacije.getIme();
-	prezime = stareInformacije.getPrezime();
+	Student student = StudentiController.getInstance().getListaSvihStudenata().get(selectedIndex);
+	ime = student.getIme();
+	prezime = student.getPrezime();
 	DateFormat date = new SimpleDateFormat("dd-MM-yyyy");
-	datumRodjenja = date.format(stareInformacije.getDatumRodjenja());
-	brojTelefona = stareInformacije.getKontaktTelefon();
-	adresa = stareInformacije.getAdresaStanovanja();
-	brIndeksa = stareInformacije.getBrojIndeksa();
-	email = stareInformacije.getEmailAdresa();
-	prosecnaOcena = Double.toString(stareInformacije.getProsecnaOcena());
-	godinaUpisa = stareInformacije.getGodinaUpisa();
+	datumRodjenja = date.format(student.getDatumRodjenja());
+	brojTelefona = student.getKontaktTelefon();
+	adresa = student.getAdresaStanovanja();
+	brIndeksa = student.getBrojIndeksa();
+	email = student.getEmailAdresa();
+	prosecnaOcena = Double.toString(student.getProsecnaOcena());
+	godinaUpisa = student.getGodinaUpisa();
     
 	
 	
-	JTextField imeText = new JTextField(stareInformacije.getIme());
+	JTextField imeText = new JTextField(student.getIme());
 	imeText.setToolTipText("Format: slova i razmaci");
-	JTextField prezimeText = new JTextField(stareInformacije.getPrezime());
+	JTextField prezimeText = new JTextField(student.getPrezime());
 	prezimeText.setToolTipText("Format: slova i razmaci");
-	JTextField datumRodjenjaText = new JTextField(date.format(stareInformacije.getDatumRodjenja()));
+	JTextField datumRodjenjaText = new JTextField(date.format(student.getDatumRodjenja()));
 	datumRodjenjaText.setToolTipText("Format: dd-MM-yyyy");
-	JTextField adresaText = new JTextField(stareInformacije.getAdresaStanovanja());
+	JTextField adresaText = new JTextField(student.getAdresaStanovanja());
 	adresaText.setToolTipText("Format: slova i razmaci + broj + zapeta + slova i razmaci");
-	JTextField kontaktText = new JTextField(stareInformacije.getKontaktTelefon());
-	JTextField emailText = new JTextField(stareInformacije.getEmailAdresa());
-	JTextField brIndeksaText = new JTextField(stareInformacije.getBrojIndeksa());
+	JTextField kontaktText = new JTextField(student.getKontaktTelefon());
+	JTextField emailText = new JTextField(student.getEmailAdresa());
+	JTextField brIndeksaText = new JTextField(student.getBrojIndeksa());
 	brIndeksaText.setToolTipText("Format: AAxxx-yyyy");
-	JTextField godinaUpisaText = new JTextField(stareInformacije.getGodinaUpisa());
+	JTextField godinaUpisaText = new JTextField(student.getGodinaUpisa());
 	godinaUpisaText.setToolTipText("Format: yyyy");
-	JTextField prosecnaOcenaText = new JTextField(Double.toString(stareInformacije.getProsecnaOcena()));
+	JTextField prosecnaOcenaText = new JTextField(Double.toString(student.getProsecnaOcena()));
 	prosecnaOcenaText.setToolTipText("Format: cifra + tacka + dve cifre ili 10.00");
 	String[] godineStudija = { "I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)" };
 	JComboBox<String> godineStudijaComboBox = new JComboBox<String>(godineStudija);	
 	String[] budzet_samofinansiranje = { "Budzet", "Samofinansiranje" };
 	JComboBox<String> budzet_samofinansiranjeComboBox = new JComboBox<String>(budzet_samofinansiranje);
 	
-	godineStudijaComboBox.setSelectedItem(stareInformacije.getTrenutnaGodinaStudija());
-    budzet_samofinansiranjeComboBox.setSelectedIndex(stareInformacije.getStatus().ordinal());	
+	godineStudijaComboBox.setSelectedItem(student.getTrenutnaGodinaStudija());
+    budzet_samofinansiranjeComboBox.setSelectedIndex(student.getStatus().ordinal());	
 	
 	imeText.setPreferredSize(dimension);
 	prezimeText.setPreferredSize(dimension);
@@ -546,18 +546,19 @@ public class DialogIzmeniStudenta extends JDialog {
 	JButton btnPolaganje = new JButton("Polaganje");
 	btnPolaganje.setPreferredSize(new Dimension(100, 30));
 	
+	btnNpPan.add(Box.createHorizontalStrut(25));
 	btnNpPan.add(btnDodaj);
 	btnNpPan.add(Box.createHorizontalStrut(25));
 	btnNpPan.add(btnObrisi);
 	btnNpPan.add(Box.createHorizontalStrut(25));
 	btnNpPan.add(btnPolaganje);
 	buttonPanel.add(Box.createHorizontalGlue());
-	panelNepolozeni.add(btnNpPan);
+	panelNepolozeni.add(btnNpPan, BorderLayout.NORTH);
 	
-	NepolozeniPredmetiJTable nepolozeniPredmeti = new NepolozeniPredmetiJTable(stareInformacije);
+	NepolozeniPredmetiJTable nepolozeniPredmeti = new NepolozeniPredmetiJTable(student);
 	JScrollPane nepolozeniScrollPane = new JScrollPane(nepolozeniPredmeti);
 	nepolozeniScrollPane.setPreferredSize(new Dimension(300, 300));
-	panelNepolozeni.add(nepolozeniScrollPane);
+	panelNepolozeni.add(nepolozeniScrollPane, BorderLayout.CENTER);
 	
 	
 	JPanel btnPolozeniPanel = new JPanel();
@@ -571,7 +572,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	panelPolozeni.add(btnPolozeniPanel, BorderLayout.NORTH);
 	
 	
-	PolozeniIspitiJTable polozeniPredmeti = new PolozeniIspitiJTable(stareInformacije);
+	PolozeniIspitiJTable polozeniPredmeti = new PolozeniIspitiJTable(student);
 	JScrollPane polozeniScrollPane = new JScrollPane(polozeniPredmeti);
 	polozeniScrollPane.setPreferredSize(new Dimension(300, 300));
 	panelPolozeni.add(polozeniScrollPane, BorderLayout.CENTER);
@@ -589,11 +590,11 @@ public class DialogIzmeniStudenta extends JDialog {
 	BoxLayout desni1Layout = new BoxLayout(panelBodovi, BoxLayout.X_AXIS);
 	panelBodovi.setLayout(desni1Layout);
 	
-	JLabel srednjaOcena = new JLabel("Prosecna ocena:  " + stareInformacije.prosecnaOcena());
+	JLabel srednjaOcena = new JLabel("Prosecna ocena:  " + student.prosecnaOcena());
 	panelOcene.add(Box.createHorizontalGlue());
 	panelOcene.add(srednjaOcena);
 	
-	JLabel ukupniBodovi = new JLabel("Ukupno ESPB:  " + stareInformacije.ukupnoBodova());
+	JLabel ukupniBodovi = new JLabel("Ukupno ESPB:  " + student.ukupnoBodova());
 	panelBodovi.add(Box.createHorizontalGlue());
 	panelBodovi.add(ukupniBodovi);
 	
@@ -606,8 +607,8 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void tableChanged(TableModelEvent arg0) {
 			// TODO Auto-generated method stub
 			
-			srednjaOcena.setText("Prosecna ocena:  " + stareInformacije.prosecnaOcena());
-			ukupniBodovi.setText("Ukupno ESPB:  " + stareInformacije.ukupnoBodova());
+			srednjaOcena.setText("Prosecna ocena:  " + student.prosecnaOcena());
+			ukupniBodovi.setText("Ukupno ESPB:  " + student.ukupnoBodova());
 			
 		}
 		
@@ -620,7 +621,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(nepolozeniPredmeti.getSelectedRow() > -1) {
-				DialogUpisiOcenu duo = new DialogUpisiOcenu(nepolozeniPredmeti, polozeniPredmeti, stareInformacije);
+				DialogUpisiOcenu duo = new DialogUpisiOcenu(nepolozeniPredmeti, polozeniPredmeti, student);
 				duo.setVisible(true);
 			}
 		}
