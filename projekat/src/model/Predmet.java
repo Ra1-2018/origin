@@ -16,6 +16,7 @@ public class Predmet {
 	private long espb;
 	private List<Student> studentiPolozili;
 	private List<Student> studentiPali;
+	private List<Profesor> profesori;
 	
 	public Predmet() {}
 	
@@ -29,6 +30,7 @@ public class Predmet {
 		this.espb = espb;
 		studentiPolozili = new ArrayList<Student>();
 		studentiPali = new ArrayList<Student>();
+		profesori = new ArrayList<Profesor>();
 	}
 
 	public String getId() {
@@ -94,5 +96,22 @@ public class Predmet {
 	public void setStudentiPali(List<Student> studentiPali) {
 		this.studentiPali = studentiPali;
 	}
+
+	public Object getValueAtProf(int i) {
+		// TODO Auto-generated method stub
+		Profesor profesor = this.profesori.get(i);
+		return profesor.getIme() + " " + profesor.getPrezime();
+	}
+
+	public int getSizeProf() {
+		// TODO Auto-generated method stub
+		return profesori.size();
+	}
+
+	public void dodajProfesora(int selectedIndex) {
+		// TODO Auto-generated method stub
+		//Profesor profesor1 = profesori.get(selectedIndex);
+		profesori.remove(selectedIndex);
+		}
 }
 

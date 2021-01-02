@@ -53,6 +53,7 @@ public class DialogIzmeniPredmet extends JDialog {
 		JPanel semestarPanel = new JPanel(layout1);
 		JPanel godinaPanel = new JPanel(layout1);
 		JPanel espbPanel = new JPanel(layout1);
+		JPanel profesorPanel = new JPanel(layout1);
 		
 		Predmet predmet = PredmetiController.getInstance().getPredmeti().get(selectedIndex);
 		naziv = predmet.getNaziv();
@@ -69,6 +70,8 @@ public class DialogIzmeniPredmet extends JDialog {
 		godinaLabel.setPreferredSize(dimension1);
 		JLabel espbLabel = new JLabel("Broj ESPB bodova*:");
 		espbLabel.setPreferredSize(dimension1);
+		JLabel profesorLabel = new JLabel("Profesor*:");
+		profesorLabel.setPreferredSize(dimension1);
 		
 		JTextField idTF = new JTextField(id);
 		idTF.setPreferredSize(dimension1);
@@ -76,6 +79,8 @@ public class DialogIzmeniPredmet extends JDialog {
 		nazivTF.setPreferredSize(dimension1);
 		JTextField espbTF = new JTextField(espbString);
 		espbTF.setPreferredSize(dimension1);
+		JTextField profTF = new JTextField(predmet.getProfesor().getIme() + " " + predmet.getProfesor().getPrezime());
+		profTF.setPreferredSize(dimension1);
 		
 		String[] semestri = {"Letnji", "Zimski"};
 		JComboBox<String> semestarComboBox = new JComboBox<String>(semestri);
@@ -99,11 +104,20 @@ public class DialogIzmeniPredmet extends JDialog {
 		espbPanel.add(espbLabel);
 		espbPanel.add(espbTF);
 		
+		
+		JButton plus = new JButton("+");
+		JButton minus = new JButton("-");
+		profesorPanel.add(profesorLabel);
+		profesorPanel.add(profTF);
+		profesorPanel.add(plus);
+		profesorPanel.add(minus);
+
 		dialogPanel.add(idPanel);
 		dialogPanel.add(nazivPanel);
-		dialogPanel.add(semestarPanel);
 		dialogPanel.add(godinaPanel);
+		dialogPanel.add(semestarPanel);
 		dialogPanel.add(espbPanel);
+		dialogPanel.add(profesorPanel);
 		dialogPanel.add(Box.createVerticalStrut(25));
 		
 		add(dialogPanel, BorderLayout.CENTER);
@@ -125,6 +139,58 @@ public class DialogIzmeniPredmet extends JDialog {
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 		btnPotvrdi.setEnabled(true);
+		
+		if(profTF.getText().equals("")) {
+			minus.setEnabled(false);
+			plus.setEnabled(true);
+		}
+		else {
+			plus.setEnabled(false);
+			minus.setEnabled(true);
+		}
+		profTF.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(profTF.getText().equals("")) {
+					minus.setEnabled(false);
+					plus.setEnabled(true);
+				}
+				else {
+					plus.setEnabled(false);
+				minus.setEnabled(true);
+				}
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(profTF.getText().equals("")) {
+					minus.setEnabled(false);
+					plus.setEnabled(true);
+					
+				}
+				else  {
+					plus.setEnabled(false);
+					minus.setEnabled(true);
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(profTF.getText().equals("")) {
+					minus.setEnabled(false);
+					plus.setEnabled(true);
+				}
+				else  {
+					plus.setEnabled(false);
+					minus.setEnabled(true);
+				}
+			}
+			
+		});
 		
 		idTF.getDocument().addDocumentListener(new DocumentListener() {
 
@@ -239,6 +305,20 @@ public class DialogIzmeniPredmet extends JDialog {
 				// TODO Auto-generated method stub
 				dispose();
 			}});
+		
+		plus.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ProfesoriJTable profesoriTable = new ProfesoriJTable();
+				DialogDodajProfesoraPredmetu ddpp = new DialogDodajProfesoraPredmetu(predmet, profesoriTable);
+				ddpp.setVisible(true);
+			
+			}
+			
+		});
+		
 	}
 	
 	public boolean proveraUnosa(String fieldText, String fieldRegex, int index) {
