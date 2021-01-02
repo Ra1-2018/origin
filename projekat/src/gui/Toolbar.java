@@ -126,7 +126,8 @@ public class Toolbar extends JToolBar{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 0) {
-					//TODO
+					String input = textfield.getText();
+					StudentiJTable.newFilter(input);
 				}
 				if (Frame.getInstance().getTabbedPane().getSelectedIndex() == 1) {
 					String input = textfield.getText();
