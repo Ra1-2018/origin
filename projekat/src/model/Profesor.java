@@ -21,6 +21,8 @@ public class Profesor {
 	private Zvanje zvanje;
 	private List<Predmet> predmeti;
 	
+	private List<String> kolonePredmeti;
+	
 	public Profesor() {}
 	
 	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja,
@@ -37,9 +39,20 @@ public class Profesor {
 		this.brojLicneKarte = brojLicneKarte;
 		this.titula = titula;
 		this.zvanje = zvanje;
+		
 		predmeti = new ArrayList<Predmet>();
+		
+		this.kolonePredmeti = new ArrayList<String>();
+		this.kolonePredmeti.add("Sifra");
+		this.kolonePredmeti.add("Naziv");
+		this.kolonePredmeti.add("Godina studija");
+		this.kolonePredmeti.add("Semestar");
 	}
-
+	
+	public void initPredmete() {
+		this.predmeti.add(BazaPredmeta.getInstance().getPredmeti().get(0));
+	}
+	
 	public String getIme() {
 		return ime;
 	}
@@ -128,5 +141,31 @@ public class Profesor {
 		this.predmeti = listaPredmeta;
 	}
 	
+	public int getColumnCountPredmeti() {
+		return 4;
+	}
 	
+	public String getColumnNamePredmeti(int index) {
+		return this.kolonePredmeti.get(index);
+	}
+	
+	public String getValueAtPredmeti(int row, int column) {
+		Predmet predmet = this.predmeti.get(row);
+		switch(column) {
+		case 0:
+			return predmet.getId();
+		case 1:
+			return predmet.getNaziv();
+		case 2:
+			String[] godine = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
+			int idxGodine = predmet.getGodinaStudija().ordinal();
+			return godine[idxGodine];
+		case 3:
+			String[] semestri = {"Letnji", "Zimski"};
+			int idxSemestra = predmet.getSemestar().ordinal();
+			return semestri[idxSemestra];
+		default:
+			return null;
+		}
+	}
 }

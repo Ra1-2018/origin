@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -189,6 +190,11 @@ public class DialogIzmeniProfesora extends JDialog {
 		tabbedPane.addTab("Info", panelInfo);
 		
 		JPanel panelPredmeti = new JPanel();
+		//BoxLayout predmetiLayout = new BoxLayout(panelPredmeti, BoxLayout.Y_AXIS);
+		//panelPredmeti.setLayout(predmetiLayout);
+		//tabbedPane.addTab("Predmeti", panelPredmeti);
+		BorderLayout predmetiLayout = new BorderLayout();
+		panelPredmeti.setLayout(predmetiLayout);
 		tabbedPane.addTab("Predmeti", panelPredmeti);
 		
 		add(tabbedPane, BorderLayout.CENTER);
@@ -447,6 +453,30 @@ public class DialogIzmeniProfesora extends JDialog {
 				// TODO Auto-generated method stub
 				dispose();
 			}});
+		
+		JPanel btnPredmetiPanel = new JPanel();
+		BoxLayout btnPredmetiLayout = new BoxLayout(btnPredmetiPanel, BoxLayout.X_AXIS);
+		btnPredmetiPanel.setLayout(btnPredmetiLayout);
+		
+		JButton btnDodajPredmet = new JButton("Dodaj predmet");
+		btnDodajPredmet.setPreferredSize(new Dimension(150, 30));
+		JButton btnUkloniPredmet = new JButton("Ukloni predmet");
+		btnUkloniPredmet.setPreferredSize(new Dimension(150, 30));
+		
+		btnPredmetiPanel.add(Box.createHorizontalStrut(25));
+		btnPredmetiPanel.add(btnDodajPredmet);
+		btnPredmetiPanel.add(Box.createHorizontalStrut(50));
+		btnPredmetiPanel.add(btnUkloniPredmet);
+		btnPredmetiPanel.add(Box.createHorizontalGlue());
+		
+		panelPredmeti.add(btnPredmetiPanel, BorderLayout.NORTH);
+		
+		profesor.initPredmete();
+		
+		PredmetiPoProfesoruJTable predmetiProfesora = new PredmetiPoProfesoruJTable(profesor);
+		JScrollPane predmetiScrollPane = new JScrollPane(predmetiProfesora);
+		predmetiScrollPane.setPreferredSize(new Dimension(300, 300));
+		panelPredmeti.add(predmetiScrollPane, BorderLayout.CENTER);
 	}
 	
 	public boolean proveraUnosa(String fieldText, String fieldRegex, int index) {
