@@ -70,8 +70,29 @@ public class Frame extends JFrame {
 	}
 	
 	private void createTabbedPane() {
+		JPanel bigPanel = new JPanel(new BorderLayout());
+		
+		JPanel panNorth = new JPanel();
+		panNorth.setPreferredSize(new Dimension(1000, 10));
+		bigPanel.add(panNorth, BorderLayout.NORTH);
+		
+		JPanel panSouth = new JPanel();
+		panSouth.setPreferredSize(new Dimension(1000, 10));
+		bigPanel.add(panSouth, BorderLayout.SOUTH);
+		
+		JPanel panWest = new JPanel();
+		panWest.setPreferredSize(new Dimension(25, 1000));
+		bigPanel.add(panWest, BorderLayout.WEST);
+		
+		JPanel panEast = new JPanel();
+		panEast.setPreferredSize(new Dimension(25, 1000));
+		bigPanel.add(panEast, BorderLayout.EAST);
+		
 		this.tabbedPane = new JTabbedPane();
-		this.add(this.tabbedPane, BorderLayout.CENTER);
+		bigPanel.add(this.tabbedPane, BorderLayout.CENTER);
+		
+		this.add(bigPanel, BorderLayout.CENTER);
+		
 		addStudentiTabToTabbedPane("Studenti");
 		addProfesoriTabToTabbedPane("Profesori");
 		addPredmetiTabToTabbedPane("Predmeti");
