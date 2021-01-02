@@ -471,8 +471,6 @@ public class DialogIzmeniProfesora extends JDialog {
 		
 		panelPredmeti.add(btnPredmetiPanel, BorderLayout.NORTH);
 		
-		profesor.initPredmete();
-		
 		PredmetiPoProfesoruJTable predmetiProfesora = new PredmetiPoProfesoruJTable(profesor);
 		JScrollPane predmetiScrollPane = new JScrollPane(predmetiProfesora);
 		predmetiScrollPane.setPreferredSize(new Dimension(300, 300));

@@ -44,6 +44,7 @@ public class Student {
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 
+	
 		initNepolozeneIspite();
 		this.koloneNepolozeni = new ArrayList<String>();
 		//---------------------------------------------
@@ -65,7 +66,7 @@ public class Student {
 
 	public void initNepolozeneIspite() {
 		nepolozeniIspiti = new ArrayList<Predmet>();
-		nepolozeniIspiti = BazaPredmeta.getInstance().getPredmeti();
+		nepolozeniIspiti.add(BazaPredmeta.getInstance().getPredmeti().get(0));
 	}
 	
 	public void initPolozeneIspite() {

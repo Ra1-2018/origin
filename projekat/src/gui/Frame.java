@@ -13,6 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
+
+import model.BazaProfesora;
+import model.Profesor;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -71,6 +75,9 @@ public class Frame extends JFrame {
 		addStudentiTabToTabbedPane("Studenti");
 		addProfesoriTabToTabbedPane("Profesori");
 		addPredmetiTabToTabbedPane("Predmeti");
+		for(Profesor p : BazaProfesora.getInstance().getProfesori()) {
+			p.initNePredaje();
+		}
 	}
 	
 	private void initPosition() {
@@ -94,9 +101,6 @@ public class Frame extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				//int code = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da zatvorite aplikaciju?",
-						//"Zatvaranje aplikacije?", JOptionPane.YES_NO_OPTION);
 				String[] options = new String[2];
 				options[0] = new String("Da");
 				options[1] = new String("Ne");
