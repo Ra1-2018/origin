@@ -84,7 +84,7 @@ public class DialogDodajPredmetProfesoru extends JDialog {
 		dialogPanel.add(westPanel, BorderLayout.WEST);
 		
 		JPanel eastPanel = new JPanel();
-		eastPanel.setPreferredSize(new Dimension(50, 50));
+		eastPanel.setPreferredSize(new Dimension(25, 500));
 		dialogPanel.add(eastPanel, BorderLayout.EAST);
 		
 		add(dialogPanel, BorderLayout.CENTER);

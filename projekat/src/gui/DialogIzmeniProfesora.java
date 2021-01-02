@@ -57,7 +57,7 @@ public class DialogIzmeniProfesora extends JDialog {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
 		JPanel panelInfo = new JPanel();
-		//--------------------------------------------
+
 		BoxLayout dialogLayout = new BoxLayout(panelInfo, BoxLayout.Y_AXIS);
 		panelInfo.setLayout(dialogLayout);
 		
@@ -186,19 +186,16 @@ public class DialogIzmeniProfesora extends JDialog {
 		buttonPanel.add(Box.createHorizontalGlue());
 		
 		panelInfo.add(buttonPanel, BorderLayout.SOUTH);
-		//--------------------------------------------
+
 		tabbedPane.addTab("Info", panelInfo);
 		
 		JPanel panelPredmeti = new JPanel();
-		//BoxLayout predmetiLayout = new BoxLayout(panelPredmeti, BoxLayout.Y_AXIS);
-		//panelPredmeti.setLayout(predmetiLayout);
-		//tabbedPane.addTab("Predmeti", panelPredmeti);
 		BorderLayout predmetiLayout = new BorderLayout();
 		panelPredmeti.setLayout(predmetiLayout);
 		tabbedPane.addTab("Predmeti", panelPredmeti);
 		
 		add(tabbedPane, BorderLayout.CENTER);
-		//--------------------------------------------
+
 		btnPotvrdi.setEnabled(true);
 		
 		imeTF.getDocument().addDocumentListener(new DocumentListener() {
@@ -468,6 +465,7 @@ public class DialogIzmeniProfesora extends JDialog {
 		btnPredmetiPanel.add(Box.createHorizontalStrut(50));
 		btnPredmetiPanel.add(btnUkloniPredmet);
 		btnPredmetiPanel.add(Box.createHorizontalGlue());
+		btnPredmetiPanel.setPreferredSize(new Dimension(750, 50));
 		
 		panelPredmeti.add(btnPredmetiPanel, BorderLayout.NORTH);
 		
@@ -475,6 +473,18 @@ public class DialogIzmeniProfesora extends JDialog {
 		JScrollPane predmetiScrollPane = new JScrollPane(predmetiProfesora);
 		predmetiScrollPane.setPreferredSize(new Dimension(300, 300));
 		panelPredmeti.add(predmetiScrollPane, BorderLayout.CENTER);
+		
+		JPanel westPanel = new JPanel();
+		westPanel.setPreferredSize(new Dimension(25, 750));
+		panelPredmeti.add(westPanel, BorderLayout.WEST);
+		
+		JPanel eastPanel = new JPanel();
+		eastPanel.setPreferredSize(new Dimension(25, 750));
+		panelPredmeti.add(eastPanel, BorderLayout.EAST);
+		
+		JPanel southPanel = new JPanel();
+		southPanel.setPreferredSize(new Dimension(750, 50));
+		panelPredmeti.add(southPanel, BorderLayout.SOUTH);
 		
 		btnDodajPredmet.addActionListener(new ActionListener() {
 
