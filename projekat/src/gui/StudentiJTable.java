@@ -25,10 +25,13 @@ public class StudentiJTable extends JTable {
 			this.setColumnSelectionAllowed(true);
 			this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			
+			
+			
 			AbstractTableModelStudenti model = new AbstractTableModelStudenti();
 			sorter = new TableRowSorter<AbstractTableModelStudenti>(model);
 			this.setModel(model);
 			this.setRowSorter(sorter);
+		
 			
 		}
 
