@@ -43,7 +43,6 @@ public class Student {
 		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
-		polozeniIspiti = new ArrayList<Ocena>();
 
 		initNepolozeneIspite();
 		this.koloneNepolozeni = new ArrayList<String>();
@@ -72,10 +71,12 @@ public class Student {
 	public void initPolozeneIspite() {
 		polozeniIspiti = new ArrayList<Ocena>();
 		Ocena ocena = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(1), 6, new GregorianCalendar(2020, Calendar.DECEMBER, 10).getTime());
-		//Ocena ocena1 = new Ocena(BazaStudenata.getInstance().getStudenti().get(1), BazaPredmeta.getInstance().getPredmeti().get(2), 8, new GregorianCalendar(2020, Calendar.NOVEMBER, 11).getTime());
+		Ocena ocena1 = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(2), 8, new GregorianCalendar(2020, Calendar.NOVEMBER, 11).getTime());
 		polozeniIspiti.add(ocena);
-		//polozeniIspiti.add(ocena1);
+		polozeniIspiti.add(ocena1);
 	}
+	
+	
 	public String getPrezime() {
 		return prezime;
 	}
@@ -246,6 +247,7 @@ public class Student {
 		return 5;
 	}
 	
+	
 	public String getColumnNamePolozeni(int index) {
 		return this.kolonePolozeni.get(index);
 	}
@@ -266,6 +268,27 @@ public class Student {
 		default:
 			return null;
 		}
+	}
+	
+	public long ukupnoBodova() {
+		long suma=0;
+		
+		for(int i=0; i<polozeniIspiti.size(); i++) {
+			suma+=polozeniIspiti.get(i).getPredmet().getEspb();
+		}
+		return suma;
+	}
+	
+	public double prosecnaOcena() {
+		long suma = 0;
+		double srednjaOcena=0;
+		
+		for(int i=0; i<polozeniIspiti.size(); i++) {
+			suma+=polozeniIspiti.get(i).getVrednost();
+		}
+		String sumica = suma+"";
+		srednjaOcena=Double.parseDouble(sumica)/polozeniIspiti.size();
+		return srednjaOcena;
 	}
 	
 	public void insertOcena(Ocena ocena) {
