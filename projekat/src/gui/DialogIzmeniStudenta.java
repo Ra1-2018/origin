@@ -22,6 +22,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 import controller.StudentiController;
 import model.Student;
@@ -59,12 +61,11 @@ public class DialogIzmeniStudenta extends JDialog {
 	panelInformacije.setLayout(dialogLayout);
 	tabbedPane.addTab("Informacije", panelInformacije );
 	
-	
 	JPanel panelPolozeni = new JPanel();
-	BoxLayout polozeniLayout = new BoxLayout(panelPolozeni, BoxLayout.Y_AXIS);
+	BorderLayout polozeniLayout = new BorderLayout();
 	panelPolozeni.setLayout(polozeniLayout);
 	tabbedPane.addTab("Položeni", panelPolozeni);
-	
+
 	JPanel panelNepolozeni = new JPanel();
 	BoxLayout nepolozeniLayout = new BoxLayout(panelNepolozeni, BoxLayout.Y_AXIS);
 	panelNepolozeni.setLayout(nepolozeniLayout);
@@ -567,14 +568,50 @@ public class DialogIzmeniStudenta extends JDialog {
 	btnPonistiOcenu.setPreferredSize(new Dimension(150, 30));
 	
 	btnPolozeniPanel.add(btnPonistiOcenu);
-	btnPolozeniPanel.add(Box.createHorizontalStrut(25));
-	btnPolozeniPanel.add(Box.createHorizontalGlue());
-	panelPolozeni.add(btnPolozeniPanel);
+	panelPolozeni.add(btnPolozeniPanel, BorderLayout.NORTH);
+	
 	
 	PolozeniIspitiJTable polozeniPredmeti = new PolozeniIspitiJTable(stareInformacije);
 	JScrollPane polozeniScrollPane = new JScrollPane(polozeniPredmeti);
 	polozeniScrollPane.setPreferredSize(new Dimension(300, 300));
-	panelPolozeni.add(polozeniScrollPane);
+	panelPolozeni.add(polozeniScrollPane, BorderLayout.CENTER);
+	
+	JPanel donjiPanel = new JPanel();
+	BoxLayout donjiLayout = new BoxLayout(donjiPanel, BoxLayout.Y_AXIS);
+	donjiPanel.setLayout(donjiLayout);
+	panelPolozeni.add(donjiPanel, BorderLayout.SOUTH);
+	
+	JPanel panelOcene = new JPanel();
+	BoxLayout desniLayout = new BoxLayout(panelOcene, BoxLayout.X_AXIS);
+	panelOcene.setLayout(desniLayout);
+	
+	JPanel panelBodovi = new JPanel();
+	BoxLayout desni1Layout = new BoxLayout(panelBodovi, BoxLayout.X_AXIS);
+	panelBodovi.setLayout(desni1Layout);
+	
+	JLabel srednjaOcena = new JLabel("Prosecna ocena:  " + stareInformacije.prosecnaOcena());
+	panelOcene.add(Box.createHorizontalGlue());
+	panelOcene.add(srednjaOcena);
+	
+	JLabel ukupniBodovi = new JLabel("Ukupno ESPB:  " + stareInformacije.ukupnoBodova());
+	panelBodovi.add(Box.createHorizontalGlue());
+	panelBodovi.add(ukupniBodovi);
+	
+	donjiPanel.add(panelOcene);
+	donjiPanel.add(panelBodovi);
+
+	polozeniPredmeti.getModel().addTableModelListener(new TableModelListener() {
+
+		@Override
+		public void tableChanged(TableModelEvent arg0) {
+			// TODO Auto-generated method stub
+			
+			srednjaOcena.setText("Prosecna ocena:  " + stareInformacije.prosecnaOcena());
+			ukupniBodovi.setText("Ukupno ESPB:  " + stareInformacije.ukupnoBodova());
+			
+		}
+		
+	});
 	
 	
 	btnPolaganje.addActionListener(new ActionListener() {
