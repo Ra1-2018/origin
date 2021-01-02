@@ -20,6 +20,7 @@ public class Profesor {
 	private Titula titula;
 	private Zvanje zvanje;
 	private List<Predmet> predmeti;
+	private List<Predmet> nePredaje;
 	
 	private List<String> kolonePredmeti;
 	
@@ -47,6 +48,15 @@ public class Profesor {
 		this.kolonePredmeti.add("Naziv");
 		this.kolonePredmeti.add("Godina studija");
 		this.kolonePredmeti.add("Semestar");
+	}
+	
+	public void initNePredaje( ) {
+		nePredaje = new ArrayList<Predmet>();
+		List<Predmet> sviPredmeti = BazaPredmeta.getInstance().getPredmeti();
+		for(Predmet predmet : sviPredmeti) {
+			if(!predmeti.contains(predmet))
+				nePredaje.add(predmet);
+		}
 	}
 	
 	public void initPredmete() {
@@ -167,5 +177,20 @@ public class Profesor {
 		default:
 			return null;
 		}
+	}
+	
+	public int getSizeNePredaje() {
+		return nePredaje.size();
+	}
+	
+	public String getValueAtNePredaje(int index) {
+		Predmet predmet = this.nePredaje.get(index);
+		return predmet.getId() + " - " + predmet.getNaziv();
+	}
+	
+	public void dodajPredmet(int index) {
+		Predmet predmet = nePredaje.get(index);
+		nePredaje.remove(index);
+		predmeti.add(predmet);
 	}
 }
