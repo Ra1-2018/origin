@@ -477,6 +477,17 @@ public class DialogIzmeniProfesora extends JDialog {
 		JScrollPane predmetiScrollPane = new JScrollPane(predmetiProfesora);
 		predmetiScrollPane.setPreferredSize(new Dimension(300, 300));
 		panelPredmeti.add(predmetiScrollPane, BorderLayout.CENTER);
+		
+		btnDodajPredmet.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DialogDodajPredmetProfesoru ddpp = new DialogDodajPredmetProfesoru(profesor, predmetiProfesora);
+				ddpp.setVisible(true);
+			}
+			
+		});
 	}
 	
 	public boolean proveraUnosa(String fieldText, String fieldRegex, int index) {
