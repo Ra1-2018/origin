@@ -64,12 +64,12 @@ public class DialogIzmeniStudenta extends JDialog {
 	JPanel panelPolozeni = new JPanel();
 	BorderLayout polozeniLayout = new BorderLayout();
 	panelPolozeni.setLayout(polozeniLayout);
-	tabbedPane.addTab("Položeni", panelPolozeni);
+	tabbedPane.addTab("Polozeni", panelPolozeni);
 
 	JPanel panelNepolozeni = new JPanel();
 	BoxLayout nepolozeniLayout = new BoxLayout(panelNepolozeni, BoxLayout.Y_AXIS);
 	panelNepolozeni.setLayout(nepolozeniLayout);
-	tabbedPane.addTab("Nepoloženi", panelNepolozeni);
+	tabbedPane.addTab("Nepolozeni", panelNepolozeni);
 	
 	add(tabbedPane, BorderLayout.CENTER);
 	
