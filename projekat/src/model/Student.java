@@ -295,6 +295,14 @@ public class Student {
 		polozeniIspiti.add(ocena);
 	}
 	
+	public void removeOcena(Ocena ocena) {
+		polozeniIspiti.remove(ocena);
+	}
+	
+	public void insertPredmet(Predmet predmet) {
+		nepolozeniIspiti.add(predmet);
+	}
+	
 	public void removePredmet(Predmet predmet) {
 		nepolozeniIspiti.remove(predmet);
 	}
