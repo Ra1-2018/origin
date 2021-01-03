@@ -496,6 +496,21 @@ public class DialogIzmeniProfesora extends JDialog {
 			}
 			
 		});
+		
+		
+
+		btnUkloniPredmet.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(predmetiProfesora.getSelectedRow() > -1) {
+					DialogObrisiPredmetProfesoru dopp = new DialogObrisiPredmetProfesoru(predmetiProfesora, profesor, predmetiProfesora.getSelectedRow());
+					dopp.setVisible(true);
+				}
+			}
+			
+		});
 	}
 	
 	public boolean proveraUnosa(String fieldText, String fieldRegex, int index) {
