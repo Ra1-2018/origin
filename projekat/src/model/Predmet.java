@@ -121,9 +121,14 @@ public class Predmet implements Serializable {
 
 	public Profesor dodajProfesora(int selectedIndex) {
 		// TODO Auto-generated method stub
-		profesor = profesori.get(selectedIndex);
-		profesori.remove(selectedIndex);
-		return profesor;
+		Profesor profesor1 = profesori.get(selectedIndex);
+		return profesor1;
 		}
+	
+	public String imePrezime(int selectedIndex) {
+		Profesor profa = profesori.get(selectedIndex);
+		String imePrezime = profa.getIme() + " "  + profa.getPrezime();
+		return imePrezime;
+	}
 }
 
