@@ -13,9 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import model.Predmet;
+import model.Profesor;
 
 public class DialogDodajProfesoraPredmetu extends JDialog{
 
@@ -26,7 +28,7 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 	private ProfesoriJTable profesoriTable;
 	private JList<Object> profesoriList;
 	
-	public DialogDodajProfesoraPredmetu(Predmet predmet, ProfesoriJTable profesoriTable) {
+	public DialogDodajProfesoraPredmetu(JTextField profTF, Predmet predmet, ProfesoriJTable profesoriTable) {
 		
 		super();
 		
@@ -76,7 +78,7 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 		btnPanel.add(btnPotvrdi);
 		btnPanel.add(Box.createHorizontalStrut(25));
 		btnPanel.add(btnOdustani);
-		btnPanel.add(Box.createHorizontalStrut(25));
+		btnPanel.add(Box.createHorizontalGlue());
 		dialogPanel.add(btnPanel, BorderLayout.SOUTH);
 		
 		JPanel westPanel = new JPanel();
@@ -95,7 +97,8 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(profesoriList.getSelectedIndex() > -1) {
-					predmet.dodajProfesora(profesoriList.getSelectedIndex());
+					Profesor prof = predmet.dodajProfesora(profesoriList.getSelectedIndex());	
+					profTF.setText(prof.getIme() + " " + prof.getPrezime());
 					azurirajPrikaz();
 					dispose();
 				}

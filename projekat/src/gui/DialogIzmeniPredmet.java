@@ -36,7 +36,7 @@ public class DialogIzmeniPredmet extends JDialog {
 	
 	DialogIzmeniPredmet(int selectedIndex) {
 		super();
-		setTitle("Dodavanje predmeta");
+		setTitle("Izmena predmeta");
 		setSize(750, 750);
 		setLocationRelativeTo(Frame.getInstance());
 		this.setModal(true);
@@ -148,6 +148,7 @@ public class DialogIzmeniPredmet extends JDialog {
 			plus.setEnabled(false);
 			minus.setEnabled(true);
 		}
+		
 		profTF.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -312,7 +313,7 @@ public class DialogIzmeniPredmet extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				ProfesoriJTable profesoriTable = new ProfesoriJTable();
-				DialogDodajProfesoraPredmetu ddpp = new DialogDodajProfesoraPredmetu(predmet, profesoriTable);
+				DialogDodajProfesoraPredmetu ddpp = new DialogDodajProfesoraPredmetu(profTF, predmet, profesoriTable);
 				ddpp.setVisible(true);
 			
 			}

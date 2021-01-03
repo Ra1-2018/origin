@@ -31,6 +31,11 @@ public class Predmet {
 		studentiPolozili = new ArrayList<Student>();
 		studentiPali = new ArrayList<Student>();
 		profesori = new ArrayList<Profesor>();
+		
+		
+		profesori.add(BazaProfesora.getInstance().getProfesori().get(0));
+		profesori.add(BazaProfesora.getInstance().getProfesori().get(1));
+		profesori.add(BazaProfesora.getInstance().getProfesori().get(2));
 	}
 
 	public String getId() {
@@ -108,10 +113,11 @@ public class Predmet {
 		return profesori.size();
 	}
 
-	public void dodajProfesora(int selectedIndex) {
+	public Profesor dodajProfesora(int selectedIndex) {
 		// TODO Auto-generated method stub
-		//Profesor profesor1 = profesori.get(selectedIndex);
+		profesor = profesori.get(selectedIndex);
 		profesori.remove(selectedIndex);
+		return profesor;
 		}
 }
 
