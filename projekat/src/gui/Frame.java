@@ -100,9 +100,9 @@ public class Frame extends JFrame {
 		addProfesoriTabToTabbedPane("Profesori");
 		addPredmetiTabToTabbedPane("Predmeti");
 
-		for(Student s : BazaStudenata.getInstance().getStudenti()) {
-			s.initNePohadja();
-		}
+		//for(Student s : BazaStudenata.getInstance().getStudenti()) {
+			//s.initNePohadja();
+		//}
 	}
 	
 	private void initPosition() {
