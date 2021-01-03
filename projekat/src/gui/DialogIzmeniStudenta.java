@@ -553,6 +553,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	btnNpPan.add(Box.createHorizontalStrut(25));
 	btnNpPan.add(btnPolaganje);
 	buttonPanel.add(Box.createHorizontalGlue());
+	btnNpPan.setPreferredSize(new Dimension(750, 50));
 	panelNepolozeni.add(btnNpPan, BorderLayout.NORTH);
 	
 	NepolozeniPredmetiJTable nepolozeniPredmeti = new NepolozeniPredmetiJTable(student);
@@ -560,6 +561,17 @@ public class DialogIzmeniStudenta extends JDialog {
 	nepolozeniScrollPane.setPreferredSize(new Dimension(300, 300));
 	panelNepolozeni.add(nepolozeniScrollPane, BorderLayout.CENTER);
 	
+	JPanel westPanel = new JPanel();
+	westPanel.setPreferredSize(new Dimension(25, 750));
+	panelNepolozeni.add(westPanel, BorderLayout.WEST);
+	
+	JPanel eastPanel = new JPanel();
+	eastPanel.setPreferredSize(new Dimension(25, 750));
+	panelNepolozeni.add(eastPanel, BorderLayout.EAST);
+	
+	JPanel southPanel = new JPanel();
+	southPanel.setPreferredSize(new Dimension(750, 50));
+	panelNepolozeni.add(southPanel, BorderLayout.SOUTH);
 	
 	btnDodaj.addActionListener(new ActionListener() {
 
