@@ -22,6 +22,7 @@ import controller.PredmetiController;
 import model.Predmet;
 import model.Predmet.Godina;
 import model.Predmet.Semestar;
+import model.Profesor;
 
 public class DialogIzmeniPredmet extends JDialog {
 
@@ -33,6 +34,7 @@ public class DialogIzmeniPredmet extends JDialog {
 	private String id;
 	private String naziv;
 	private String espbString;
+	private Profesor profesor;
 	
 	DialogIzmeniPredmet(int selectedIndex) {
 		super();
@@ -139,6 +141,8 @@ public class DialogIzmeniPredmet extends JDialog {
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 		btnPotvrdi.setEnabled(true);
+		
+		profTF.setEnabled(false);
 		
 		if(profTF.getText().equals("")) {
 			minus.setEnabled(false);
@@ -286,14 +290,16 @@ public class DialogIzmeniPredmet extends JDialog {
 				Godina godina = Godina.values()[godinaComboBox.getSelectedIndex()];
 				
 				for(Predmet p: PredmetiController.getInstance().getPredmeti()) {
-					if(p.getId().equals(id)) {
+					if(p.getId().equals(id) && p != PredmetiController.getInstance().getPredmeti().get(selectedIndex)) {
 						JOptionPane.showMessageDialog(null,
 								"Predmet sa datom sifrom vec postoji u sistemu",
 								"Greska pri unosu predmeta", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				}
-				Predmet predmet = new Predmet(id, naziv, semestar, godina, null, Long.parseLong(espbString));
+				
+				profesor = predmet.getProfesor();	
+				Predmet predmet = new Predmet(id, naziv, semestar, godina, profesor, Long.parseLong(espbString));
 				PredmetiController.getInstance().izmeniPredmet(selectedIndex, predmet);
 			}
 			
