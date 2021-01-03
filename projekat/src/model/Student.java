@@ -31,6 +31,7 @@ public class Student implements Serializable {
 	
 	private List<String> koloneNepolozeni;
 	private List<String> kolonePolozeni;
+	private List<Predmet> nePohadja;
 
 	public Student() {}
 	
@@ -49,7 +50,8 @@ public class Student implements Serializable {
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 
-	
+		initNePohadja();
+		
 		initNepolozeneIspite();
 		this.koloneNepolozeni = new ArrayList<String>();
 		//---------------------------------------------
@@ -77,11 +79,15 @@ public class Student implements Serializable {
 	public void initPolozeneIspite() {
 		polozeniIspiti = new ArrayList<Ocena>();
 		Ocena ocena = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(1), 6, new GregorianCalendar(2020, Calendar.DECEMBER, 10).getTime());
-		Ocena ocena1 = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(2), 8, new GregorianCalendar(2020, Calendar.NOVEMBER, 11).getTime());
+	//	Ocena ocena1 = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(2), 8, new GregorianCalendar(2020, Calendar.NOVEMBER, 11).getTime());
 		polozeniIspiti.add(ocena);
-		polozeniIspiti.add(ocena1);
+	//	polozeniIspiti.add(ocena1);
 	}
 	
+	public void initNePohadja() {
+		nePohadja = new ArrayList<Predmet>();
+		nePohadja.add(BazaPredmeta.getInstance().getPredmeti().get(2));
+	}
 	
 	public String getPrezime() {
 		return prezime;
@@ -312,4 +318,27 @@ public class Student implements Serializable {
 	public void removePredmet(Predmet predmet) {
 		nepolozeniIspiti.remove(predmet);
 	}
+
+	public Object getValueAtNePohadja(int index) {
+		// TODO Auto-generated method stub
+		Predmet predmet = this.nePohadja.get(index);
+		return predmet.getId() + " - " + predmet.getNaziv();
+	}
+
+	public int getSizeNePohadja() {
+		// TODO Auto-generated method stub
+		return nePohadja.size();
+	}
+
+	public void dodajPredmet(int index) {
+		Predmet predmet = nePohadja.get(index);
+		nePohadja.remove(index);
+		nepolozeniIspiti.add(predmet);
+	}
+	
+	public void dodajNepohadjani(Predmet predmet) {
+		nePohadja.add(predmet);
+	}
+
+
 }

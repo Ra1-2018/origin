@@ -12,22 +12,19 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.Ocena;
 import model.Predmet;
 import model.Student;
 
-public class DialogObrisiOcenu extends JDialog {
+public class DialogObrisiPredmetStudentu extends JDialog {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1599877757650275252L;
+	private static final long serialVersionUID = 5179037093258079538L;
 
-	
-	private Predmet predmet;
 	private NepolozeniPredmetiJTable nepolozeni;
-
-	public DialogObrisiOcenu(PolozeniIspitiJTable polozeni, NepolozeniPredmetiJTable nepolozeni, Student student) {
+	
+	public DialogObrisiPredmetStudentu(NepolozeniPredmetiJTable nepolozeni, Student student) {
 		
 		super();
 		this.nepolozeni = nepolozeni;
@@ -35,7 +32,7 @@ public class DialogObrisiOcenu extends JDialog {
 		setSize(400, 150);
 		setModal(true);
 		setLocationRelativeTo(this.getParent());
-		setTitle("Ponistavanje ocene");
+		setTitle("Uklanjanje predmeta");
 		
 		JPanel dialogPanel = new JPanel();
 		BoxLayout dialogLayout = new BoxLayout(dialogPanel, BoxLayout.Y_AXIS);
@@ -45,7 +42,7 @@ public class DialogObrisiOcenu extends JDialog {
 		JPanel panelLabel = new JPanel();
 		BoxLayout labelLayout = new BoxLayout(panelLabel, BoxLayout.X_AXIS);
 		panelLabel.setLayout(labelLayout);
-		JLabel poruka = new JLabel("Da li ste sigurni da zelite da ponistite ocenu?");
+		JLabel poruka = new JLabel("Da li ste sigurni da zelite da uklonite predmet?");
 		panelLabel.add(Box.createHorizontalGlue());
 		panelLabel.add(poruka);
 		panelLabel.add(Box.createHorizontalGlue());
@@ -77,10 +74,9 @@ public class DialogObrisiOcenu extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub	
-				Ocena ocena = student.getPolozeniIspiti().get(polozeni.getSelectedRow());
-				predmet = ocena.getPredmet();
-					student.insertPredmet(predmet);
-					student.removeOcena(ocena);
+				Predmet predmet = student.getNepolozeniIspiti().get(nepolozeni.getSelectedRow());
+					student.removePredmet(predmet);
+					student.dodajNepohadjani(predmet);
 					azurirajPrikaz();
 				
 				dispose();
@@ -102,8 +98,6 @@ public class DialogObrisiOcenu extends JDialog {
 		
 		nepolozeniModel.fireTableDataChanged();
 		validate();
-		
-		validate();
+
 	}
-	
 }

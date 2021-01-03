@@ -561,6 +561,30 @@ public class DialogIzmeniStudenta extends JDialog {
 	panelNepolozeni.add(nepolozeniScrollPane, BorderLayout.CENTER);
 	
 	
+	btnDodaj.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			DialogDodajPredmetStudentu ddps = new DialogDodajPredmetStudentu(student, nepolozeniPredmeti);
+			ddps.setVisible(true);
+		}
+		
+	});
+	
+	btnObrisi.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if(nepolozeniPredmeti.getSelectedRow() > -1) {
+				DialogObrisiPredmetStudentu dops = new DialogObrisiPredmetStudentu(nepolozeniPredmeti, student);
+				dops.setVisible(true);
+			}
+		}
+	});
+	
+	
 	JPanel btnPolozeniPanel = new JPanel();
 	BoxLayout btnPolozeniLayout = new BoxLayout(btnPolozeniPanel, BoxLayout.X_AXIS);
 	btnPolozeniPanel.setLayout(btnPolozeniLayout);
@@ -635,8 +659,8 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(polozeniPredmeti.getSelectedRow() > -1) {
-				DialogObrisiOcenu duo = new DialogObrisiOcenu(polozeniPredmeti, nepolozeniPredmeti, student);
-				duo.setVisible(true);
+				DialogObrisiOcenu doo = new DialogObrisiOcenu(polozeniPredmeti, nepolozeniPredmeti, student);
+				doo.setVisible(true);
 			}
 		}
 	});

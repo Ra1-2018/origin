@@ -22,6 +22,7 @@ public class Predmet implements Serializable {
 	private long espb;
 	private List<Student> studentiPolozili;
 	private List<Student> studentiPali;
+	private List<Profesor> profesori;
 	
 	public Predmet() {}
 	
@@ -35,6 +36,12 @@ public class Predmet implements Serializable {
 		this.espb = espb;
 		studentiPolozili = new ArrayList<Student>();
 		studentiPali = new ArrayList<Student>();
+		profesori = new ArrayList<Profesor>();
+		
+		
+		profesori.add(BazaProfesora.getInstance().getProfesori().get(0));
+		profesori.add(BazaProfesora.getInstance().getProfesori().get(1));
+		profesori.add(BazaProfesora.getInstance().getProfesori().get(2));
 	}
 
 	public String getId() {
@@ -100,5 +107,23 @@ public class Predmet implements Serializable {
 	public void setStudentiPali(List<Student> studentiPali) {
 		this.studentiPali = studentiPali;
 	}
+
+	public Object getValueAtProf(int i) {
+		// TODO Auto-generated method stub
+		Profesor profesor = this.profesori.get(i);
+		return profesor.getIme() + " " + profesor.getPrezime();
+	}
+
+	public int getSizeProf() {
+		// TODO Auto-generated method stub
+		return profesori.size();
+	}
+
+	public Profesor dodajProfesora(int selectedIndex) {
+		// TODO Auto-generated method stub
+		profesor = profesori.get(selectedIndex);
+		profesori.remove(selectedIndex);
+		return profesor;
+		}
 }
 
