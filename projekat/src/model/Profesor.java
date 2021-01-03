@@ -203,4 +203,10 @@ public class Profesor implements Serializable {
 		nePredaje.remove(index);
 		predmeti.add(predmet);
 	}
+	
+	public void obrisiPredmet(int index) {
+		Predmet predmet = predmeti.get(index);
+		nePredaje.add(predmet);
+		predmeti.remove(index);
+	}
 }
