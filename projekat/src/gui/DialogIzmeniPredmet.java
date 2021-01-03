@@ -142,7 +142,7 @@ public class DialogIzmeniPredmet extends JDialog {
 		
 		btnPotvrdi.setEnabled(true);
 		
-		profTF.setEnabled(false);
+		//profTF.setEnabled(false);
 		
 		if(profTF.getText().equals("")) {
 			minus.setEnabled(false);
@@ -318,8 +318,7 @@ public class DialogIzmeniPredmet extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ProfesoriJTable profesoriTable = new ProfesoriJTable();
-				DialogDodajProfesoraPredmetu ddpp = new DialogDodajProfesoraPredmetu(profTF, predmet, profesoriTable);
+				DialogDodajProfesoraPredmetu ddpp = new DialogDodajProfesoraPredmetu(profTF, predmet);
 				ddpp.setVisible(true);
 			
 			}

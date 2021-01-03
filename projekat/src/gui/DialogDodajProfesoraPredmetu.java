@@ -25,14 +25,12 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 5968193652354772695L;
-	private ProfesoriJTable profesoriTable;
 	private JList<Object> profesoriList;
 	
-	public DialogDodajProfesoraPredmetu(JTextField profTF, Predmet predmet, ProfesoriJTable profesoriTable) {
+	public DialogDodajProfesoraPredmetu(JTextField profTF, Predmet predmet) {
 		
 		super();
-		
-		this.profesoriTable = profesoriTable;
+	
 		
 		setSize(500, 500);
 		setModal(true);
@@ -99,7 +97,7 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 				if(profesoriList.getSelectedIndex() > -1) {
 					Profesor prof = predmet.dodajProfesora(profesoriList.getSelectedIndex());	
 					profTF.setText(prof.getIme() + " " + prof.getPrezime());
-					azurirajPrikaz();
+					
 					dispose();
 				}
 			}});
@@ -111,12 +109,5 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 				// TODO Auto-generated method stub
 				dispose();
 			}});
-	}
-	
-	public void azurirajPrikaz() {
-		AbstractTableModelProfesori profesoriModel = (AbstractTableModelProfesori) profesoriTable.getModel();
-		
-		profesoriModel.fireTableDataChanged();
-		validate();
 	}
 }
