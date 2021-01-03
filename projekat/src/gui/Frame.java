@@ -134,20 +134,20 @@ public class Frame extends JFrame {
 				options[0] = new String("Da");
 				options[1] = new String("Ne");
 				int code = JOptionPane.showOptionDialog(Frame.getInstance().getContentPane(),"Da li ste sigurni da zelite da zatvorite aplikaciju?","Zatvaranje aplikacije?", 0,JOptionPane.INFORMATION_MESSAGE,null,options,null);
-				try {
-					Serijalizacija.getInstance().serijalizacijaStudenta();
-					Serijalizacija.getInstance().serijalizacijaProfesora();
-					Serijalizacija.getInstance().serijalizacijaPredmeta();
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				if (code != JOptionPane.YES_OPTION) {
 					setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				} else {
+					try {
+						Serijalizacija.getInstance().serijalizacijaStudenta();
+						Serijalizacija.getInstance().serijalizacijaProfesora();
+						Serijalizacija.getInstance().serijalizacijaPredmeta();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				}
 			}
