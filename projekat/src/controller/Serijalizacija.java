@@ -82,7 +82,7 @@ public class Serijalizacija {
 	@SuppressWarnings("unchecked")
 	public List<Profesor> deserijalizacijaProfesora() throws FileNotFoundException, IOException, ClassNotFoundException {
 		List<Profesor> profesor1;
-		File f = new File("objectstreamStudenti.txt");
+		File f = new File("objectstreamProfesori.txt");
 		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
 		try {
 			profesor1 = (List<Profesor>)ois.readObject();	
@@ -96,7 +96,7 @@ public class Serijalizacija {
 	@SuppressWarnings("unchecked")
 	public List<Predmet> deserijalizacijaPredmeta() throws FileNotFoundException, IOException, ClassNotFoundException {
 		List<Predmet> predmet1;
-		File f = new File("objectstreamStudenti.txt");
+		File f = new File("objectstreamPredmeti.txt");
 		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
 		try {
 			predmet1 = (List<Predmet>)ois.readObject();	

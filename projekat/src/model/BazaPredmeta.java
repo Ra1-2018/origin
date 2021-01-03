@@ -1,10 +1,13 @@
 package model;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Predmet.Godina;
-import model.Predmet.Semestar;
+import controller.Serijalizacija;
+//import model.Predmet.Godina;
+//import model.Predmet.Semestar;
 
 public class BazaPredmeta {
 
@@ -34,9 +37,22 @@ public class BazaPredmeta {
 	
 	private void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
-			predmeti.add(new Predmet("A1", "Analiza 1", Semestar.ZIMSKI, Godina.PRVA, BazaProfesora.getInstance().getProfesori().get(0), 9));
-			predmeti.add(new Predmet("A2", "Analiza 2", Semestar.ZIMSKI, Godina.DRUGA, BazaProfesora.getInstance().getProfesori().get(1), 9));
-			predmeti.add(new Predmet("OP", "Objektno programiranje", Semestar.ZIMSKI, Godina.DRUGA, BazaProfesora.getInstance().getProfesori().get(2), 6));
+		//	predmeti.add(new Predmet("A1", "Analiza 1", Semestar.ZIMSKI, Godina.PRVA, BazaProfesora.getInstance().getProfesori().get(0), 9));
+		//	predmeti.add(new Predmet("A2", "Analiza 2", Semestar.ZIMSKI, Godina.DRUGA, BazaProfesora.getInstance().getProfesori().get(1), 9));
+		//	predmeti.add(new Predmet("OP", "Objektno programiranje", Semestar.ZIMSKI, Godina.DRUGA, BazaProfesora.getInstance().getProfesori().get(2), 6));
+		
+		try {
+			this.predmeti = Serijalizacija.getInstance().deserijalizacijaPredmeta();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public List<Predmet> getPredmeti() {
