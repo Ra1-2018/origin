@@ -1,14 +1,19 @@
 package model;
 
 import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 
-public class Student {
+public class Student implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2565540264479146400L;
 	private String prezime;
 	private String ime;
 	private Date datumRodjenja;

@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
+import controller.Serijalizacija;
 import model.BazaProfesora;
 import model.Profesor;
 
@@ -126,6 +129,17 @@ public class Frame extends JFrame {
 				options[0] = new String("Da");
 				options[1] = new String("Ne");
 				int code = JOptionPane.showOptionDialog(Frame.getInstance().getContentPane(),"Da li ste sigurni da zelite da zatvorite aplikaciju?","Zatvaranje aplikacije?", 0,JOptionPane.INFORMATION_MESSAGE,null,options,null);
+				try {
+					Serijalizacija.getInstance().serijalizacijaStudenta();
+					Serijalizacija.getInstance().serijalizacijaProfesora();
+					Serijalizacija.getInstance().serijalizacijaPredmeta();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if (code != JOptionPane.YES_OPTION) {
 					setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				} else {
