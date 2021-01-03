@@ -1,13 +1,19 @@
 package model;
 
 import java.util.List;
+
+import controller.Serijalizacija;
+
 import java.util.ArrayList;
-import java.util.Calendar;
+//import java.util.Calendar;
 //import java.util.Date;
-import java.util.GregorianCalendar;
+//import java.util.GregorianCalendar;
 //import java.util.Calendar;
 
 import model.Student.Status;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class BazaStudenata {
@@ -43,9 +49,21 @@ public class BazaStudenata {
 	
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
-		studenti.add(new Student("RA1-2018", "Nikola", "Ivanovic", "III (treca)", status1 , 9.76, new GregorianCalendar(1999, Calendar.DECEMBER, 17).getTime() , "Resavska 5", "0101010101", "nikolaiv@gmail.com", "2018"));
-		studenti.add(new Student("RA2-2018", "Bogdana", "Zivkovic", "III (treca)", status1 , 9.35, new GregorianCalendar(1999, Calendar.JULY, 20).getTime(), "Iva Andrica 23", "0202020202", "bogdanaz@gmail.com", "2018"));
-		studenti.add(new Student("PSI55-2017", "Savo", "Oroz", "III (treca)", status2 , 7.55, new GregorianCalendar(1999, Calendar.DECEMBER, 12).getTime(), "Balzakova 17", "03030303", "jasamsavocarina@gmail.com", "1964"));
+		//studenti.add(new Student("RA1-2018", "Nikola", "Ivanovic", "III (treca)", status1 , 9.76, new GregorianCalendar(1999, Calendar.DECEMBER, 17).getTime() , "Resavska 5", "0101010101", "nikolaiv@gmail.com", "2018"));
+		//studenti.add(new Student("RA2-2018", "Bogdana", "Zivkovic", "III (treca)", status1 , 9.35, new GregorianCalendar(1999, Calendar.JULY, 20).getTime(), "Iva Andrica 23", "0202020202", "bogdanaz@gmail.com", "2018"));
+		//studenti.add(new Student("PSI55-2017", "Savo", "Oroz", "III (treca)", status2 , 7.55, new GregorianCalendar(1999, Calendar.DECEMBER, 12).getTime(), "Balzakova 17", "03030303", "jasamsavocarina@gmail.com", "1964"));
+		try {
+			this.studenti = Serijalizacija.getInstance().deserijalizacijaStudenta();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public List<Student> getStudenti() {

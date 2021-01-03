@@ -1,10 +1,13 @@
 package controller;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
@@ -58,6 +61,49 @@ public class Serijalizacija {
 			oos.writeObject(predmeti);
 		} finally {
 			oos.close();
+		}
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Student> deserijalizacijaStudenta() throws FileNotFoundException, IOException, ClassNotFoundException{
+		List<Student> student1;
+		File f = new File("objectstreamStudenti.txt");
+		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+		try {
+			student1 = (List<Student>)ois.readObject();	
+			return student1;
+		}
+		finally {
+			ois.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Profesor> deserijalizacijaProfesora() throws FileNotFoundException, IOException, ClassNotFoundException {
+		List<Profesor> profesor1;
+		File f = new File("objectstreamStudenti.txt");
+		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+		try {
+			profesor1 = (List<Profesor>)ois.readObject();	
+			return profesor1;
+		}
+		finally {
+			ois.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Predmet> deserijalizacijaPredmeta() throws FileNotFoundException, IOException, ClassNotFoundException {
+		List<Predmet> predmet1;
+		File f = new File("objectstreamStudenti.txt");
+		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+		try {
+			predmet1 = (List<Predmet>)ois.readObject();	
+			return predmet1;
+		}
+		finally {
+			ois.close();
 		}
 	}
 }
