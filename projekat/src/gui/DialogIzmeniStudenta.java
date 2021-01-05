@@ -626,7 +626,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	BoxLayout desni1Layout = new BoxLayout(panelBodovi, BoxLayout.X_AXIS);
 	panelBodovi.setLayout(desni1Layout);
 	
-	JLabel srednjaOcena = new JLabel("Prosecna ocena:  " + student.prosecnaOcena());
+	JLabel srednjaOcena = new JLabel("Prosecna ocena:  " + student.getProsecnaOcena());
 	panelOcene.add(Box.createHorizontalGlue());
 	panelOcene.add(srednjaOcena);
 	
