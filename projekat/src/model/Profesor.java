@@ -48,7 +48,7 @@ public class Profesor implements Serializable {
 		this.zvanje = zvanje;
 		
 		predmeti = new ArrayList<Predmet>();
-		nePredaje = new ArrayList<Predmet>();
+
 		
 		this.kolonePredmeti = new ArrayList<String>();
 		this.kolonePredmeti.add("Sifra");
@@ -58,21 +58,20 @@ public class Profesor implements Serializable {
 	}
 	
 	public void initNePredaje() {
-		nePredaje.add(BazaPredmeta.getInstance().getPredmeti().get(0));
-		nePredaje.add(BazaPredmeta.getInstance().getPredmeti().get(1));
-		nePredaje.add(BazaPredmeta.getInstance().getPredmeti().get(2));
-	}
-	
-	/*
-	public void initNePredaje( ) {
-		//nePredaje = new ArrayList<Predmet>();
-		List<Predmet> sviPredmeti = BazaPredmeta.getInstance().getPredmeti();
-		for(Predmet predmet : sviPredmeti) {
-			if(!predmeti.contains(predmet))
-				nePredaje.add(predmet);
+		nePredaje = new ArrayList<Predmet>();
+		for(Predmet p : BazaPredmeta.getInstance().getPredmeti()) {
+			boolean postoji = false;
+			for(Predmet p1 : predmeti) {
+				if(p.getId().equals(p1.getId())) {
+					postoji = true;
+				}
+			}
+			if(!postoji) {
+				nePredaje.add(p);
+			}
 		}
 	}
-	*/
+	
 	public String getIme() {
 		return ime;
 	}

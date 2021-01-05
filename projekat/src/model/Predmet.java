@@ -114,5 +114,9 @@ public class Predmet implements Serializable {
 		profesor = BazaProfesora.getInstance().getProfesori().get(selectedIndex);
 		return profesor;
 		}
+	
+	public void ukloniProfesora() {
+		profesor = null;
+	}
 }
 

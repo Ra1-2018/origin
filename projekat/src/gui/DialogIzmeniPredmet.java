@@ -81,8 +81,13 @@ public class DialogIzmeniPredmet extends JDialog {
 		nazivTF.setPreferredSize(dimension1);
 		JTextField espbTF = new JTextField(espbString);
 		espbTF.setPreferredSize(dimension1);
-		JTextField profTF = new JTextField(predmet.getProfesor().getIme() + " " + predmet.getProfesor().getPrezime());
+		JTextField profTF = new JTextField();
+		if(predmet.getProfesor() != null)
+			profTF.setText(predmet.getProfesor().getIme() + " " + predmet.getProfesor().getPrezime());
+		else
+			profTF.setText("");
 		profTF.setPreferredSize(dimension1);
+		profTF.setEditable(false);;
 		
 		String[] semestri = {"Letnji", "Zimski"};
 		JComboBox<String> semestarComboBox = new JComboBox<String>(semestri);
@@ -325,6 +330,16 @@ public class DialogIzmeniPredmet extends JDialog {
 			
 		});
 		
+		minus.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DialogUkloniProfesoraSaPredmeta dup = new DialogUkloniProfesoraSaPredmeta(profTF, predmet);
+				dup.setVisible(true);
+			}
+			
+		});
 	}
 	
 	public boolean proveraUnosa(String fieldText, String fieldRegex, int index) {

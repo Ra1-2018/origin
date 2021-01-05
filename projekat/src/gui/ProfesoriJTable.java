@@ -18,6 +18,7 @@ public class ProfesoriJTable extends JTable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5663696672979969804L;
+	
 	private static TableRowSorter<AbstractTableModelProfesori> sorter;
 	
 	public ProfesoriJTable() {
