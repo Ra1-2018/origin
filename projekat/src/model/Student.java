@@ -87,8 +87,24 @@ public class Student implements Serializable {
 	
 	public void initNePohadja() {
 		nePohadja = new ArrayList<Predmet>();
-		for(Predmet p : BazaPredmeta.getInstance().getPredmeti()) 
-		nePohadja.add(p);
+		for(Predmet p : BazaPredmeta.getInstance().getPredmeti()) {
+			boolean ima = false;
+			for(Ocena o : polozeniIspiti) {
+				if(p.getId().equals(o.getPredmet().getId())) {
+					ima = true;
+				}
+			}
+			
+			for(Predmet p1 : nepolozeniIspiti) {
+				if(p.getId().equals(p1.getId())) {
+					ima = true;
+				}
+			}
+			
+			if(!ima) {
+				nePohadja.add(p);
+			}
+		}
 	}
 	
 	public String getPrezime() {

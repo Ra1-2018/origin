@@ -15,6 +15,7 @@ public class AbstractListModelPredmetiStudenta extends AbstractListModel<Object>
 	
 	AbstractListModelPredmetiStudenta(Student student) {
 		this.student = student;
+		student.initNePohadja();
 	}
 
 	@Override
