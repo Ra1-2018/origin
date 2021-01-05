@@ -10,6 +10,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
 public class PredmetiJTable extends JTable{
+	
 	private static final long serialVersionUID = -5663696672979969804L;
 
 	private static TableRowSorter<AbstractTableModelPredmeti> sorter;
