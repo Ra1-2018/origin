@@ -2,10 +2,11 @@ package model;
 
 import java.util.List;
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 
 public class Student implements Serializable {
@@ -50,7 +51,7 @@ public class Student implements Serializable {
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 
-		initNePohadja();
+		//initNePohadja();
 		
 		initNepolozeneIspite();
 		this.koloneNepolozeni = new ArrayList<String>();
@@ -73,20 +74,21 @@ public class Student implements Serializable {
 
 	public void initNepolozeneIspite() {
 		nepolozeniIspiti = new ArrayList<Predmet>();
-		nepolozeniIspiti.add(BazaPredmeta.getInstance().getPredmeti().get(0));
+		//nepolozeniIspiti.add(BazaPredmeta.getInstance().getPredmeti().get(0));
 	}
 	
 	public void initPolozeneIspite() {
 		polozeniIspiti = new ArrayList<Ocena>();
-		Ocena ocena = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(1), 6, new GregorianCalendar(2020, Calendar.DECEMBER, 10).getTime());
+	//	Ocena ocena = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(1), 6, new GregorianCalendar(2020, Calendar.DECEMBER, 10).getTime());
 	//	Ocena ocena1 = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(2), 8, new GregorianCalendar(2020, Calendar.NOVEMBER, 11).getTime());
-		polozeniIspiti.add(ocena);
+	//	polozeniIspiti.add(ocena);
 	//	polozeniIspiti.add(ocena1);
 	}
 	
 	public void initNePohadja() {
 		nePohadja = new ArrayList<Predmet>();
-		nePohadja.add(BazaPredmeta.getInstance().getPredmeti().get(2));
+		for(Predmet p : BazaPredmeta.getInstance().getPredmeti()) 
+		nePohadja.add(p);
 	}
 	
 	public String getPrezime() {
@@ -217,6 +219,10 @@ public class Student implements Serializable {
 	public void setNepolozeniIspiti(List<Predmet> nepolozeniIspiti) {
 		this.nepolozeniIspiti = nepolozeniIspiti;
 	}
+	
+	public List<Predmet> nePohadja() {
+		return nePohadja;
+	}
 
 	//------------------------------------------------------------------------
 	public int getColumnCountNepolozeni() {
@@ -276,7 +282,11 @@ public class Student implements Serializable {
 		case 3:
 			return "" + ocena.getVrednost();
 		case 4:
-			return "" + ocena.getDatum();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			Date d = ocena.getDatum();
+			String newDateString = sdf.format(d);
+			return "" + newDateString;
 		default:
 			return null;
 		}
@@ -291,7 +301,7 @@ public class Student implements Serializable {
 		return suma;
 	}
 	
-	public double prosecnaOcena() {
+	public String prosecnaOcena() {
 		long suma = 0;
 		double srednjaOcena=0;
 		
@@ -300,7 +310,10 @@ public class Student implements Serializable {
 		}
 		String sumica = suma+"";
 		srednjaOcena=Double.parseDouble(sumica)/polozeniIspiti.size();
-		return srednjaOcena;
+		
+		DecimalFormat df=new DecimalFormat("0.00");
+		String formate = df.format(srednjaOcena);
+		return formate;
 	}
 	
 	public void insertOcena(Ocena ocena) {
@@ -331,9 +344,13 @@ public class Student implements Serializable {
 	}
 
 	public void dodajPredmet(int index) {
+		
 		Predmet predmet = nePohadja.get(index);
+		if(Double.parseDouble(this.trenutnaGodinaStudija) >= predmet.getGodinaStudija().ordinal()) {
 		nePohadja.remove(index);
 		nepolozeniIspiti.add(predmet);
+		}
+		
 	}
 	
 	public void dodajNepohadjani(Predmet predmet) {
