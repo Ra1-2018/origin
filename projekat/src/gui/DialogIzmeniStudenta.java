@@ -604,7 +604,10 @@ public class DialogIzmeniStudenta extends JDialog {
 	JButton btnPonistiOcenu = new JButton("Ponisti ocenu");
 	btnPonistiOcenu.setPreferredSize(new Dimension(150, 30));
 	
+	btnPolozeniPanel.add(Box.createHorizontalStrut(25));
 	btnPolozeniPanel.add(btnPonistiOcenu);
+	btnPolozeniPanel.add(Box.createHorizontalGlue());
+	btnPolozeniPanel.setPreferredSize(new Dimension(750, 50));
 	panelPolozeni.add(btnPolozeniPanel, BorderLayout.NORTH);
 	
 	
@@ -612,6 +615,14 @@ public class DialogIzmeniStudenta extends JDialog {
 	JScrollPane polozeniScrollPane = new JScrollPane(polozeniPredmeti);
 	polozeniScrollPane.setPreferredSize(new Dimension(300, 300));
 	panelPolozeni.add(polozeniScrollPane, BorderLayout.CENTER);
+	
+	JPanel leviPanel = new JPanel();
+	leviPanel.setPreferredSize(new Dimension(25, 750));
+	panelPolozeni.add(leviPanel, BorderLayout.WEST);
+	
+	JPanel desniPanel = new JPanel();
+	desniPanel.setPreferredSize(new Dimension(25, 750));
+	panelPolozeni.add(desniPanel, BorderLayout.EAST);
 	
 	JPanel donjiPanel = new JPanel();
 	BoxLayout donjiLayout = new BoxLayout(donjiPanel, BoxLayout.Y_AXIS);
@@ -629,13 +640,18 @@ public class DialogIzmeniStudenta extends JDialog {
 	JLabel srednjaOcena = new JLabel("Prosecna ocena:  " + student.getProsecnaOcena());
 	panelOcene.add(Box.createHorizontalGlue());
 	panelOcene.add(srednjaOcena);
+	panelOcene.add(Box.createHorizontalStrut(10));
 	
 	JLabel ukupniBodovi = new JLabel("Ukupno ESPB:  " + student.ukupnoBodova());
 	panelBodovi.add(Box.createHorizontalGlue());
 	panelBodovi.add(ukupniBodovi);
+	panelBodovi.add(Box.createHorizontalStrut(10));
 	
+	donjiPanel.add(Box.createVerticalStrut(10));
 	donjiPanel.add(panelOcene);
+	donjiPanel.add(Box.createVerticalStrut(10));
 	donjiPanel.add(panelBodovi);
+	donjiPanel.add(Box.createVerticalStrut(10));
 
 	polozeniPredmeti.getModel().addTableModelListener(new TableModelListener() {
 
