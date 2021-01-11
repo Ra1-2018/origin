@@ -1,6 +1,9 @@
 package model;
 
 import java.util.List;
+
+import model.Predmet.Godina;
+
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -88,7 +91,44 @@ public class Student implements Serializable {
 	public void initNePohadja() {
 		nePohadja = new ArrayList<Predmet>();
 		for(Predmet p : BazaPredmeta.getInstance().getPredmeti()) {
+			
 			boolean ima = false;
+			
+			int godinaP=0;
+			
+			if(p.getGodinaStudija().equals(Godina.PRVA)) {
+				godinaP=1;
+			}
+			else if(p.getGodinaStudija().equals(Godina.DRUGA)) {
+				godinaP=2;
+			}
+			else if(p.getGodinaStudija().equals(Godina.TRECA)) {
+				godinaP=3;
+			}
+			else {
+				godinaP=4;
+			}
+		
+			String godina = this.getTrenutnaGodinaStudija();
+			int godStud = 0;
+			
+			if(godina.equals("IV (cetvrta)")) {
+				godStud = 4;
+			}
+			else if(godina.equals("III (treca)")) {
+				godStud = 3;
+			}
+			else if(godina.equals("II (druga)")) {
+				godStud = 2;
+			}
+			else {
+				godStud = 1;
+			}
+			
+			if(godStud < godinaP) {
+				ima = true;
+			}
+			
 			for(Ocena o : polozeniIspiti) {
 				if(p.getId().equals(o.getPredmet().getId())) {
 					ima = true;
@@ -362,12 +402,10 @@ public class Student implements Serializable {
 	public void dodajPredmet(int index) {
 		
 		Predmet predmet = nePohadja.get(index);
-		if(Double.parseDouble(this.trenutnaGodinaStudija) >= predmet.getGodinaStudija().ordinal()) {
 		nePohadja.remove(index);
 		nepolozeniIspiti.add(predmet);
-		}
-		
 	}
+		
 	
 	public void dodajNepohadjani(Predmet predmet) {
 		nePohadja.add(predmet);
