@@ -88,7 +88,7 @@ public class DialogIzmeniPredmet extends JDialog {
 		else
 			profTF.setText("");
 		profTF.setPreferredSize(dimension1);
-		profTF.setEditable(false);;
+		profTF.setEditable(false);
 		
 		String[] semestri = {"Letnji", "Zimski"};
 		JComboBox<String> semestarComboBox = new JComboBox<String>(semestri);
@@ -328,7 +328,7 @@ public class DialogIzmeniPredmet extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ddpp = new DialogDodajProfesoraPredmetu(profTF, predmet);
+				ddpp = new DialogDodajProfesoraPredmetu(profTF);
 				ddpp.setVisible(true);
 			
 			}
@@ -340,7 +340,7 @@ public class DialogIzmeniPredmet extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				DialogUkloniProfesoraSaPredmeta dup = new DialogUkloniProfesoraSaPredmeta(profTF, predmet);
+				DialogUkloniProfesoraSaPredmeta dup = new DialogUkloniProfesoraSaPredmeta(profTF);
 				dup.setVisible(true);
 			}
 			
