@@ -59,7 +59,6 @@ public class DialogUkloniProfesoraSaPredmeta extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				predmet.ukloniProfesora();
 				profTF.setText("");
 				dispose();
 			}

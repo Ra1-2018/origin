@@ -303,10 +303,14 @@ public class DialogIzmeniPredmet extends JDialog {
 						return;
 					}
 				}
+				if(profTF.getText().equals(""))
+					profesor = null;
+				else
+					profesor = ddpp.getProf();
 				
-				profesor = ddpp.getProf();
 				Predmet predmet = new Predmet(id, naziv, semestar, godina, profesor, Long.parseLong(espbString));
 				PredmetiController.getInstance().izmeniPredmet(selectedIndex, predmet);
+				dispose();
 			}
 			
 		});

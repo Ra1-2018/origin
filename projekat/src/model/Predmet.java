@@ -110,13 +110,5 @@ public class Predmet implements Serializable {
 		return BazaProfesora.getInstance().getProfesori().size();
 	}
 
-	public Profesor dodajProfesora(int selectedIndex) {
-		profesor = BazaProfesora.getInstance().getProfesori().get(selectedIndex);
-		return profesor;
-		}
-	
-	public void ukloniProfesora() {
-		profesor = null;
-	}
 }
 
