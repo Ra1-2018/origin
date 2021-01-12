@@ -204,7 +204,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				ime = imeTF.getText();
-				String imeRegex = "[a-zA-Z\s]+";
+				String imeRegex = "[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(ime, imeRegex, 0));
 			}
 
@@ -212,7 +212,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				ime = imeTF.getText();
-				String imeRegex = "[a-zA-Z\s]+";
+				String imeRegex = "[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(ime, imeRegex, 0));
 			}
 
@@ -220,7 +220,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				ime = imeTF.getText();
-				String imeRegex = "[a-zA-Z\s]+";
+				String imeRegex = "[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(ime, imeRegex, 0));
 			}
 		});
@@ -231,7 +231,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				prezime = prezimeTF.getText();
-				String prezimeRegex = "[a-zA-Z\s]+";
+				String prezimeRegex = "[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(prezime, prezimeRegex, 1));
 			}
 
@@ -239,7 +239,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				prezime = prezimeTF.getText();
-				String prezimeRegex = "[a-zA-Z\s]+";
+				String prezimeRegex = "[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(prezime, prezimeRegex, 1));
 			}
 
@@ -247,7 +247,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				prezime = prezimeTF.getText();
-				String prezimeRegex = "[a-zA-Z\s]+";
+				String prezimeRegex = "[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(prezime, prezimeRegex, 1));
 			}
 		});
@@ -285,7 +285,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				adresaStanovanja = adresaStanTF.getText();
-				String adresaStanRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				String adresaStanRegex = "[\\p{L}\s]+\\d+\\,[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(adresaStanovanja, adresaStanRegex, 3));
 			}
 
@@ -293,7 +293,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				adresaStanovanja = adresaStanTF.getText();
-				String adresaStanRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				String adresaStanRegex = "[\\p{L}\s]+\\d+\\,[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(adresaStanovanja, adresaStanRegex, 3));
 			}
 
@@ -301,7 +301,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				adresaStanovanja = adresaStanTF.getText();
-				String adresaStanRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				String adresaStanRegex = "[\\p{L}\s]+\\d+\\,[\\p{L}\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(adresaStanovanja, adresaStanRegex, 3));
 			}
 		});
@@ -366,7 +366,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				adresaKancelarije = adresaKancTF.getText();
-				String adresaKancRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				String adresaKancRegex = "[\\p{L}\s]+\\d+\\,[\\p{L}\s]+\\,[\\d\\p{L}\\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(adresaKancelarije, adresaKancRegex, 6));
 			}
 
@@ -374,7 +374,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				adresaKancelarije = adresaKancTF.getText();
-				String adresaKancRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				String adresaKancRegex = "[\\p{L}\s]+\\d+\\,[\\p{L}\s]+\\,[\\d\\p{L}\\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(adresaKancelarije, adresaKancRegex, 6));
 			}
 
@@ -382,7 +382,7 @@ public class DialogIzmeniProfesora extends JDialog {
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 				adresaKancelarije = adresaKancTF.getText();
-				String adresaKancRegex = "[a-zA-Z\s]+\\d+\\,[a-zA-Z\s]+";
+				String adresaKancRegex = "[\\p{L}\s]+\\d+\\,[\\p{L}\s]+\\,[\\d\\p{L}\\s]+";
 				btnPotvrdi.setEnabled(proveraUnosa(adresaKancelarije, adresaKancRegex, 6));
 			}
 		});
@@ -440,6 +440,7 @@ public class DialogIzmeniProfesora extends JDialog {
 					catch(java.text.ParseException pe) {
 						pe.printStackTrace();
 					}
+				dispose();
 			}
 		});
 		
