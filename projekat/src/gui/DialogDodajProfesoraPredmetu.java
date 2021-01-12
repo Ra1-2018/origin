@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import model.BazaProfesora;
 import model.Predmet;
 import model.Profesor;
 
@@ -26,6 +27,7 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 	 */
 	private static final long serialVersionUID = 5968193652354772695L;
 	private JList<Object> profesoriList;
+	Profesor prof;
 	
 	public DialogDodajProfesoraPredmetu(JTextField profTF, Predmet predmet) {
 		
@@ -95,7 +97,8 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(profesoriList.getSelectedIndex() > -1) {
-					Profesor prof = predmet.dodajProfesora(profesoriList.getSelectedIndex());	
+					//Profesor prof = predmet.dodajProfesora(profesoriList.getSelectedIndex());	
+					prof = BazaProfesora.getInstance().getProfesori().get(profesoriList.getSelectedIndex());
 					profTF.setText(prof.getIme() + " " + prof.getPrezime());
 					
 					dispose();
@@ -110,4 +113,13 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 				dispose();
 			}});
 	}
+
+	public Profesor getProf() {
+		return prof;
+	}
+
+	public void setProf(Profesor prof) {
+		this.prof = prof;
+	}
+	
 }

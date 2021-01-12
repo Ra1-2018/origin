@@ -35,6 +35,7 @@ public class DialogIzmeniPredmet extends JDialog {
 	private String naziv;
 	private String espbString;
 	private Profesor profesor;
+	private DialogDodajProfesoraPredmetu ddpp;
 	
 	DialogIzmeniPredmet(int selectedIndex) {
 		super();
@@ -303,7 +304,7 @@ public class DialogIzmeniPredmet extends JDialog {
 					}
 				}
 				
-				profesor = predmet.getProfesor();	
+				profesor = ddpp.getProf();
 				Predmet predmet = new Predmet(id, naziv, semestar, godina, profesor, Long.parseLong(espbString));
 				PredmetiController.getInstance().izmeniPredmet(selectedIndex, predmet);
 			}
@@ -323,7 +324,7 @@ public class DialogIzmeniPredmet extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				DialogDodajProfesoraPredmetu ddpp = new DialogDodajProfesoraPredmetu(profTF, predmet);
+				ddpp = new DialogDodajProfesoraPredmetu(profTF, predmet);
 				ddpp.setVisible(true);
 			
 			}
