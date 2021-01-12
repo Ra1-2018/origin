@@ -17,8 +17,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import controller.Serijalizacija;
-import model.BazaStudenata;
-import model.Student;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -99,10 +97,6 @@ public class Frame extends JFrame {
 		addStudentiTabToTabbedPane("Studenti");
 		addProfesoriTabToTabbedPane("Profesori");
 		addPredmetiTabToTabbedPane("Predmeti");
-
-		//for(Student s : BazaStudenata.getInstance().getStudenti()) {
-			//s.initNePohadja();
-		//}
 	}
 	
 	private void initPosition() {
