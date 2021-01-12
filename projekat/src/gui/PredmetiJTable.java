@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.util.Comparator;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -22,6 +23,37 @@ public class PredmetiJTable extends JTable{
 		
 		AbstractTableModelPredmeti model = new AbstractTableModelPredmeti();
 		sorter = new TableRowSorter<AbstractTableModelPredmeti>(model);
+		
+		sorter.setComparator(0, new Comparator<String>() {
+
+			@Override
+			public int compare(String name1, String name2) {
+				int ret = extractString(name1).compareTo(extractString(name2));
+				if(ret == 0)
+					return extractInt(name1) - extractInt(name2);
+				else
+					return ret;
+			}
+			
+			String extractString(String s) {
+				return s.replaceAll("\\d", "");
+			}
+			
+			int extractInt(String s) {
+				String num = s.replaceAll("\\D", "");
+				return num.isEmpty() ? 0 : Integer.parseInt(num);
+			}
+		});
+		
+		sorter.setComparator(4, new Comparator<String>() {
+			 
+		    @Override
+		    public int compare(String name1, String name2) {
+		    	Long long1 = Long.parseLong(name1);
+		    	Long long2 = Long.parseLong(name2);
+                return long1.compareTo(long2);
+		    }
+		});
 		
 		this.setModel(model);
 		this.setRowSorter(sorter);
