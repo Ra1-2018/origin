@@ -238,7 +238,7 @@ public class DialogIzmeniPredmet extends JDialog {
 				// TODO Auto-generated method stub
 				naziv = nazivTF.getText();
 				String nazivRegex = "[\\da-zA-Z\s]+";
-				btnPotvrdi.setEnabled(proveraUnosa(id, nazivRegex, 1));
+				btnPotvrdi.setEnabled(proveraUnosa(naziv, nazivRegex, 1));
 			}
 
 			@Override
@@ -246,7 +246,7 @@ public class DialogIzmeniPredmet extends JDialog {
 				// TODO Auto-generated method stub
 				naziv = nazivTF.getText();
 				String nazivRegex = "[\\da-zA-Z\s]+";
-				btnPotvrdi.setEnabled(proveraUnosa(id, nazivRegex, 1));
+				btnPotvrdi.setEnabled(proveraUnosa(naziv, nazivRegex, 1));
 			}
 
 			@Override
@@ -254,7 +254,7 @@ public class DialogIzmeniPredmet extends JDialog {
 				// TODO Auto-generated method stub
 				naziv = nazivTF.getText();
 				String nazivRegex = "[\\da-zA-Z\s]+";
-				btnPotvrdi.setEnabled(proveraUnosa(id, nazivRegex, 1));
+				btnPotvrdi.setEnabled(proveraUnosa(naziv, nazivRegex, 1));
 			}
 			
 		});
