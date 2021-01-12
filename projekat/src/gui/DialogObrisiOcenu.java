@@ -26,11 +26,13 @@ public class DialogObrisiOcenu extends JDialog {
 	
 	private Predmet predmet;
 	private NepolozeniPredmetiJTable nepolozeni;
+	private PolozeniIspitiJTable polozeni;
 
 	public DialogObrisiOcenu(PolozeniIspitiJTable polozeni, NepolozeniPredmetiJTable nepolozeni, Student student) {
 		
 		super();
 		this.nepolozeni = nepolozeni;
+		this.polozeni = polozeni;
 		
 		setSize(400, 150);
 		setModal(true);
@@ -103,6 +105,10 @@ public class DialogObrisiOcenu extends JDialog {
 		nepolozeniModel.fireTableDataChanged();
 		validate();
 		
+
+		AbstractTableModelPolozeniIspiti polozeniModel = (AbstractTableModelPolozeniIspiti) polozeni.getModel();
+		
+		polozeniModel.fireTableDataChanged();
 		validate();
 	}
 	
