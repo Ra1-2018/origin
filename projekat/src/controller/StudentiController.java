@@ -38,5 +38,9 @@ public class StudentiController {
 		BazaStudenata.getInstance().obrisiStudenta(index);
 		Frame.getInstance().getStudTab().azurirajPrikaz("UKLONJEN", index);
 	}
+	
+	public void updatePrikaz() {
+		Frame.getInstance().getStudTab().azurirajPrikaz(null, -1);
+	}
 
 }

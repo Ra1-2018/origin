@@ -36,7 +36,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = -3483057378640442927L;
-	private boolean ispravni[] = {true, true, true, true, true, true, true, true, true};
+	private boolean ispravni[] = {true, true, true, true, true, true, true, true};
 	String ime;
 	String prezime;
 	String brojTelefona;
@@ -44,7 +44,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	String adresa;
 	String brIndeksa;
 	String email;
-	String prosecnaOcena;
+	//String prosecnaOcena;
 	String godinaUpisa;
 	
 	public DialogIzmeniStudenta(int selectedIndex) {
@@ -86,7 +86,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	JPanel godinaUpisaPanel = new JPanel(layout);
 	JPanel godinaStudijaPanel = new JPanel(layout);
 	JPanel nacinFinansiranjaPanel = new JPanel(layout);
-	JPanel prosecnaOcenaPanel = new JPanel(layout);
+//	JPanel prosecnaOcenaPanel = new JPanel(layout);
 		
 	JLabel imeLabel = new JLabel("Ime*: ");
 	JLabel prezimeLabel = new JLabel("Prezime*: ");
@@ -97,7 +97,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	JLabel brIndeksaLabel = new JLabel("Broj indeksa*: ");
 	JLabel godinaUpisaLabel = new JLabel("Godina upisa*: ");
 	JLabel godinaStudijaLabel = new JLabel("Trenutna godina studija*: ");
-	JLabel prosecnaOcenaLabel = new JLabel("Prosecna ocena*: ");
+//	JLabel prosecnaOcenaLabel = new JLabel("Prosecna ocena*: ");
 	JLabel nacinFinansiranjaLabel = new JLabel("Nacin finansiranja*:");
 	
 	imeLabel.setPreferredSize(dimension);
@@ -109,7 +109,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	brIndeksaLabel.setPreferredSize(dimension);
 	godinaUpisaLabel.setPreferredSize(dimension);
 	godinaStudijaLabel.setPreferredSize(dimension);
-	prosecnaOcenaLabel.setPreferredSize(dimension);
+	//prosecnaOcenaLabel.setPreferredSize(dimension);
 	nacinFinansiranjaLabel.setPreferredSize(dimension);
 	
 	
@@ -122,7 +122,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	adresa = student.getAdresaStanovanja();
 	brIndeksa = student.getBrojIndeksa();
 	email = student.getEmailAdresa();
-	prosecnaOcena = Double.toString(student.getProsecnaOcena());
+	//prosecnaOcena = Double.toString(student.getProsecnaOcena());
 	godinaUpisa = student.getGodinaUpisa();
     
 	
@@ -141,8 +141,8 @@ public class DialogIzmeniStudenta extends JDialog {
 	brIndeksaText.setToolTipText("Format: AAxxx-yyyy");
 	JTextField godinaUpisaText = new JTextField(student.getGodinaUpisa());
 	godinaUpisaText.setToolTipText("Format: yyyy");
-	JTextField prosecnaOcenaText = new JTextField(Double.toString(student.getProsecnaOcena()));
-	prosecnaOcenaText.setToolTipText("Format: cifra + tacka + dve cifre ili 10.00");
+//	JTextField prosecnaOcenaText = new JTextField(Double.toString(student.getProsecnaOcena()));
+//	prosecnaOcenaText.setToolTipText("Format: cifra + tacka + dve cifre ili 10.00");
 	String[] godineStudija = { "I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)" };
 	JComboBox<String> godineStudijaComboBox = new JComboBox<String>(godineStudija);	
 	String[] budzet_samofinansiranje = { "Budzet", "Samofinansiranje" };
@@ -159,7 +159,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	emailText.setPreferredSize(dimension);
 	brIndeksaText.setPreferredSize(dimension);
 	godinaUpisaText.setPreferredSize(dimension);
-	prosecnaOcenaText.setPreferredSize(dimension);
+//	prosecnaOcenaText.setPreferredSize(dimension);
 	godineStudijaComboBox.setPreferredSize(dimension);
 	budzet_samofinansiranjeComboBox.setPreferredSize(dimension);
 			
@@ -180,8 +180,8 @@ public class DialogIzmeniStudenta extends JDialog {
 	brIndeksaPanel.add(brIndeksaText);	
 	godinaUpisaPanel.add(godinaUpisaLabel);
 	godinaUpisaPanel.add(godinaUpisaText);
-	prosecnaOcenaPanel.add(prosecnaOcenaLabel);
-	prosecnaOcenaPanel.add(prosecnaOcenaText);	
+//	prosecnaOcenaPanel.add(prosecnaOcenaLabel);
+//	prosecnaOcenaPanel.add(prosecnaOcenaText);	
 	godinaStudijaPanel.add(godinaStudijaLabel);
 	godinaStudijaPanel.add(godineStudijaComboBox);
 	nacinFinansiranjaPanel.add(nacinFinansiranjaLabel);
@@ -194,7 +194,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	panelInformacije.add(kontaktPanel);
 	panelInformacije.add(emailPanel);
 	panelInformacije.add(brIndeksaPanel);
-	panelInformacije.add(prosecnaOcenaPanel);
+//	panelInformacije.add(prosecnaOcenaPanel);
 	panelInformacije.add(godinaUpisaPanel);
 	panelInformacije.add(godinaStudijaPanel);
 	panelInformacije.add(nacinFinansiranjaPanel);
@@ -228,7 +228,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void changedUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			ime = imeText.getText();
-			String regex_ime = "[[a-zA-Z]\s]+";
+			String regex_ime = "[[\\p{L}]\s]+";
 			potvrda.setEnabled(proveraUnosa(ime, regex_ime, 0));		
 		}
 
@@ -236,7 +236,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void insertUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			ime = imeText.getText();
-			String regex_ime = "[[a-zA-Z]\s]+";
+			String regex_ime = "[[\\p{L}]\s]+";
 			potvrda.setEnabled(proveraUnosa(ime, regex_ime, 0));	
 		}
 
@@ -244,7 +244,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void removeUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			ime = imeText.getText();
-			String regex_ime = "[[a-zA-Z]\s]+";
+			String regex_ime = "[[\\p{L}]\s]+";
 			potvrda.setEnabled(proveraUnosa(ime, regex_ime, 0));	
 		}
 			
@@ -257,7 +257,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void changedUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			prezime = prezimeText.getText();
-			String regex_prezime = "[a-zA-Z\s]+";
+			String regex_prezime = "[\\p{L}\s]+";
 			potvrda.setEnabled(proveraUnosa(prezime, regex_prezime, 1));		
 		}
 
@@ -265,7 +265,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void insertUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			prezime = prezimeText.getText();
-			String regex_prezime = "[a-zA-Z\s]+";
+			String regex_prezime = "[\\p{L}\s]+";
 			potvrda.setEnabled(proveraUnosa(prezime, regex_prezime, 1));		
 		}
 
@@ -273,7 +273,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void removeUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			prezime = prezimeText.getText();
-			String regex_prezime = "[a-zA-Z\s]+";
+			String regex_prezime = "[\\p{L}\s]+";
 			potvrda.setEnabled(proveraUnosa(prezime, regex_prezime, 1));	
 		}
 			
@@ -318,7 +318,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void changedUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			adresa = adresaText.getText();
-			String regex_adresa = "[[a-zA-Z]+\s]+\\d+\\,[[a-zA-Z]+\s]+";
+			String regex_adresa = "[[\\d\\p{L}]+\s]+\\d*\\,[[\\p{L}]+\s]+";
 			potvrda.setEnabled(proveraUnosa(adresa, regex_adresa, 3));
 		}
 
@@ -326,7 +326,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void insertUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			adresa = adresaText.getText();
-			String regex_adresa = "[[a-zA-Z]+\s]+\\d+\\,[[a-zA-Z]+\s]+";
+			String regex_adresa = "[[\\d\\p{L}]+\s]+\\d*\\,[[\\p{L}]+\s]+";
 			potvrda.setEnabled(proveraUnosa(adresa, regex_adresa, 3));
 			
 		}
@@ -335,7 +335,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void removeUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			adresa = adresaText.getText();
-			String regex_adresa = "[[a-zA-Z]+\s]+\\d+\\,[[a-zA-Z]+\s]+";
+			String regex_adresa = "[[\\d\\p{L}]+\s]+\\d*\\,[[\\p{L}]+\s]+";
 			potvrda.setEnabled(proveraUnosa(adresa, regex_adresa, 3));		
 		}	
 	});
@@ -405,7 +405,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void changedUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			email = emailText.getText();
-			String regex_email = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+			String regex_email = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[\\p{L}0-9-]+\\.)+[\\p{L}]{2,6}$";
 			potvrda.setEnabled(proveraUnosa(email, regex_email, 6));		
 		}
 
@@ -413,7 +413,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void insertUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			email = emailText.getText();
-			String regex_email = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+			String regex_email = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[\\p{L}0-9-]+\\.)+[\\p{L}]{2,6}$";
 			potvrda.setEnabled(proveraUnosa(email, regex_email, 6));	
 		}
 
@@ -421,13 +421,13 @@ public class DialogIzmeniStudenta extends JDialog {
 		public void removeUpdate(DocumentEvent arg0) {
 			// TODO Auto-generated method stub
 			email = emailText.getText();
-			String regex_email = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+			String regex_email = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[\\p{L}0-9-]+\\.)+[\\p{L}]{2,6}$";
 			potvrda.setEnabled(proveraUnosa(email, regex_email, 6));		
 		}
 		
 	});
 	
-	prosecnaOcenaText.getDocument().addDocumentListener(new DocumentListener() {
+/*	prosecnaOcenaText.getDocument().addDocumentListener(new DocumentListener() {
 
 		@Override
 		public void changedUpdate(DocumentEvent arg0) {
@@ -456,7 +456,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		
 		}
 		
-	});
+	});*/
 	
 	godinaUpisaText.getDocument().addDocumentListener(new DocumentListener() {
 
@@ -465,7 +465,7 @@ public class DialogIzmeniStudenta extends JDialog {
 			// TODO Auto-generated method stub
 			godinaUpisa = godinaUpisaText.getText();
 			String regex_godinaUpisa = "\\d{4}";
-			potvrda.setEnabled(proveraUnosa(godinaUpisa, regex_godinaUpisa, 8));
+			potvrda.setEnabled(proveraUnosa(godinaUpisa, regex_godinaUpisa, 7));
 		}
 
 		@Override
@@ -473,7 +473,7 @@ public class DialogIzmeniStudenta extends JDialog {
 			// TODO Auto-generated method stub
 			godinaUpisa = godinaUpisaText.getText();
 			String regex_godinaUpisa = "\\d{4}";
-			potvrda.setEnabled(proveraUnosa(godinaUpisa, regex_godinaUpisa, 8));
+			potvrda.setEnabled(proveraUnosa(godinaUpisa, regex_godinaUpisa, 7));
 		}
 
 		@Override
@@ -481,7 +481,7 @@ public class DialogIzmeniStudenta extends JDialog {
 			// TODO Auto-generated method stub
 			godinaUpisa = godinaUpisaText.getText();
 			String regex_godinaUpisa = "\\d{4}";
-			potvrda.setEnabled(proveraUnosa(godinaUpisa, regex_godinaUpisa, 8));
+			potvrda.setEnabled(proveraUnosa(godinaUpisa, regex_godinaUpisa, 7));
 			
 		}
 		
@@ -496,7 +496,7 @@ public class DialogIzmeniStudenta extends JDialog {
 		String godinaStudija =  godineStudijaComboBox.getSelectedItem().toString();
 	    String nacinFinansiranja = budzet_samofinansiranjeComboBox.getSelectedItem().toString();
 	    
-		double ocena = Double.parseDouble(prosecnaOcena);
+		double ocena = student.getProsecnaOcena();
 	    
 	    Status finansiranje;
 	    
@@ -521,6 +521,7 @@ public class DialogIzmeniStudenta extends JDialog {
 				catch(java.text.ParseException pe) {
 					pe.printStackTrace();
 				}
+			dispose();
 	}
 	});
 	
@@ -637,7 +638,7 @@ public class DialogIzmeniStudenta extends JDialog {
 	BoxLayout desni1Layout = new BoxLayout(panelBodovi, BoxLayout.X_AXIS);
 	panelBodovi.setLayout(desni1Layout);
 	
-	JLabel srednjaOcena = new JLabel("Prosecna ocena:  " + student.getProsecnaOcena());
+	JLabel srednjaOcena = new JLabel("Prosecna ocena:  " + student.prosecnaOcena());
 	panelOcene.add(Box.createHorizontalGlue());
 	panelOcene.add(srednjaOcena);
 	panelOcene.add(Box.createHorizontalStrut(10));
@@ -661,6 +662,9 @@ public class DialogIzmeniStudenta extends JDialog {
 			
 			srednjaOcena.setText("Prosecna ocena:  " + student.prosecnaOcena());
 			ukupniBodovi.setText("Ukupno ESPB:  " + student.ukupnoBodova());
+			
+			StudentiController.getInstance().updatePrikaz();
+			
 			
 		}
 		
