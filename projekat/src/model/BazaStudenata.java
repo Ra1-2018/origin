@@ -3,18 +3,11 @@ package model;
 import java.util.List;
 
 import controller.Serijalizacija;
-
 import java.util.ArrayList;
-//import java.util.Calendar;
-//import java.util.Date;
-//import java.util.GregorianCalendar;
-//import java.util.Calendar;
-
 import model.Student.Status;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.DecimalFormat;
+
 
 public class BazaStudenata {
 	
@@ -103,10 +96,10 @@ public class BazaStudenata {
 			else if (student.getStatus()==status2)
 				return "S";
 		case 5: 
-			double ocena = student.getProsecnaOcena();
-			DecimalFormat df=new DecimalFormat("0.00");
-			String formate = df.format(ocena); 
-			return formate;
+			//String ocena = student.prosecnaOcena();
+		//	DecimalFormat df=new DecimalFormat("0.00");
+		//	String formate = df.format(ocena); 
+			return student.prosecnaOcena();
 					
 		default:
 			return null;

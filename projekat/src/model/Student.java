@@ -367,6 +367,8 @@ public class Student implements Serializable {
 		String sumica = suma+"";
 		srednjaOcena=Double.parseDouble(sumica)/polozeniIspiti.size();
 		
+		prosecnaOcena = srednjaOcena;
+		
 		DecimalFormat df=new DecimalFormat("0.00");
 		String formate = df.format(srednjaOcena);
 		return formate;
