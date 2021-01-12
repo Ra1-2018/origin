@@ -21,6 +21,7 @@ import controller.PredmetiController;
 import model.Predmet;
 import model.Predmet.Godina;
 import model.Predmet.Semestar;
+import model.Profesor;
 
 
 public class DialogDodajPredmet extends JDialog {
@@ -33,6 +34,8 @@ public class DialogDodajPredmet extends JDialog {
 	private String id;
 	private String naziv;
 	private String espbString;
+	private Profesor profesor;
+	private DialogDodajProfesoraPredmetu ddpp;
 	
 	DialogDodajPredmet() {
 		super();
@@ -53,6 +56,7 @@ public class DialogDodajPredmet extends JDialog {
 		JPanel semestarPanel = new JPanel(layout1);
 		JPanel godinaPanel = new JPanel(layout1);
 		JPanel espbPanel = new JPanel(layout1);
+		JPanel profesorPanel = new JPanel(layout1);
 		
 		JLabel idLabel = new JLabel("Sifra predmeta*:");
 		idLabel.setPreferredSize(dimension1);
@@ -64,6 +68,8 @@ public class DialogDodajPredmet extends JDialog {
 		godinaLabel.setPreferredSize(dimension1);
 		JLabel espbLabel = new JLabel("Broj ESPB bodova*:");
 		espbLabel.setPreferredSize(dimension1);
+		JLabel profesorLabel = new JLabel("Profesor*:");
+		profesorLabel.setPreferredSize(dimension1);
 		
 		JTextField idTF = new JTextField();
 		idTF.setPreferredSize(dimension1);
@@ -71,6 +77,9 @@ public class DialogDodajPredmet extends JDialog {
 		nazivTF.setPreferredSize(dimension1);
 		JTextField espbTF = new JTextField();
 		espbTF.setPreferredSize(dimension1);
+		JTextField profTF = new JTextField();
+		profTF.setPreferredSize(dimension1);
+		profTF.setEditable(false);
 		
 		String[] semestri = {"Letnji", "Zimski"};
 		JComboBox<String> semestarComboBox = new JComboBox<String>(semestri);
@@ -91,11 +100,19 @@ public class DialogDodajPredmet extends JDialog {
 		espbPanel.add(espbLabel);
 		espbPanel.add(espbTF);
 		
+		JButton plus = new JButton("+");
+		JButton minus = new JButton("-");
+		profesorPanel.add(profesorLabel);
+		profesorPanel.add(profTF);
+		profesorPanel.add(plus);
+		profesorPanel.add(minus);
+		
 		dialogPanel.add(idPanel);
 		dialogPanel.add(nazivPanel);
 		dialogPanel.add(semestarPanel);
 		dialogPanel.add(godinaPanel);
 		dialogPanel.add(espbPanel);
+		dialogPanel.add(profesorPanel);
 		dialogPanel.add(Box.createVerticalStrut(25));
 		
 		add(dialogPanel, BorderLayout.CENTER);
@@ -117,6 +134,58 @@ public class DialogDodajPredmet extends JDialog {
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 		btnPotvrdi.setEnabled(false);
+		if(profTF.getText().equals("")) {
+			minus.setEnabled(false);
+			plus.setEnabled(true);
+		}
+		else {
+			plus.setEnabled(false);
+			minus.setEnabled(true);
+		}
+		
+		profTF.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(profTF.getText().equals("")) {
+					minus.setEnabled(false);
+					plus.setEnabled(true);
+				}
+				else {
+					plus.setEnabled(false);
+				minus.setEnabled(true);
+				}
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(profTF.getText().equals("")) {
+					minus.setEnabled(false);
+					plus.setEnabled(true);
+					
+				}
+				else  {
+					plus.setEnabled(false);
+					minus.setEnabled(true);
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(profTF.getText().equals("")) {
+					minus.setEnabled(false);
+					plus.setEnabled(true);
+				}
+				else  {
+					plus.setEnabled(false);
+					minus.setEnabled(true);
+				}
+			}
+			
+		});
 		
 		idTF.getDocument().addDocumentListener(new DocumentListener() {
 
@@ -218,7 +287,12 @@ public class DialogDodajPredmet extends JDialog {
 						return;
 					}
 				}
-				Predmet predmet = new Predmet(id, naziv, semestar, godina, null, Long.parseLong(espbString));
+				
+				if(profTF.getText().equals(""))
+					profesor = null;
+				else
+					profesor = ddpp.getProf();
+				Predmet predmet = new Predmet(id, naziv, semestar, godina, profesor, Long.parseLong(espbString));
 				PredmetiController.getInstance().dodajPredmet(predmet);
 			}
 			
@@ -231,6 +305,30 @@ public class DialogDodajPredmet extends JDialog {
 				// TODO Auto-generated method stub
 				dispose();
 			}});
+		
+		
+		plus.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ddpp = new DialogDodajProfesoraPredmetu(profTF);
+				ddpp.setVisible(true);
+			
+			}
+			
+		});
+		
+		minus.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DialogUkloniProfesoraSaPredmeta dup = new DialogUkloniProfesoraSaPredmeta(profTF);
+				dup.setVisible(true);
+			}
+			
+		});
 	}
 	
 	public boolean proveraUnosa(String fieldText, String fieldRegex, int index) {

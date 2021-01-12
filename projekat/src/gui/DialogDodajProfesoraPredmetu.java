@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import model.BazaProfesora;
-import model.Predmet;
 import model.Profesor;
 
 public class DialogDodajProfesoraPredmetu extends JDialog{
@@ -29,7 +28,7 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 	private JList<Object> profesoriList;
 	Profesor prof;
 	
-	public DialogDodajProfesoraPredmetu(JTextField profTF, Predmet predmet) {
+	public DialogDodajProfesoraPredmetu(JTextField profTF) {
 		
 		super();
 	
@@ -58,7 +57,7 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 		
 		dialogPanel.add(panLabel, BorderLayout.NORTH);
 		
-		profesoriList = new JList<Object>(new AbstractListModelProfesori(predmet));
+		profesoriList = new JList<Object>(new AbstractListModelProfesori());
 		profesoriList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		JScrollPane profesoriScrollPane = new JScrollPane(profesoriList);
 		profesoriScrollPane.setPreferredSize(new Dimension(200, 200));
@@ -97,7 +96,6 @@ public class DialogDodajProfesoraPredmetu extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(profesoriList.getSelectedIndex() > -1) {
-					//Profesor prof = predmet.dodajProfesora(profesoriList.getSelectedIndex());	
 					prof = BazaProfesora.getInstance().getProfesori().get(profesoriList.getSelectedIndex());
 					profTF.setText(prof.getIme() + " " + prof.getPrezime());
 					

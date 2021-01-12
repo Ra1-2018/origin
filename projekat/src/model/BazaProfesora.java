@@ -117,4 +117,9 @@ public class BazaProfesora {
 	public void obrisiProfesora(int index) {
 		this.profesori.remove(index);
 	}
+	
+	public Object getValueAtProf1(int i) {
+		Profesor profesor = BazaProfesora.getInstance().getProfesori().get(i);
+		return profesor.getIme() + " " + profesor.getPrezime();
+	}
 }

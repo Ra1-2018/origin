@@ -100,15 +100,5 @@ public class Predmet implements Serializable {
 	public void setStudentiPali(List<Student> studentiPali) {
 		this.studentiPali = studentiPali;
 	}
-
-	public Object getValueAtProf(int i) {
-		Profesor profesor = BazaProfesora.getInstance().getProfesori().get(i);
-		return profesor.getIme() + " " + profesor.getPrezime();
-	}
-
-	public int getSizeProf() {
-		return BazaProfesora.getInstance().getProfesori().size();
-	}
-
 }
 

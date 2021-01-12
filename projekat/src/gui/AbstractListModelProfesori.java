@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.AbstractListModel;
 
-import model.Predmet;
+import model.BazaProfesora;
 
 public class AbstractListModelProfesori extends AbstractListModel<Object>{
 
@@ -10,22 +10,20 @@ public class AbstractListModelProfesori extends AbstractListModel<Object>{
 	 * 
 	 */
 	private static final long serialVersionUID = -7254484288779343278L;
-    private Predmet predmet;
-    
-    AbstractListModelProfesori(Predmet p) {
-    	this.predmet = p;
+
+    AbstractListModelProfesori() {
     }
     
 	@Override
 	public Object getElementAt(int i) {
 		// TODO Auto-generated method stub
-		return predmet.getValueAtProf(i);
+		return BazaProfesora.getInstance().getValueAtProf1(i);
 	}
 
 	@Override
 	public int getSize() {
 		// TODO Auto-generated method stub
-		return predmet.getSizeProf();
+		return BazaProfesora.getInstance().getProfesori().size();
 	}
 
 }

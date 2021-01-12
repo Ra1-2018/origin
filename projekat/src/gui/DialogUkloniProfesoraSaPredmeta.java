@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.Predmet;
 
 public class DialogUkloniProfesoraSaPredmeta extends JDialog {
 
@@ -24,7 +23,7 @@ public class DialogUkloniProfesoraSaPredmeta extends JDialog {
 	 */
 	private static final long serialVersionUID = 1772892043999432227L;
 
-	DialogUkloniProfesoraSaPredmeta(JTextField profTF, Predmet predmet) {
+	DialogUkloniProfesoraSaPredmeta(JTextField profTF) {
 		super();
 		setTitle("Ukloni profesora");
 		setSize(450, 200);
