@@ -3,14 +3,11 @@ package model;
 import java.util.List;
 
 import model.Predmet.Godina;
-
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-
 
 public class Student implements Serializable {
 	
@@ -54,8 +51,6 @@ public class Student implements Serializable {
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 
-		//initNePohadja();
-		
 		initNepolozeneIspite();
 		this.koloneNepolozeni = new ArrayList<String>();
 		//---------------------------------------------
@@ -77,15 +72,10 @@ public class Student implements Serializable {
 
 	public void initNepolozeneIspite() {
 		nepolozeniIspiti = new ArrayList<Predmet>();
-		//nepolozeniIspiti.add(BazaPredmeta.getInstance().getPredmeti().get(0));
 	}
 	
 	public void initPolozeneIspite() {
 		polozeniIspiti = new ArrayList<Ocena>();
-	//	Ocena ocena = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(1), 6, new GregorianCalendar(2020, Calendar.DECEMBER, 10).getTime());
-	//	Ocena ocena1 = new Ocena(this, BazaPredmeta.getInstance().getPredmeti().get(2), 8, new GregorianCalendar(2020, Calendar.NOVEMBER, 11).getTime());
-	//	polozeniIspiti.add(ocena);
-	//	polozeniIspiti.add(ocena1);
 	}
 	
 	public void initNePohadja() {

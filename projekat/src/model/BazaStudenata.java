@@ -1,13 +1,11 @@
 package model;
 
 import java.util.List;
-
 import controller.Serijalizacija;
 import java.util.ArrayList;
 import model.Student.Status;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 
 public class BazaStudenata {
 	
@@ -93,9 +91,6 @@ public class BazaStudenata {
 			else if (student.getStatus()==status2)
 				return "S";
 		case 5: 
-			//String ocena = student.prosecnaOcena();
-		//	DecimalFormat df=new DecimalFormat("0.00");
-		//	String formate = df.format(ocena); 
 			return student.prosecnaOcena();
 					
 		default:
