@@ -26,11 +26,11 @@ public class DialogAbout extends JDialog{
 		
 		String text = 
 				
-				"\n Verzija aplikacije: Studentska sluba v1.0 "
-				+"\n\n\n Student 1 - Bogdana ivkoviæ"
-				+ "\nRoğena u Novom Sadu 20. 7. 1999. . \n Trenutno pohağa 3. godinu osnovnih akademskih studija na Fakultetu tehnièkih nauka na smeru Raèunarstvo i automatika.\n Pohağala prirodno-matematièki smer Gimnazije 'Jovan Jovanoviæ Zmaj'."
-				+ "\n Student 2 - Nikola Ivanoviæ"
-				+ "\nRoğen u Novom Sadu 17. 12. 1999. . \n Trenutno pohağa 3. godinu osnovnih akademskih studija na Fakultetu tehnièkih nauka na smeru Raèunarstvo i automatika.\n Pohağao prirodno-matematièki smer Gimnazije 'Jovan Jovanoviæ Zmaj'.";
+				"\n Verzija aplikacije: Studentska sluÅ¾ba v1.0 "
+				+"\n\n\n Student 1 - Bogdana Å½ivkoviÄ‡"
+				+ "\nRoÄ‘ena u Novom Sadu 20. 7. 1999. . \n Trenutno pohaÄ‘a 3. godinu osnovnih akademskih studija na Fakultetu tehniÄkih nauka na smeru RaÄunarstvo i automatika.\n PohaÄ‘ala prirodno-matematiÄki smer Gimnazije 'Jovan JovanoviÄ‡ Zmaj'."
+				+ "\n Student 2 - Nikola IvanoviÄ‡"
+				+ "\nRoÄ‘en u Novom Sadu 17. 12. 1999. . \n Trenutno pohaÄ‘a 3. godinu osnovnih akademskih studija na Fakultetu tehniÄkih nauka na smeru RaÄunarstvo i automatika.\n PohaÄ‘ao prirodno-matematiÄki smer Gimnazije 'Jovan JovanoviÄ‡ Zmaj'.";
 		opis.setText(text);
 		add(opis);
 		setVisible(true);

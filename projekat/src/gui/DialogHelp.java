@@ -47,35 +47,35 @@ public class DialogHelp extends JDialog{
 				"\n\r"+
 				"IZMENE\n"+
 				"4. Izmena informacija o studentu - pritiskom drugog dugmeta u ToolBar-u/izborom stavke menija Edit\n\r"+
-				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaèi odgovarajuæi red tabele.\n\r"+
-				"\s 4.1 Ako se predmet nalazi u tabeli sa poloenim predmetima, njemu je dodeljena odgovarajuæa ocena i moguæe je poništiti.\n\s Da bi se ocena poništila, potrebno je oznaèiti predmet i kliknuti na dugme Poništi ocenu.\n\r"+
-				"\s 4.2 Da bi se dodao novi student na predmet, potrebno je pozicionirati se na tab Nepoloeni i kliknuti dugme Dodaj.\n\r"+
-				"\s U okviru taba Nepoloeni moguæe je ukloniti predmete, koje oznaèeni student sluša, tako sto se oznaèi odgovarajuæi predmet i klikne na dugme Ukloni.\n\r"+
-				"\s Da bi se polozio predmet iz liste nepolozenih neophodno je oznaèiti neki od predmeta iz tabele nepoloenih predmeta, nakon èega se odabirom dugmeta Polaganje moguce izvrsiti upis ocene\n\r"+
+				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaÄi odgovarajuÄ‡i red tabele.\n\r"+
+				"\s 4.1 Ako se predmet nalazi u tabeli sa poloÅ¾enim predmetima, njemu je dodeljena odgovarajuÄ‡a ocena i moguÄ‡e je poniÅ¡titi.\n\s Da bi se ocena poniÅ¡tila, potrebno je oznaÄiti predmet i kliknuti na dugme PoniÅ¡ti ocenu.\n\r"+
+				"\s 4.2 Da bi se dodao novi student na predmet, potrebno je pozicionirati se na tab NepoloÅ¾eni i kliknuti dugme Dodaj.\n\r"+
+				"\s U okviru taba NepoloÅ¾eni moguÄ‡e je ukloniti predmete, koje oznaÄeni student sluÅ¡a, tako sto se oznaÄi odgovarajuÄ‡i predmet i klikne na dugme Ukloni.\n\r"+
+				"\s Da bi se polozio predmet iz liste nepolozenih neophodno je oznaÄiti neki od predmeta iz tabele nepoloÄenih predmeta, nakon Äega se odabirom dugmeta Polaganje moguce izvrsiti upis ocene\n\r"+
 				"5. Izmena informacija o profesoru - pritiskom drugog dugmeta u ToolBar-u/izborom stavke menija Edit\n\r"+
-				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaèi odgovarajuæi red tabele.\n\r"+
+				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaÄi odgovarajuÄ‡i red tabele.\n\r"+
 				"\s 5.1 Da bi se dodao novi predmet profesoru potrebno je izabrati tab Predemti u okviru dijaloga za izmenu profesora, a zatim dugme Dodaj predmet.\n\r"+
 				"\s Da bi se izbrisao predmet profesoru potrebno je izabrati tab Predmeti u okviru dijaloga za izmenu profesora i selektovati predmet koji se uklanja, a zatim pritisnuti dugme Ukloni predmet\n\r"+
 				"6. Izmena informacija o predmetu - pritiskom drugog dugmeta u ToolBar-u/izborom stavke menija Edit\n\r"+
-				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaèi odgovarajuæi red tabele.\n\r"+
+				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaÄi odgovarajuÄ‡i red tabele.\n\r"+
 				"\n\r"+
 				"BRISANJE\n"+
 				"7. Brisanje studenta - pritiskom treceg dugmeta u ToolBar-u/izborom stavke menija Delete\n\r"+
-				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaèi odgovarajuæi red tabele.\n\r"+
+				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaÄi odgovarajuÄ‡i red tabele.\n\r"+
 				"8. Brisanje profesora - pritiskom treceg dugmeta u ToolBar-u/izborom stavke menija Delete\n\r"+
-				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaèi odgovarajuæi red tabele.\n\r"+
+				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaÄi odgovarajuÄ‡i red tabele.\n\r"+
 				"9. Brisanje predmeta - pritiskom treceg dugmeta u ToolBar-u/izborom stavke menija Delete\n\r"+
-				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaèi odgovarajuæi red tabele.\n\r"+
+				"NAPOMENA: Neophodno je da selektovani tab odgovara tipu entiteta koji referent namerava da doda, takodje potrebno je da oznaÄi odgovarajuÄ‡i red tabele.\n\r"+
 				"SORTIRANJE\n"+
 				"10. Sortiranje je moguce izvrsiti odabirom odgovarajuceg taba, a zatim klikom na zaglavlje kolone na osnovu koje ce  se elementi tabele sortirati."+
 				"\n\r"+
 				"PRETRAGA\n"+
 				"11. Pretraga studenta\n\r"+
-				"Prilikom pretrage studenata, u polje za pretragu unose se upiti koji se mogu sastojati od jedne, dve ili tri reèi. Prva reè je obavezna i odnosi se na deo prezimena studenta.\n Druga, odnosno treæa reè su opcione i odnose se na deo imena, odnosno broja indeksa studenta.\n\r"+
+				"Prilikom pretrage studenata, u polje za pretragu unose se upiti koji se mogu sastojati od jedne, dve ili tri reÄi. Prva reÄ je obavezna i odnosi se na deo prezimena studenta.\n Druga, odnosno treÄ‡a reÄ su opcione i odnose se na deo imena, odnosno broja indeksa studenta.\n\r"+
 				"12. Pretraga profesora\n\r"+
-				"Prilikom pretrage profesora, u polje za pretragu unose se upiti koji se mogu sastojati od jedne ili dve reèi. Prva reè je obavezna i odnosi se na deo prezimena profesora.\n Druga reè je opciona i odnosi se na deo imena profesora.\n\r"+
+				"Prilikom pretrage profesora, u polje za pretragu unose se upiti koji se mogu sastojati od jedne ili dve reÄi. Prva reÄ je obavezna i odnosi se na deo prezimena profesora.\n Druga reÄ je opciona i odnosi se na deo imena profesora.\n\r"+
 				"11. Pretraga predmeta\n\r"+
-				"Prilikom pretrage predmeta, u polje za pretragu unose se upiti koji se mogu sastojati od jedne reèi koja se odnosi na deo naziva predmeta.\n\r"+
+				"Prilikom pretrage predmeta, u polje za pretragu unose se upiti koji se mogu sastojati od jedne reÄi koja se odnosi na deo naziva predmeta.\n\r"+
 				"NAPOMENA: Nakon unosa upita potrebno je pritisnuti dugme za pretragu (lupa ikonica)\n\r"+
 				"\n\r"+
 				"Mnemonici:\n\r"+
