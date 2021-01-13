@@ -208,4 +208,12 @@ public class Profesor implements Serializable {
 		nePredaje.add(predmet);
 		predmeti.remove(index);
 	}
+	
+	public void ukloniPredmet(Predmet p) {
+		for(Predmet predmet : predmeti)
+			if(predmet.getId().equals(p.getId())) {
+				predmeti.remove(predmet);
+				break;
+			}
+	}
 }

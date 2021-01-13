@@ -403,5 +403,17 @@ public class Student implements Serializable {
 		nePohadja.add(predmet);
 	}
 
-
+	public void obrisiPredmet(Predmet p) {
+		for(Predmet predmet : nepolozeniIspiti)
+			if(predmet.getId().equals(p.getId())) {
+				nepolozeniIspiti.remove(predmet);
+				break;
+			}
+		
+		for(Ocena ocena : polozeniIspiti)
+			if(ocena.getPredmet().getId().equals(p.getId())) {
+				polozeniIspiti.remove(ocena);
+				break;
+			}
+	}
 }

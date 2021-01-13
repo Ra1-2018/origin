@@ -4,6 +4,7 @@ import java.util.List;
 
 import gui.Frame;
 import model.BazaStudenata;
+import model.Predmet;
 import model.Student;
 
 public class StudentiController {
@@ -41,6 +42,11 @@ public class StudentiController {
 	
 	public void updatePrikaz() {
 		Frame.getInstance().getStudTab().azurirajPrikaz(null, -1);
+	}
+	
+	public void obrisiPredmetStudentima(Predmet p) {
+		for(Student s: BazaStudenata.getInstance().getStudenti())
+			s.obrisiPredmet(p);
 	}
 
 }
