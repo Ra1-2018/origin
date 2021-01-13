@@ -106,7 +106,7 @@ public class Frame extends JFrame {
 		int screenWidth = screenSize.width;
 		
 		this.setSize(screenWidth * 3 / 4, screenHeight * 3 / 4);
-		this.setTitle("Studentska sluûba");
+		this.setTitle("Studentska slu≈æba");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -185,7 +185,7 @@ public class Frame extends JFrame {
 		this.statusBar.setBackground(Color.WHITE);
 		this.statusBar.setPreferredSize(new Dimension(100, 30));
 		
-		this.statusLabel = new JLabel("Studentska sluûba");
+		this.statusLabel = new JLabel("Studentska slu≈æba");
 		this.statusBar.add(Box.createHorizontalStrut(15));
 		this.statusBar.add(this.statusLabel);
 		this.statusBar.add(Box.createHorizontalGlue());
