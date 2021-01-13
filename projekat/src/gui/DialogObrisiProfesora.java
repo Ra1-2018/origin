@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.ProfesoriController;
+import model.BazaProfesora;
+import controller.PredmetiController;
+
 public class DialogObrisiProfesora extends JDialog {
 
 	/**
@@ -61,6 +64,7 @@ public class DialogObrisiProfesora extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+				PredmetiController.getInstance().obrisiProfesoraPredmetu(BazaProfesora.getInstance().getProfesori().get(selectedIndex));
 				ProfesoriController.getInstance().obrisiProfesora(selectedIndex);
 				dispose();
 			}

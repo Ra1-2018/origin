@@ -5,6 +5,7 @@ import java.util.List;
 import gui.Frame;
 import model.BazaPredmeta;
 import model.Predmet;
+import model.Profesor;
 
 
 public class PredmetiController {
@@ -37,5 +38,11 @@ public class PredmetiController {
 	public void obrisiPredmet(int index) {
 		BazaPredmeta.getInstance().obrisiPredmet(index);
 		Frame.getInstance().getPredTab().azurirajPrikaz("UKLONJEN", index);
+	}
+	
+	public void obrisiProfesoraPredmetu(Profesor p) {
+		for(Predmet predmet: BazaPredmeta.getInstance().getPredmeti())
+		predmet.ukloniProfesora(p);
+			
 	}
 }

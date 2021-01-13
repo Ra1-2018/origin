@@ -100,5 +100,14 @@ public class Predmet implements Serializable {
 	public void setStudentiPali(List<Student> studentiPali) {
 		this.studentiPali = studentiPali;
 	}
+	
+	public void ukloniProfesora(Profesor p) {
+		if(profesor!=null) {
+		if(this.profesor.getBrojLicneKarte().equals(p.getBrojLicneKarte())) {
+			
+				this.profesor=null;
+			}
+		}
+	}
 }
 
