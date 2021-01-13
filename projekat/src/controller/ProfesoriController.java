@@ -4,6 +4,7 @@ import java.util.List;
 
 import gui.Frame;
 import model.BazaProfesora;
+import model.Predmet;
 import model.Profesor;
 
 public class ProfesoriController {
@@ -37,4 +38,8 @@ private static ProfesoriController instance = null;
 		Frame.getInstance().getProfTab().azurirajPrikaz("UKLONJEN", index);
 	}
 
+	public void obrisiPredmetProfesorima(Predmet p) {
+		for(Profesor profesor : BazaProfesora.getInstance().getProfesori())
+			profesor.ukloniPredmet(p);
+	}
 }

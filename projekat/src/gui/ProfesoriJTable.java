@@ -54,8 +54,7 @@ public class ProfesoriJTable extends JTable {
 					"Pretraga se izvrsava na osnovu dela prezimena i dela imena",
 					"Greska pri pretrazi profesora", JOptionPane.ERROR_MESSAGE);
 			return;
-		}
-		
+		}		
 		List<RowFilter<AbstractTableModelProfesori, Object>> filters = new ArrayList<RowFilter<AbstractTableModelProfesori, Object>>();
 		for(int i=0; i<reci.length; i++)
 			filters.add(RowFilter.regexFilter(("(?i)" + reci[i]), 1-i));
