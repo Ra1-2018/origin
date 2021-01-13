@@ -2,9 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,8 +12,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
-
-import model.BazaStudenata;
 
 public class StudentiJTable extends JTable {
 
