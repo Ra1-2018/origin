@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import controller.PredmetiController;
 import model.Ocena;
 import model.Predmet;
 import model.Student;
@@ -73,7 +72,7 @@ public class DialogUpisiOcenu extends JDialog {
 		JLabel datumLabel = new JLabel("Datum*:");
 		datumLabel.setPreferredSize(dimension);
 		
-		predmet = PredmetiController.getInstance().getPredmeti().get(nepolozeni.getSelectedRow());
+		predmet = student.getNepolozeniIspiti().get(nepolozeni.getSelectedRow());
 		
 		JLabel sifraPrikaz = new JLabel(predmet.getId());
 		sifraPrikaz.setPreferredSize(dimension);
